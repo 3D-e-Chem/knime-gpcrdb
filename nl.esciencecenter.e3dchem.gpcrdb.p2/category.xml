@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature-1.0.4.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature" version="1.0.0">
+      <category name="nl.esciencecenter.3D-e-Chem"/>
+   </feature>
+   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature.source_1.0.4.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature.source" version="1.0.0">
+      <category name="nl.esciencecenter.3D-e-Chem.sources"/>
+   </feature>
+   <category-def name="nl.esciencecenter.3D-e-Chem" label="KNIME 3D-e-Chem Contributions">
+      <description>
+         3D-e-Chem: Collection KNIME nodes &amp; Extensions for the NLeSC 3d-e-Chem project
+      </description>
+   </category-def>
+   <category-def name="nl.esciencecenter.3D-e-Chem.sources" label="KNIME 3D-e-Chem Contributions Sources">
+      <description>
+         3D-e-Chem Sources: Sources of KNIME nodes &amp; Extensions for the NLeSC 3d-e-Chem project
+      </description>
+   </category-def>
+</site>
