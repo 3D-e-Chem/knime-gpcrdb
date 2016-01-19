@@ -1,8 +1,12 @@
-package nl.esciencecenter.e3dchem.gpcrdb;
+package nl.esciencecenter.e3dchem.gpcrdb.structures;
 
+import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
+import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
+import org.knime.core.node.defaultnodesettings.DialogComponentString;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 /**
  * <code>NodeDialog</code> for the "StructuresOfProtein" Node.
@@ -13,7 +17,6 @@ import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
  * complex dialog please derive directly from 
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
- * @author Stefan Verhoeven
  */
 public class StructuresOfProteinNodeDialog extends DefaultNodeSettingsPane {
 
@@ -25,12 +28,23 @@ public class StructuresOfProteinNodeDialog extends DefaultNodeSettingsPane {
     protected StructuresOfProteinNodeDialog() {
         super();
         
-        addDialogComponent(new DialogComponentNumber(
-                new SettingsModelIntegerBounded(
-                    StructuresOfProteinNodeModel.CFGKEY_COUNT,
-                    StructuresOfProteinNodeModel.DEFAULT_COUNT,
-                    Integer.MIN_VALUE, Integer.MAX_VALUE),
-                    "Counter:", /*step*/ 1, /*componentwidth*/ 5));
+        addDialogComponent(new DialogComponentColumnNameSelection(
+        		new SettingsModelString(
+        				StructuresOfProteinNodeModel.CFGKEY_INPUTCOLUMNNAME, null
+        				),
+        		"Column with Uniprot identifiers", 0, StringValue.class
+        ));
+        
+        createNewTab("Advanced");
+        
+        addDialogComponent(new DialogComponentString(
+        		new SettingsModelString(
+        				StructuresOfProteinNodeModel.CFGKEY_BASEPATH, 
+        				StructuresOfProteinNodeModel.DEFAULT_BASEPATH
+        		), 
+        		"Base path"
+        ));
+        
                     
     }
 }

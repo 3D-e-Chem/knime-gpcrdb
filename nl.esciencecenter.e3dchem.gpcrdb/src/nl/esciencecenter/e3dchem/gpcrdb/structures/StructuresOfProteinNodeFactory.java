@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.gpcrdb;
+package nl.esciencecenter.e3dchem.gpcrdb.structures;
 
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
@@ -7,8 +7,6 @@ import org.knime.core.node.NodeView;
 /**
  * <code>NodeFactory</code> for the "StructuresOfProtein" Node.
  * Get a list of structures of a protein
- *
- * @author Stefan Verhoeven
  */
 public class StructuresOfProteinNodeFactory 
         extends NodeFactory<StructuresOfProteinNodeModel> {

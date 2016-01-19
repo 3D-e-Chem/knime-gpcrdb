@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="nl.esciencecenter.e3dchem.gpcrdb.feature"
-      label="gpcrdb"
-      version="1.0.0"
-      provider-name="Netherlands eScience Center"
-      >
+      label="GPCRDB Nodes for Knime"
+      version="1.0.1"
+      provider-name="Netherlands eScience Center">
 
    <description>
-      Knime plugin for retrieving date from http://gpcrdb.org
+      Knime plugins for retrieving data from http://gpcrdb.org
    </description>
 
    <copyright>

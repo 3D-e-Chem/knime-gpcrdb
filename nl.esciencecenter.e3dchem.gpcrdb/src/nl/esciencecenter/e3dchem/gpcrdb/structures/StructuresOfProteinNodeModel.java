@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.gpcrdb;
+package nl.esciencecenter.e3dchem.gpcrdb.structures;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,13 +10,17 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
-import org.knime.core.data.def.DoubleCell;
-import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSerializer;
+
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
@@ -30,29 +34,22 @@ import org.knime.core.node.NodeSettingsWO;
  * This is the model implementation of StructuresOfProtein.
  * Get a list of structures of a protein
  *
- * @author Stefan Verhoeven
  */
 public class StructuresOfProteinNodeModel extends NodeModel {
     
     // the logger instance
     private static final NodeLogger logger = NodeLogger
             .getLogger(StructuresOfProteinNodeModel.class);
-        
-    /** the settings key which is used to retrieve and 
-        store the settings (from the dialog or from a settings file)    
-       (package visibility to be usable from the dialog). */
-	static final String CFGKEY_COUNT = "Count";
 
-    /** initial default count value. */
-    static final int DEFAULT_COUNT = 100;
+	static final String CFGKEY_BASEPATH = "Base path";
 
-    // example value: the models count variable filled from the dialog 
-    // and used in the models execution method. The default components of the
-    // dialog work with "SettingsModels".
-    private final SettingsModelIntegerBounded m_count =
-        new SettingsModelIntegerBounded(StructuresOfProteinNodeModel.CFGKEY_COUNT,
-                    StructuresOfProteinNodeModel.DEFAULT_COUNT,
-                    Integer.MIN_VALUE, Integer.MAX_VALUE);
+	static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
+
+	public static final String CFGKEY_INPUTCOLUMNNAME = "In Column";
+
+	private final SettingsModelString m_basePath = new SettingsModelString(StructuresOfProteinNodeModel.CFGKEY_BASEPATH, StructuresOfProteinNodeModel.DEFAULT_BASEPATH);
+	
+	private final SettingsModelString m_inputColumnName = new SettingsModelString(CFGKEY_INPUTCOLUMNNAME, null);
     
 
     /**
@@ -71,42 +68,61 @@ public class StructuresOfProteinNodeModel extends NodeModel {
     protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
             final ExecutionContext exec) throws Exception {
 
-        // TODO do something here
-        logger.info("Node Model Stub... this is not yet implemented !");
-
+        ApiClient client = new ApiClient();
+        client.setBasePath(m_basePath.getStringValue());
+        client.addDefaultHeader("Accept", "application/json");
+        ServicesproteinApi service = new ServicesproteinApi(client);
         
+               
         // the data table spec of the single output table, 
         // the table will have three columns:
-        DataColumnSpec[] allColSpecs = new DataColumnSpec[3];
+        DataColumnSpec[] allColSpecs = new DataColumnSpec[4];
         allColSpecs[0] = 
-            new DataColumnSpecCreator("Column 0", StringCell.TYPE).createSpec();
+            new DataColumnSpecCreator("Accession", StringCell.TYPE).createSpec();
         allColSpecs[1] = 
-            new DataColumnSpecCreator("Column 1", DoubleCell.TYPE).createSpec();
+                new DataColumnSpecCreator("Family", StringCell.TYPE).createSpec();
         allColSpecs[2] = 
-            new DataColumnSpecCreator("Column 2", IntCell.TYPE).createSpec();
+                new DataColumnSpecCreator("Name", StringCell.TYPE).createSpec();
+        allColSpecs[3] = 
+                new DataColumnSpecCreator("Entry name", StringCell.TYPE).createSpec();
         DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
+        
+        
         // the execution context will provide us with storage capacity, in this
         // case a data container to which we will add rows sequentially
         // Note, this container can also handle arbitrary big data tables, it
         // will buffer to disc if necessary.
         BufferedDataContainer container = exec.createDataContainer(outputSpec);
-        // let's add m_count rows to it
-        for (int i = 0; i < m_count.getIntValue(); i++) {
-            RowKey key = new RowKey("Row " + i);
-            // the cells of the current row, the types of the cells must match
-            // the column spec (see above)
-            DataCell[] cells = new DataCell[3];
-            cells[0] = new StringCell("String_" + i); 
-            cells[1] = new DoubleCell(0.5 * i); 
-            cells[2] = new IntCell(i);
-            DataRow row = new DefaultRow(key, cells);
-            container.addRowToTable(row);
+        
+        BufferedDataTable table = inData[0];
+        long rowCount = table.size();
+        long currentRow = 0;
+        int columnIndex = table.getDataTableSpec().findColumnIndex(m_inputColumnName.getStringValue());
+        
+		for (DataRow inrow : table) {
+	        String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
+	        
+			ProteinSerializer result = service.proteinDetailGET(entryName);
+	
+	        RowKey key = new RowKey("Row " + entryName);
+	        // the cells of the current row, the types of the cells must match
+	        // the column spec (see above)
+	        DataCell[] cells = new DataCell[4];
+	        cells[0] = new StringCell(result.getAccession()); 
+	        cells[1] = new StringCell(result.getFamily()); 
+	        cells[2] = new StringCell(result.getName());
+	        cells[3] = new StringCell(result.getEntryName());
+	        DataRow row = new DefaultRow(key, cells);
+	        container.addRowToTable(row);
+	        
+	        // check if the user cancelled the execution
+	        exec.checkCanceled();
+	        // report progress
+	        exec.setProgress((double)currentRow / rowCount, 
+	               " processing row " + currentRow);
+	        currentRow++;
+		}
             
-            // check if the execution monitor was canceled
-            exec.checkCanceled();
-            exec.setProgress(i / (double)m_count.getIntValue(), 
-                "Adding row " + i);
-        }
         // once we are done, we close the container and return its table
         container.close();
         BufferedDataTable out = container.getTable();
@@ -145,9 +161,8 @@ public class StructuresOfProteinNodeModel extends NodeModel {
     @Override
     protected void saveSettingsTo(final NodeSettingsWO settings) {
 
-        // TODO save user settings to the config object.
-        
-        m_count.saveSettingsTo(settings);
+        m_basePath.saveSettingsTo(settings);
+        m_inputColumnName.saveSettingsTo(settings);
 
     }
 
@@ -162,8 +177,9 @@ public class StructuresOfProteinNodeModel extends NodeModel {
         // It can be safely assumed that the settings are valided by the 
         // method below.
         
-        m_count.loadSettingsFrom(settings);
-
+   
+        m_basePath.loadSettingsFrom(settings);
+        m_inputColumnName.loadSettingsFrom(settings);
     }
 
     /**
@@ -178,7 +194,8 @@ public class StructuresOfProteinNodeModel extends NodeModel {
         // SettingsModel).
         // Do not actually set any values of any member variables.
 
-        m_count.validateSettings(settings);
+        m_basePath.validateSettings(settings);
+        m_inputColumnName.validateSettings(settings);
 
     }
     

@@ -2,12 +2,26 @@
 <?eclipse version="3.0"?>
 <plugin>
 
+
   <extension point="org.knime.workbench.repository.categories">
-    <category description="Category containing GPCRDB nodes" icon="icons/default.png" level-id="gpcrdbNodes" name="GPCRDB" path="/"/>
+    <category
+          description="Category containing GPCRDB nodes"
+          icon="icons/gpcrdb.png"
+          level-id="gpcrdb"
+          locked="false"
+          name="GPCRDB"
+          path="/community"/>
+  </extension>
+  
+  <extension point="org.knime.workbench.repository.nodes">
+    <node category-path="/community/gpcrdb" factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory" id="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory"/>
+    <node
+          category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory">
+    </node>
   </extension>
 
-  <extension point="org.knime.workbench.repository.nodes">
-    <node category-path="/" factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory" id="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory"/>
-  </extension>
 
 </plugin>
