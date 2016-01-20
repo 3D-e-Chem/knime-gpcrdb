@@ -3,7 +3,7 @@
     <parent>
         <artifactId>nl.esciencecenter.e3dchem</artifactId>
         <groupId>nl.esciencecenter.e3dchem</groupId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
     <artifactId>nl.esciencecenter.e3dchem.gpcrdb.p2</artifactId>
     <packaging>eclipse-repository</packaging>

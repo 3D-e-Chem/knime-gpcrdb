@@ -9,8 +9,6 @@
     <fullDescription>
         <intro>Retrieves protein families from GPCRDB</intro>
         
-        
-        <option name="Column">Column to use as Uniprot indentifiers</option>
         <tab name="Advanced Options">
 	        <option name="Base path">Url to use as base path for GPCRDB webservice</option>
         </tab>

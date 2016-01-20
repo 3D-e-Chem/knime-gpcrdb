@@ -25,8 +25,6 @@ public class ProteinFamiliesNodeDialog extends DefaultNodeSettingsPane {
 	protected ProteinFamiliesNodeDialog() {
 		super();
 
-		createNewTab("Advanced");
-
 		addDialogComponent(new DialogComponentString(basePath, "Base path"));
 
 	}

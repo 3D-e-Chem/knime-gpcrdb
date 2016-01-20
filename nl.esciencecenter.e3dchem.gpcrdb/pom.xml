@@ -6,17 +6,8 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem</groupId>
 		<artifactId>nl.esciencecenter.e3dchem</artifactId>
-		<version>1.0.3</version>
+		<version>1.0.4</version>
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.gpcrdb</artifactId>
 	<packaging>eclipse-plugin</packaging>
-
-	<dependencies>
-		<dependency>
-			<groupId>nl.esciencecenter.e3dchem</groupId>
-			<artifactId>nl.esciencecenter.e3dchem.gpcrdb.client</artifactId>
-			<version>1.0.0</version>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
 </project>

@@ -9,6 +9,7 @@ import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataColumnSpecCreator;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.StringCell;
@@ -67,7 +68,7 @@ public class ProteinFamiliesNodeModel extends NodeModel {
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
-		DataColumnSpec[] allColSpecs = new DataColumnSpec[2];
+		DataColumnSpec[] allColSpecs = new DataColumnSpec[3];
 		allColSpecs[0] = new DataColumnSpecCreator("Slug", StringCell.TYPE).createSpec();
 		allColSpecs[1] = new DataColumnSpecCreator("Parent", StringCell.TYPE).createSpec();
 		allColSpecs[2] = new DataColumnSpecCreator("Family name", StringCell.TYPE).createSpec();
@@ -86,7 +87,11 @@ public class ProteinFamiliesNodeModel extends NodeModel {
 			// the column spec (see above)
 			DataCell[] cells = new DataCell[3];
 			cells[0] = new StringCell(family.getSlug());
-			cells[1] = new StringCell(family.getParent().getSlug());
+			if (family.getParent() == null) {
+				cells[1] = new MissingCell("Family has no parent");
+			} else {
+				cells[1] = new StringCell(family.getParent().getSlug());
+			}
 			cells[2] = new StringCell(family.getName());
 			DataRow row = new DefaultRow(key, cells);
 			container.addRowToTable(row);

@@ -2,14 +2,14 @@
 <feature
       id="nl.esciencecenter.e3dchem.gpcrdb.feature"
       label="GPCRDB Nodes for Knime"
-      version="1.0.3"
+      version="1.0.4"
       provider-name="Netherlands eScience Center">
 
-   <description>
+   <description url="https://github.com/3D-e-Chem/knime-gpcrdb">
       Knime plugins for retrieving data from http://gpcrdb.org
    </description>
 
-   <copyright>
+   <copyright url="https://www.esciencecenter.nl">
       Copyright Netherlands eScience Center 2015
    </copyright>
 
@@ -219,6 +219,7 @@ http://www.apache.org/licenses/
 
    <url>
       <update label="3d-e-chem updates" url="https://3d-e-chem.github.io/updates"/>
+      <discovery label="GPCRDB" url="http://gpcrdb.org"/>
    </url>
 
    <plugin
