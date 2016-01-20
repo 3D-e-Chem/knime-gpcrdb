@@ -2,7 +2,7 @@
 <feature
       id="nl.esciencecenter.e3dchem.gpcrdb.feature"
       label="GPCRDB Nodes for Knime"
-      version="1.0.2"
+      version="1.0.3"
       provider-name="Netherlands eScience Center">
 
    <description>
