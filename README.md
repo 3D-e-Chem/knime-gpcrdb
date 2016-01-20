@@ -23,7 +23,7 @@ Steps to get distance measure inside KNIME:
 
 # Usage
 
-TODO
+See example workflow in `examples` folder.
 
 # Build
 

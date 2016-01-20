@@ -38,7 +38,7 @@ public class ServicesproteinfamilyApi {
    * Get a list of protein families&lt;br/&gt;/proteinfamily/
    * @return ProteinFamilySerializer
    */
-  public ProteinFamilySerializer proteinFamilyListGET() throws ApiException {
+  public List<ProteinFamilySerializer> proteinFamilyListGET() throws ApiException {
     Object postBody = null;
     
     // create path and map variables
@@ -68,7 +68,7 @@ public class ServicesproteinfamilyApi {
     String[] authNames = new String[] {  };
 
     
-    GenericType<ProteinFamilySerializer> returnType = new GenericType<ProteinFamilySerializer>() {};
+    GenericType<List<ProteinFamilySerializer>> returnType = new GenericType<List<ProteinFamilySerializer>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }
@@ -173,7 +173,7 @@ public class ServicesproteinfamilyApi {
    * @param slug 
    * @return ProteinSerializer
    */
-  public ProteinSerializer proteinsInFamilyListGET(String slug) throws ApiException {
+  public List<ProteinSerializer> proteinsInFamilyListGET(String slug) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'slug' is set
@@ -209,7 +209,7 @@ public class ServicesproteinfamilyApi {
     String[] authNames = new String[] {  };
 
     
-    GenericType<ProteinSerializer> returnType = new GenericType<ProteinSerializer>() {};
+    GenericType<List<ProteinSerializer>> returnType = new GenericType<List<ProteinSerializer>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }
