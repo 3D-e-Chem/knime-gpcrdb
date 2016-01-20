@@ -8,6 +8,7 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.Pair;
 import javax.ws.rs.core.GenericType;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.InlineResponseDefault;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.Structure;
 
 import java.util.*;
 
@@ -118,7 +119,7 @@ public class ServicesstructureApi {
    * @param entryName 
    * @return InlineResponseDefault
    */
-  public InlineResponseDefault structureListProteinGET(String entryName) throws ApiException {
+  public List<Structure> structureListProteinGET(String entryName) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'entryName' is set
@@ -154,7 +155,7 @@ public class ServicesstructureApi {
     String[] authNames = new String[] {  };
 
     
-    GenericType<InlineResponseDefault> returnType = new GenericType<InlineResponseDefault>() {};
+    GenericType<List<Structure>> returnType = new GenericType<List<Structure>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }
