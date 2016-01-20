@@ -9,6 +9,7 @@ import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataColumnSpecCreator;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.IntCell;
@@ -115,13 +116,17 @@ public class ResiduesNodeModel extends NodeModel {
 				cells[0] = new IntCell(residue.getSequenceNumber());
 				cells[1] = new StringCell(residue.getAminoAcid());
 				cells[2] = new StringCell(residue.getProteinSegment());
-				cells[3] = new StringCell(residue.getDisplayGenericNumber());
+				if (residue.getDisplayGenericNumber() == null) {
+					cells[3] = new MissingCell("Position has no generic number");
+				} else {
+					cells[3] = new StringCell(residue.getDisplayGenericNumber());
+				}
 				// TODO add alternative_generic_numbers array, but first type
 				// conflict must be resolved
 				// swagger reports alternative_generic_numbers (array[string]) while
 				// server returns List of {scheme:string,label:string}
 	
-				RowKey key = new RowKey("Row " + entryName);
+				RowKey key = new RowKey("Row " + entryName + residue.getSequenceNumber());
 				// the cells of the current row, the types of the cells must match
 				// the column spec (see above)
 				DataRow row = new DefaultRow(key, cells);

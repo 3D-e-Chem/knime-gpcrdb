@@ -120,7 +120,7 @@ public class StructuresOfProteinNodeModel extends NodeModel {
 	        
 			List<Structure> structures = service.structureListProteinGET(entryName);
 			for (Structure structure: structures) {
-		        RowKey key = new RowKey("Row " + entryName);
+		        RowKey key = new RowKey("Row " + entryName + '-' + structure.getPdb_code());
 		        // the cells of the current row, the types of the cells must match
 		        // the column spec (see above)
 		        DataCell[] cells = new DataCell[10];
