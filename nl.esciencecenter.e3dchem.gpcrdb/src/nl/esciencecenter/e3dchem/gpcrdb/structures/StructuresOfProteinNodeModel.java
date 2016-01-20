@@ -2,6 +2,7 @@ package nl.esciencecenter.e3dchem.gpcrdb.structures;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -10,6 +11,7 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
+import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
@@ -19,7 +21,9 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesstructureApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSerializer;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.Structure;
 
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
@@ -71,20 +75,32 @@ public class StructuresOfProteinNodeModel extends NodeModel {
         ApiClient client = new ApiClient();
         client.setBasePath(m_basePath.getStringValue());
         client.addDefaultHeader("Accept", "application/json");
-        ServicesproteinApi service = new ServicesproteinApi(client);
+        ServicesstructureApi service = new ServicesstructureApi(client);
         
                
         // the data table spec of the single output table, 
         // the table will have three columns:
-        DataColumnSpec[] allColSpecs = new DataColumnSpec[4];
+        DataColumnSpec[] allColSpecs = new DataColumnSpec[10];
         allColSpecs[0] = 
-            new DataColumnSpecCreator("Accession", StringCell.TYPE).createSpec();
+            new DataColumnSpecCreator("Publication date", StringCell.TYPE).createSpec();
         allColSpecs[1] = 
-                new DataColumnSpecCreator("Family", StringCell.TYPE).createSpec();
+                new DataColumnSpecCreator("Preferred chain", StringCell.TYPE).createSpec();
         allColSpecs[2] = 
-                new DataColumnSpecCreator("Name", StringCell.TYPE).createSpec();
+                new DataColumnSpecCreator("Type", StringCell.TYPE).createSpec();
         allColSpecs[3] = 
-                new DataColumnSpecCreator("Entry name", StringCell.TYPE).createSpec();
+                new DataColumnSpecCreator("Species", StringCell.TYPE).createSpec();
+        allColSpecs[4] = 
+                new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
+        allColSpecs[5] = 
+                new DataColumnSpecCreator("Resolution", DoubleCell.TYPE).createSpec();
+        allColSpecs[6] = 
+                new DataColumnSpecCreator("Ligands", StringCell.TYPE).createSpec();
+        allColSpecs[7] = 
+                new DataColumnSpecCreator("Publication", StringCell.TYPE).createSpec();
+        allColSpecs[8] = 
+                new DataColumnSpecCreator("PDB code", StringCell.TYPE).createSpec();
+        allColSpecs[9] = 
+                new DataColumnSpecCreator("Family", StringCell.TYPE).createSpec();
         DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
         
         
@@ -102,18 +118,25 @@ public class StructuresOfProteinNodeModel extends NodeModel {
 		for (DataRow inrow : table) {
 	        String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 	        
-			ProteinSerializer result = service.proteinDetailGET(entryName);
-	
-	        RowKey key = new RowKey("Row " + entryName);
-	        // the cells of the current row, the types of the cells must match
-	        // the column spec (see above)
-	        DataCell[] cells = new DataCell[4];
-	        cells[0] = new StringCell(result.getAccession()); 
-	        cells[1] = new StringCell(result.getFamily()); 
-	        cells[2] = new StringCell(result.getName());
-	        cells[3] = new StringCell(result.getEntryName());
-	        DataRow row = new DefaultRow(key, cells);
-	        container.addRowToTable(row);
+			List<Structure> structures = service.structureListProteinGET(entryName);
+			for (Structure structure: structures) {
+		        RowKey key = new RowKey("Row " + entryName);
+		        // the cells of the current row, the types of the cells must match
+		        // the column spec (see above)
+		        DataCell[] cells = new DataCell[10];
+		        cells[0] = new StringCell(structure.getPublication_date());
+		        cells[1] = new StringCell(structure.getPreferred_chain());
+		        cells[2] = new StringCell(structure.getType());
+		        cells[3] = new StringCell(structure.getSpecies());
+		        cells[4] = new StringCell(structure.getProtein());
+		        cells[5] = new DoubleCell(structure.getResolution());
+		        cells[6] = new StringCell(structure.getLigands().toString());
+		        cells[7] = new StringCell(structure.getPublication());
+		        cells[8] = new StringCell(structure.getPdb_code());
+		        cells[9] = new StringCell(structure.getFamily());
+		        DataRow row = new DefaultRow(key, cells);
+		        container.addRowToTable(row);
+			}
 	        
 	        // check if the user cancelled the execution
 	        exec.checkCanceled();

@@ -21,6 +21,12 @@
           factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory"
           id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory">
     </node>
+    <node
+          category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory">
+    </node>
   </extension>
 
 

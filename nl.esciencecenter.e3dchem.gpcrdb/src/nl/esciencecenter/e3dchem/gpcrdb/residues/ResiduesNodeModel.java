@@ -2,6 +2,7 @@ package nl.esciencecenter.e3dchem.gpcrdb.residues;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -108,22 +109,24 @@ public class ResiduesNodeModel extends NodeModel {
 		for (DataRow inrow : table) {
 			String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 
-			ResidueSerializer result = service.residuesListGET(entryName);
-			DataCell[] cells = new DataCell[4];
-			cells[0] = new IntCell(result.getSequenceNumber());
-			cells[1] = new StringCell(result.getAminoAcid());
-			cells[2] = new StringCell(result.getProteinSegment());
-			cells[3] = new StringCell(result.getDisplayGenericNumber());
-			// TODO add alternative_generic_numbers array, but first type
-			// conflict must be resolved
-			// swagger reports alternative_generic_numbers (array[string]) while
-			// server returns List of {scheme:string,label:string}
-
-			RowKey key = new RowKey("Row " + entryName);
-			// the cells of the current row, the types of the cells must match
-			// the column spec (see above)
-			DataRow row = new DefaultRow(key, cells);
-			container.addRowToTable(row);
+			List<ResidueSerializer> result = service.residuesListGET(entryName);
+			for (ResidueSerializer residue: result) { 
+				DataCell[] cells = new DataCell[4];
+				cells[0] = new IntCell(residue.getSequenceNumber());
+				cells[1] = new StringCell(residue.getAminoAcid());
+				cells[2] = new StringCell(residue.getProteinSegment());
+				cells[3] = new StringCell(residue.getDisplayGenericNumber());
+				// TODO add alternative_generic_numbers array, but first type
+				// conflict must be resolved
+				// swagger reports alternative_generic_numbers (array[string]) while
+				// server returns List of {scheme:string,label:string}
+	
+				RowKey key = new RowKey("Row " + entryName);
+				// the cells of the current row, the types of the cells must match
+				// the column spec (see above)
+				DataRow row = new DefaultRow(key, cells);
+				container.addRowToTable(row);
+			}
 
 			// check if the user cancelled the execution
 			exec.checkCanceled();

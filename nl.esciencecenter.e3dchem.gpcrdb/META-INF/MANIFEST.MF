@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GPCRDB Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.gpcrdb;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)"
@@ -35,8 +35,8 @@ Bundle-ClassPath: lib/aopalliance-repackaged-2.3.0-b10.jar,
  lib/junit-4.8.1.jar,
  lib/migbase64-2.2.jar,
  lib/mimepull-1.9.3.jar,
- lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.0-tests.jar,
- lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.0.jar,
  lib/osgi-resource-locator-1.0.1.jar,
  lib/swagger-annotations-1.5.0.jar,
+ lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.1-tests.jar,
+ lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.1.jar,
  .

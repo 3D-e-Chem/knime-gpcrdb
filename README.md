@@ -106,5 +106,11 @@ cp -r target/lib/* target/*jar ../nl.esciencecenter.e3dchem.gpcrdb/lib/
 
 5. Update MANIFEST.MF build.properties to reflect contents of lib/ 
 
+# New release
 
+1. Bump version with 
+```
+mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<new version>
+```
 
+2. Manually update version of "source" feature in `nl.esciencecenter.e3dchem.gpcrdb.p2/category.xml` file
