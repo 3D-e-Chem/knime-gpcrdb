@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Source" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+    <name>GPCRDB Protein families</name>
+    
+    <shortDescription>
+        Get protein families
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>Retrieves protein families from GPCRDB</intro>
+        
+        
+        <option name="Column">Column to use as Uniprot indentifiers</option>
+        <tab name="Advanced Options">
+	        <option name="Base path">Url to use as base path for GPCRDB webservice</option>
+        </tab>
+    </fullDescription>
+    
+    <ports>
+        <outPort index="0" name="Out-Port name">GPCRDB protein protein families</outPort>
+        <!-- possibly more output ports here-->
+    </ports>    
+    <views>
+        <view index="0" name="name of first view">Description of first view...</view>
+        <!--view index="1" name="name of second view">Description of second view...</view-->
+    </views>
+</knimeNode>

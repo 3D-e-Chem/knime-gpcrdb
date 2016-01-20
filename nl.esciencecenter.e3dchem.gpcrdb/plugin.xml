@@ -27,6 +27,11 @@
           factory-class="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory"
           id="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory">
     </node>
+    <node
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory">
+    </node>
   </extension>
 
 
