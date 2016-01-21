@@ -1,6 +1,7 @@
 package nl.esciencecenter.e3dchem.gpcrdb.proteins;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -71,14 +72,15 @@ public class ProteinInfoNodeModelTest {
 		BufferedDataContainer container = mock(BufferedDataContainer.class);
 		ProteinSerializer response = sampleProtein();
 		String family = response.getFamily();
-		List<ProteinSerializer> responses = new ArrayList<ProteinSerializer>(1);
+		List<ProteinSerializer> responses = new ArrayList<ProteinSerializer>(2);
+		responses.add(response);
 		responses.add(response);
 		when(services4families.proteinsInFamilyListGET(family)).thenReturn(responses);
 
 		node.fetchProteins(family, idtype, container);
 
 		DataRow expectedRow = sampleRow(response);
-		verify(container).addRowToTable(expectedRow);
+		verify(container, times(2)).addRowToTable(expectedRow);
 	}
 
 	private DataRow sampleRow(ProteinSerializer response) {
