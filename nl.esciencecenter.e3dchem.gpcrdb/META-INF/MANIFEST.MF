@@ -41,5 +41,5 @@ Bundle-ClassPath: lib/aopalliance-repackaged-2.3.0-b10.jar,
  lib/mimepull-1.9.3.jar,
  lib/osgi-resource-locator-1.0.1.jar,
  lib/swagger-annotations-1.5.0.jar,
- lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.3.jar,
+ lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.4.jar,
  .

@@ -3,76 +3,97 @@ package nl.esciencecenter.e3dchem.gpcrdb.client.model;
 import java.util.List;
 
 public class Structure {
-	  private String publication = null;
-	  private Float resolution = null;
-	  private String type = null;
-	  private String preferred_chain = null;
-	  private String pdb_code = null;
-	  private List<Ligand> ligands = null;
-	  private String protein = null;
-	  private String family = null;
-	  private String publication_date = null;
-	  private String species;
+	private String publication = null;
+	private Float resolution = null;
+	private String type = null;
+	private String preferred_chain = null;
+	private String pdb_code = null;
+	private List<Ligand> ligands = null;
+	private String protein = null;
+	private String family = null;
+	private String publication_date = null;
+	private String species = null;
+
 	public String getPublication() {
 		return publication;
 	}
+
 	public void setPublication(String publication) {
 		this.publication = publication;
 	}
+
 	public Float getResolution() {
 		return resolution;
 	}
+
 	public void setResolution(Float resolution) {
 		this.resolution = resolution;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getPreferred_chain() {
 		return preferred_chain;
 	}
+
 	public void setPreferred_chain(String preferred_chain) {
 		this.preferred_chain = preferred_chain;
 	}
+
 	public String getPdb_code() {
 		return pdb_code;
 	}
+
 	public void setPdb_code(String pdb_code) {
 		this.pdb_code = pdb_code;
 	}
+
 	public List<Ligand> getLigands() {
 		return ligands;
 	}
+
 	public void setLigands(List<Ligand> ligands) {
 		this.ligands = ligands;
 	}
+
 	public String getProtein() {
 		return protein;
 	}
+
 	public void setProtein(String protein) {
 		this.protein = protein;
 	}
+
 	public String getFamily() {
 		return family;
 	}
+
 	public void setFamily(String family) {
 		this.family = family;
 	}
+
 	public String getPublication_date() {
 		return publication_date;
 	}
+
 	public void setPublication_date(String publication_date) {
 		this.publication_date = publication_date;
 	}
+
 	public String getSpecies() {
 		return species;
 	}
+
 	public void setSpecies(String species) {
 		this.species = species;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,6 +110,7 @@ public class Structure {
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -150,6 +172,7 @@ public class Structure {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Structure [publication=" + publication + ", resolution=" + resolution + ", type=" + type
@@ -157,6 +180,5 @@ public class Structure {
 				+ ", protein=" + protein + ", family=" + family + ", publication_date=" + publication_date
 				+ ", species=" + species + "]";
 	}
-	  
-	  
+
 }
