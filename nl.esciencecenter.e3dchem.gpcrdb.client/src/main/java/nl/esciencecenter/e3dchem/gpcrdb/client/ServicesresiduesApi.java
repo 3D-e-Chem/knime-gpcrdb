@@ -39,7 +39,7 @@ public class ServicesresiduesApi {
    * @param entryName 
    * @return ResidueExtendedSerializer
    */
-  public ResidueExtendedSerializer residuesExtendedListGET(String entryName) throws ApiException {
+  public List<ResidueExtendedSerializer> residuesExtendedListGET(String entryName) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'entryName' is set
@@ -75,7 +75,7 @@ public class ServicesresiduesApi {
     String[] authNames = new String[] {  };
 
     
-    GenericType<ResidueExtendedSerializer> returnType = new GenericType<ResidueExtendedSerializer>() {};
+    GenericType<List<ResidueExtendedSerializer>> returnType = new GenericType<List<ResidueExtendedSerializer>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }
