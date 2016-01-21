@@ -4,9 +4,9 @@ import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentBoolean;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.DialogComponentString;
-import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeDialog;
 
 /**
  * <code>NodeDialog</code> for the "StructuresOfProtein" Node. Get a list of
@@ -18,7 +18,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
  */
-public class ResiduesNodeDialog extends DefaultNodeSettingsPane {
+public class ResiduesNodeDialog extends GpcrdbNodeDialog {
 
 	/**
 	 * New pane for configuring StructuresOfProtein node dialog. This is just a
@@ -31,16 +31,11 @@ public class ResiduesNodeDialog extends DefaultNodeSettingsPane {
 				new SettingsModelString(ResiduesNodeModel.CFGKEY_INPUTCOLUMNNAME, null),
 				"Column with Uniprot identifiers", 0, StringValue.class));
 
-		
-		addDialogComponent(new DialogComponentBoolean(
-				ResiduesNodeModel.createExtendedModel(),
-				"Include alternative numbers"));
+		addDialogComponent(
+				new DialogComponentBoolean(ResiduesNodeModel.createExtendedModel(), "Include alternative numbers"));
 
 		createNewTab("Advanced");
 
-		addDialogComponent(new DialogComponentString(
-				new SettingsModelString(ResiduesNodeModel.CFGKEY_BASEPATH, ResiduesNodeModel.DEFAULT_BASEPATH),
-				"Base path"));
-
+		addBasePath();
 	}
 }

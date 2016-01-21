@@ -20,14 +20,12 @@ import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeLogger;
-import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
-import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueSerializer;
 
@@ -36,23 +34,13 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueSerializer;
  * structures of a protein
  *
  */
-public class ResiduesNodeModel extends NodeModel {
-
-	// the logger instance
-	private static final NodeLogger logger = NodeLogger.getLogger(ResiduesNodeModel.class);
-
-	static final String CFGKEY_BASEPATH = "Base path";
-
-	static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
+public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	public static final String CFGKEY_INPUTCOLUMNNAME = "In Column";
 
 	public static final String CFGKEY_EXTENDED = "Extended";
 
 	public static final boolean DEFAULT_EXTENDED = false;
-
-	private final SettingsModelString m_basePath = new SettingsModelString(ResiduesNodeModel.CFGKEY_BASEPATH,
-			ResiduesNodeModel.DEFAULT_BASEPATH);
 
 	private final SettingsModelString m_inputColumnName = new SettingsModelString(CFGKEY_INPUTCOLUMNNAME, null);
 
@@ -81,11 +69,7 @@ public class ResiduesNodeModel extends NodeModel {
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
 
-		ApiClient client = new ApiClient();
-		client.setBasePath(m_basePath.getStringValue());
-		client.setDebugging(true);
-		client.addDefaultHeader("Accept", "application/json");
-		ServicesresiduesApi service = new ServicesresiduesApi(client);
+		ServicesresiduesApi service = new ServicesresiduesApi(getApiClient());
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
@@ -111,7 +95,7 @@ public class ResiduesNodeModel extends NodeModel {
 			String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 
 			List<ResidueSerializer> result = service.residuesListGET(entryName);
-			for (ResidueSerializer residue: result) { 
+			for (ResidueSerializer residue : result) {
 				DataCell[] cells = new DataCell[4];
 				cells[0] = new IntCell(residue.getSequenceNumber());
 				cells[1] = new StringCell(residue.getAminoAcid());
@@ -123,11 +107,13 @@ public class ResiduesNodeModel extends NodeModel {
 				}
 				// TODO add alternative_generic_numbers array, but first type
 				// conflict must be resolved
-				// swagger reports alternative_generic_numbers (array[string]) while
+				// swagger reports alternative_generic_numbers (array[string])
+				// while
 				// server returns List of {scheme:string,label:string}
-	
+
 				RowKey key = new RowKey("Row " + entryName + residue.getSequenceNumber());
-				// the cells of the current row, the types of the cells must match
+				// the cells of the current row, the types of the cells must
+				// match
 				// the column spec (see above)
 				DataRow row = new DefaultRow(key, cells);
 				container.addRowToTable(row);
@@ -177,7 +163,7 @@ public class ResiduesNodeModel extends NodeModel {
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
 
-		m_basePath.saveSettingsTo(settings);
+		super.saveSettingsTo(settings);
 		m_inputColumnName.saveSettingsTo(settings);
 		m_extended.saveSettingsTo(settings);
 	}
@@ -192,7 +178,7 @@ public class ResiduesNodeModel extends NodeModel {
 		// It can be safely assumed that the settings are valided by the
 		// method below.
 
-		m_basePath.loadSettingsFrom(settings);
+		super.loadValidatedSettingsFrom(settings);
 		m_inputColumnName.loadSettingsFrom(settings);
 		m_extended.loadSettingsFrom(settings);
 	}
@@ -208,7 +194,7 @@ public class ResiduesNodeModel extends NodeModel {
 		// SettingsModel).
 		// Do not actually set any values of any member variables.
 
-		m_basePath.validateSettings(settings);
+		super.validateSettings(settings);
 		m_inputColumnName.validateSettings(settings);
 		m_extended.validateSettings(settings);
 	}

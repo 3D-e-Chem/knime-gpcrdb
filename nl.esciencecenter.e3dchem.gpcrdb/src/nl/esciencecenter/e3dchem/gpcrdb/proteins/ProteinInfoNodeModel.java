@@ -3,7 +3,6 @@ package nl.esciencecenter.e3dchem.gpcrdb.proteins;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.knime.core.data.DataCell;
@@ -17,43 +16,32 @@ import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
-import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
-
-import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
-import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinApi;
-import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinfamilyApi;
-import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSerializer;
-
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeLogger;
-import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinfamilyApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSerializer;
 
 /**
  * This is the model implementation of StructuresOfProtein. Get a list of
  * structures of a protein
  *
  */
-public class ProteinInfoNodeModel extends NodeModel {
-
-	// the logger instance
-	private static final NodeLogger logger = NodeLogger.getLogger(ProteinInfoNodeModel.class);
-
-	static final String CFGKEY_BASEPATH = "Base path";
-
-	static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
-
+public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 	public static final String CFGKEY_INPUTCOLUMNNAME = "In Column";
 
-	private static final String IDTYPE_UNIPROTID = "Uniprot id";
+	static final String IDTYPE_UNIPROTID = "Uniprot id";
 
-	private static final String IDTYPE_UNIPROTACC = "Uniprot accesion";
+	static final String IDTYPE_UNIPROTACC = "Uniprot accesion";
 
-	private static final String IDTYPE_FAMILIYSLUG = "Protein family slug";
+	static final String IDTYPE_FAMILIYSLUG = "Protein family slug";
 
 	public static final String[] LIST_IDENTIFIERTYPES = new String[] { IDTYPE_UNIPROTID, IDTYPE_UNIPROTACC,
 			IDTYPE_FAMILIYSLUG };
@@ -62,16 +50,17 @@ public class ProteinInfoNodeModel extends NodeModel {
 
 	private static final String DEFAULT_IDTYPE = IDTYPE_UNIPROTID;
 
-	private final SettingsModelString m_basePath = new SettingsModelString(ProteinInfoNodeModel.CFGKEY_BASEPATH,
-			ProteinInfoNodeModel.DEFAULT_BASEPATH);
-
 	private final SettingsModelString m_inputColumnName = new SettingsModelString(CFGKEY_INPUTCOLUMNNAME, null);
 	private final SettingsModelString m_idtype = ProteinInfoNodeModel.getIdentifierType();
+
+	private ServicesproteinApi service4proteins = new ServicesproteinApi();
+
+	private ServicesproteinfamilyApi services4families = new ServicesproteinfamilyApi();
 
 	/**
 	 * Constructor for the node model.
 	 */
-	protected ProteinInfoNodeModel() {
+	public ProteinInfoNodeModel() {
 
 		// TODO one incoming port and one outgoing port is assumed
 		super(1, 1);
@@ -83,13 +72,6 @@ public class ProteinInfoNodeModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
-
-		ApiClient client = new ApiClient();
-		client.setBasePath(m_basePath.getStringValue());
-		client.setDebugging(true);
-		client.addDefaultHeader("Accept", "application/json");
-		ServicesproteinApi servicep = new ServicesproteinApi(client);
-		ServicesproteinfamilyApi servicepf = new ServicesproteinfamilyApi(client);
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
@@ -118,33 +100,9 @@ public class ProteinInfoNodeModel extends NodeModel {
 
 		for (DataRow inrow : table) {
 			String id = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
+			String idtype = m_idtype.getStringValue();
 
-			List<ProteinSerializer> proteins = new ArrayList<ProteinSerializer>(1);
-			if (IDTYPE_UNIPROTID.equals(m_idtype)) {
-				proteins.add(servicep.proteinDetailGET(id));
-			} else if (IDTYPE_UNIPROTACC.equals(m_idtype)) {
-				proteins.add(servicep.proteinByAccessionDetailGET(id));
-			} else if (IDTYPE_FAMILIYSLUG.equals(m_idtype)) {
-				proteins = servicepf.proteinsInFamilyListGET(id);
-			}
-
-			for (ProteinSerializer protein : proteins) {
-				RowKey key = new RowKey(protein.getEntryName());
-				// the cells of the current row, the types of the cells must
-				// match
-				// the column spec (see above)
-				DataCell[] cells = new DataCell[8];
-				cells[0] = new StringCell(protein.getEntryName());
-				cells[1] = new StringCell(protein.getAccession());
-				cells[2] = new StringCell(protein.getName());
-				cells[3] = new StringCell(protein.getFamily());
-				cells[4] = new StringCell(protein.getSpecies());
-				cells[5] = new StringCell(protein.getSource());
-				cells[6] = new StringCell(protein.getResidueNumberingScheme());
-				cells[7] = new StringCell(protein.getSequence());
-				DataRow row = new DefaultRow(key, cells);
-				container.addRowToTable(row);
-			}
+			fetchProteins(id, idtype, container);
 
 			// check if the user cancelled the execution
 			exec.checkCanceled();
@@ -157,6 +115,39 @@ public class ProteinInfoNodeModel extends NodeModel {
 		container.close();
 		BufferedDataTable out = container.getTable();
 		return new BufferedDataTable[] { out };
+	}
+
+	public void fetchProteins(String id, String idtype, BufferedDataContainer container) throws ApiException {
+		// make sure services use current apiclient
+		service4proteins.setApiClient(getApiClient());
+		services4families.setApiClient(getApiClient());
+
+		List<ProteinSerializer> proteins = new ArrayList<ProteinSerializer>(1);
+		if (IDTYPE_UNIPROTID.equals(idtype)) {
+			proteins.add(service4proteins.proteinDetailGET(id));
+		} else if (IDTYPE_UNIPROTACC.equals(idtype)) {
+			proteins.add(service4proteins.proteinByAccessionDetailGET(id));
+		} else if (IDTYPE_FAMILIYSLUG.equals(idtype)) {
+			proteins = services4families.proteinsInFamilyListGET(id);
+		}
+
+		for (ProteinSerializer protein : proteins) {
+			RowKey key = new RowKey(protein.getEntryName());
+			// the cells of the current row, the types of the cells must
+			// match
+			// the column spec (see above)
+			DataCell[] cells = new DataCell[8];
+			cells[0] = new StringCell(protein.getEntryName());
+			cells[1] = new StringCell(protein.getAccession());
+			cells[2] = new StringCell(protein.getName());
+			cells[3] = new StringCell(protein.getFamily());
+			cells[4] = new StringCell(protein.getSpecies());
+			cells[5] = new StringCell(protein.getSource());
+			cells[6] = new StringCell(protein.getResidueNumberingScheme());
+			cells[7] = new StringCell(protein.getSequence());
+			DataRow row = new DefaultRow(key, cells);
+			container.addRowToTable(row);
+		}
 	}
 
 	/**
@@ -190,7 +181,7 @@ public class ProteinInfoNodeModel extends NodeModel {
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
 
-		m_basePath.saveSettingsTo(settings);
+		super.saveSettingsTo(settings);
 		m_inputColumnName.saveSettingsTo(settings);
 		m_idtype.saveSettingsTo(settings);
 
@@ -206,7 +197,7 @@ public class ProteinInfoNodeModel extends NodeModel {
 		// It can be safely assumed that the settings are valided by the
 		// method below.
 
-		m_basePath.loadSettingsFrom(settings);
+		super.loadValidatedSettingsFrom(settings);
 		m_inputColumnName.loadSettingsFrom(settings);
 		m_idtype.loadSettingsFrom(settings);
 	}
@@ -222,7 +213,7 @@ public class ProteinInfoNodeModel extends NodeModel {
 		// SettingsModel).
 		// Do not actually set any values of any member variables.
 
-		m_basePath.validateSettings(settings);
+		super.validateSettings(settings);
 		m_inputColumnName.validateSettings(settings);
 		m_idtype.validateSettings(settings);
 	}
@@ -261,6 +252,22 @@ public class ProteinInfoNodeModel extends NodeModel {
 
 	public static SettingsModelString getIdentifierType() {
 		return new SettingsModelString(CFGKEY_IDTYPE, DEFAULT_IDTYPE);
+	}
+
+	public ServicesproteinApi getService4proteins() {
+		return service4proteins;
+	}
+
+	public void setService4proteins(ServicesproteinApi service4proteins) {
+		this.service4proteins = service4proteins;
+	}
+
+	public ServicesproteinfamilyApi getServices4families() {
+		return services4families;
+	}
+
+	public void setServices4families(ServicesproteinfamilyApi services4families) {
+		this.services4families = services4families;
 	}
 
 }

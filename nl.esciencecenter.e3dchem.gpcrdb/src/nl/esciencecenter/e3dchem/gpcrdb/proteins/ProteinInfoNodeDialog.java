@@ -3,9 +3,10 @@ package nl.esciencecenter.e3dchem.gpcrdb.proteins;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.DialogComponentString;
 import org.knime.core.node.defaultnodesettings.DialogComponentStringSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeDialog;
 
 /**
  * <code>NodeDialog</code> for the "StructuresOfProtein" Node. Get a list of
@@ -17,7 +18,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
  */
-public class ProteinInfoNodeDialog extends DefaultNodeSettingsPane {
+public class ProteinInfoNodeDialog extends GpcrdbNodeDialog {
 
 	/**
 	 * New pane for configuring StructuresOfProtein node dialog. This is just a
@@ -35,9 +36,6 @@ public class ProteinInfoNodeDialog extends DefaultNodeSettingsPane {
 
 		createNewTab("Advanced");
 
-		addDialogComponent(new DialogComponentString(
-				new SettingsModelString(ProteinInfoNodeModel.CFGKEY_BASEPATH, ProteinInfoNodeModel.DEFAULT_BASEPATH),
-				"Base path"));
-
+		addBasePath();
 	}
 }

@@ -1,8 +1,8 @@
 package nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
-import org.knime.core.node.defaultnodesettings.DialogComponentString;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeDialog;
 
 /**
  * <code>NodeDialog</code> for the "StructuresOfProtein" Node. Get a list of
@@ -14,10 +14,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
  */
-public class ProteinFamiliesNodeDialog extends DefaultNodeSettingsPane {
-	private SettingsModelString basePath = new SettingsModelString(ProteinFamiliesNodeModel.CFGKEY_BASEPATH,
-			ProteinFamiliesNodeModel.DEFAULT_BASEPATH);
-
+public class ProteinFamiliesNodeDialog extends GpcrdbNodeDialog {
 	/**
 	 * New pane for configuring StructuresOfProtein node dialog. This is just a
 	 * suggestion to demonstrate possible default dialog components.
@@ -25,7 +22,7 @@ public class ProteinFamiliesNodeDialog extends DefaultNodeSettingsPane {
 	protected ProteinFamiliesNodeDialog() {
 		super();
 
-		addDialogComponent(new DialogComponentString(basePath, "Base path"));
-
+		addBasePath();
+		
 	}
 }

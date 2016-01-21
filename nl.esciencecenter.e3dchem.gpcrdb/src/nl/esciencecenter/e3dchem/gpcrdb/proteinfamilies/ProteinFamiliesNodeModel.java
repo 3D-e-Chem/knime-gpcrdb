@@ -19,33 +19,17 @@ import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeLogger;
-import org.knime.core.node.NodeModel;
-import org.knime.core.node.NodeSettingsRO;
-import org.knime.core.node.NodeSettingsWO;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
-import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
+import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesproteinfamilyApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinFamilySerializer;
 
 /**
- * This is the model implementation of StructuresOfProtein. Get a list of
- * structures of a protein
+ * This is the model implementation of ProteinFamilies. Get a list of protein
+ * familes
  *
  */
-public class ProteinFamiliesNodeModel extends NodeModel {
-
-	// the logger instance
-	private static final NodeLogger logger = NodeLogger.getLogger(ProteinFamiliesNodeModel.class);
-
-	static final String CFGKEY_BASEPATH = "Base path";
-
-	static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
-
-	private final SettingsModelString m_basePath = new SettingsModelString(ProteinFamiliesNodeModel.CFGKEY_BASEPATH,
-			ProteinFamiliesNodeModel.DEFAULT_BASEPATH);
-
+public class ProteinFamiliesNodeModel extends GpcrdbNodeModel {
 	/**
 	 * Constructor for the node model.
 	 */
@@ -60,11 +44,7 @@ public class ProteinFamiliesNodeModel extends NodeModel {
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
 
-		ApiClient client = new ApiClient();
-		client.setBasePath(m_basePath.getStringValue());
-		client.setDebugging(true);
-		client.addDefaultHeader("Accept", "application/json");
-		ServicesproteinfamilyApi service = new ServicesproteinfamilyApi(client);
+		ServicesproteinfamilyApi service = new ServicesproteinfamilyApi(getApiClient());
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
@@ -126,43 +106,6 @@ public class ProteinFamiliesNodeModel extends NodeModel {
 		// with null elements), or throw an exception with a useful user message
 
 		return new DataTableSpec[] { null };
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void saveSettingsTo(final NodeSettingsWO settings) {
-
-		m_basePath.saveSettingsTo(settings);
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
-
-		// TODO load (valid) settings from the config object.
-		// It can be safely assumed that the settings are valided by the
-		// method below.
-
-		m_basePath.loadSettingsFrom(settings);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
-
-		// TODO check if the settings could be applied to our model
-		// e.g. if the count is in a certain range (which is ensured by the
-		// SettingsModel).
-		// Do not actually set any values of any member variables.
-
-		m_basePath.validateSettings(settings);
 	}
 
 	/**
