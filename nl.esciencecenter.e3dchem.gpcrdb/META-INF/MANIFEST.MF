@@ -6,7 +6,11 @@ Bundle-Version: 1.0.4
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)"
-Export-Package: nl.esciencecenter.e3dchem.gpcrdb
+Export-Package: javax.ws.rs.core,
+ nl.esciencecenter.e3dchem.gpcrdb,
+ nl.esciencecenter.e3dchem.gpcrdb.client,
+ nl.esciencecenter.e3dchem.gpcrdb.client.model,
+ nl.esciencecenter.e3dchem.gpcrdb.proteins
 Bundle-Vendor: Netherlands eScience Center
 Bundle-Activator: nl.esciencecenter.e3dchem.gpcrdb.NodePlugin
 Bundle-ActivationPolicy: lazy
