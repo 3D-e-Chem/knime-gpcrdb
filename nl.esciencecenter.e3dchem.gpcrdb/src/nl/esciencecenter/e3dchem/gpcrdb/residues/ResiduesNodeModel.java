@@ -14,6 +14,8 @@ import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
+import org.knime.core.data.json.JSONCell;
+import org.knime.core.data.json.JSONCellFactory;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -25,8 +27,13 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueExtendedSerializer;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueSerializer;
 
 /**
@@ -46,6 +53,10 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	private final SettingsModelBoolean m_extended = createExtendedModel();
 
+	private ObjectMapper jsonify = new ObjectMapper();
+
+	private JSONCellFactory jsoncellify = new JSONCellFactory();
+
 	/**
 	 * Constructor for the node model.
 	 */
@@ -58,7 +69,6 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	static SettingsModelBoolean createExtendedModel() {
 		final SettingsModelBoolean model = new SettingsModelBoolean(ResiduesNodeModel.CFGKEY_EXTENDED,
 				ResiduesNodeModel.DEFAULT_EXTENDED);
-		model.setEnabled(false);
 		return model;
 	}
 
@@ -73,13 +83,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
-		DataColumnSpec[] allColSpecs = new DataColumnSpec[4];
-		allColSpecs[0] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
-		allColSpecs[1] = new DataColumnSpecCreator("Amino acid", StringCell.TYPE).createSpec();
-		allColSpecs[2] = new DataColumnSpecCreator("Protein segment", StringCell.TYPE).createSpec();
-		allColSpecs[3] = new DataColumnSpecCreator("Generic number", StringCell.TYPE).createSpec();
-		allColSpecs[3] = new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
-		DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
+		DataTableSpec outputSpec = createOutputSpec();
 
 		// the execution context will provide us with storage capacity, in this
 		// case a data container to which we will add rows sequentially
@@ -95,30 +99,10 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		for (DataRow inrow : table) {
 			String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 
-			List<ResidueSerializer> result = service.residuesListGET(entryName);
-			for (ResidueSerializer residue : result) {
-				DataCell[] cells = new DataCell[5];
-				cells[0] = new IntCell(residue.getSequenceNumber());
-				cells[1] = new StringCell(residue.getAminoAcid());
-				cells[2] = new StringCell(residue.getProteinSegment());
-				if (residue.getDisplayGenericNumber() == null) {
-					cells[3] = new MissingCell("Position has no generic number");
-				} else {
-					cells[3] = new StringCell(residue.getDisplayGenericNumber());
-				}
-				cells[4] = new StringCell(entryName);
-				// TODO add alternative_generic_numbers array, but first type
-				// conflict must be resolved
-				// swagger reports alternative_generic_numbers (array[string])
-				// while
-				// server returns List of {scheme:string,label:string}
-
-				RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
-				// the cells of the current row, the types of the cells must
-				// match
-				// the column spec (see above)
-				DataRow row = new DefaultRow(key, cells);
-				container.addRowToTable(row);
+			if (m_extended.getBooleanValue()) {
+				fetchResiduesExtended(service, container, entryName);
+			} else {
+				fetchResidues(service, container, entryName);
 			}
 
 			// check if the user cancelled the execution
@@ -132,6 +116,75 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		container.close();
 		BufferedDataTable out = container.getTable();
 		return new BufferedDataTable[] { out };
+	}
+
+	private void fetchResidues(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
+			throws ApiException {
+		List<ResidueSerializer> result = service.residuesListGET(entryName);
+		for (ResidueSerializer residue : result) {
+			DataCell[] cells = new DataCell[5];
+			cells[0] = new StringCell(entryName);
+			cells[1] = new IntCell(residue.getSequenceNumber());
+			cells[2] = new StringCell(residue.getAminoAcid());
+			cells[3] = new StringCell(residue.getProteinSegment());
+			if (residue.getDisplayGenericNumber() == null) {
+				cells[4] = new MissingCell("Position has no generic number");
+			} else {
+				cells[4] = new StringCell(residue.getDisplayGenericNumber());
+			}
+
+			RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
+			// the cells of the current row, the types of the cells must
+			// match
+			// the column spec (see above)
+			DataRow row = new DefaultRow(key, cells);
+			container.addRowToTable(row);
+		}
+	}
+
+	private void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
+			throws ApiException, JsonProcessingException {
+		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryName);
+		for (ResidueExtendedSerializer residue : result) {
+			DataCell[] cells = new DataCell[6];
+			cells[0] = new StringCell(entryName);
+			cells[1] = new IntCell(residue.getSequenceNumber());
+			cells[2] = new StringCell(residue.getAminoAcid());
+			cells[3] = new StringCell(residue.getProteinSegment());
+			if (residue.getDisplayGenericNumber() == null) {
+				cells[4] = new MissingCell("Position has no generic number");
+			} else {
+				cells[4] = new StringCell(residue.getDisplayGenericNumber());
+			}
+			String alternativNumbers = jsonify.writeValueAsString(residue.getAlternativeGenericNumbers());
+			cells[5] = jsoncellify.createCell(alternativNumbers);
+
+			RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
+			// the cells of the current row, the types of the cells must
+			// match
+			// the column spec (see above)
+			DataRow row = new DefaultRow(key, cells);
+			container.addRowToTable(row);
+		}
+	}
+
+	private DataTableSpec createOutputSpec() {
+		int columnSize = 5;
+		if (m_extended.getBooleanValue()) {
+			columnSize = 6;
+		}
+		DataColumnSpec[] allColSpecs = new DataColumnSpec[columnSize];
+		allColSpecs[0] = new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
+		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
+		allColSpecs[2] = new DataColumnSpecCreator("Amino acid", StringCell.TYPE).createSpec();
+		allColSpecs[3] = new DataColumnSpecCreator("Protein segment", StringCell.TYPE).createSpec();
+		allColSpecs[4] = new DataColumnSpecCreator("Generic number", StringCell.TYPE).createSpec();
+		if (m_extended.getBooleanValue()) {
+			allColSpecs[5] = new DataColumnSpecCreator("Alternative generic numbers", JSONCell.TYPE).createSpec();
+		}
+
+		DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
+		return outputSpec;
 	}
 
 	/**

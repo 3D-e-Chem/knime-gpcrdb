@@ -13,6 +13,9 @@ import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.StringCell;
+import org.knime.core.data.json.JSONCell;
+import org.knime.core.data.json.JSONCellContent;
+import org.knime.core.data.json.JSONCellFactory;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -22,6 +25,8 @@ import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesstructureApi;
@@ -55,6 +60,8 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 			throws Exception {
 
 		ServicesstructureApi service = new ServicesstructureApi(getApiClient());
+		ObjectMapper jsonify = new ObjectMapper();
+		JSONCellFactory jsoncellify = new JSONCellFactory();
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
@@ -65,7 +72,7 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 		allColSpecs[3] = new DataColumnSpecCreator("Species", StringCell.TYPE).createSpec();
 		allColSpecs[4] = new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
 		allColSpecs[5] = new DataColumnSpecCreator("Resolution", DoubleCell.TYPE).createSpec();
-		allColSpecs[6] = new DataColumnSpecCreator("Ligands", StringCell.TYPE).createSpec();
+		allColSpecs[6] = new DataColumnSpecCreator("Ligands", JSONCell.TYPE).createSpec();
 		allColSpecs[7] = new DataColumnSpecCreator("Publication", StringCell.TYPE).createSpec();
 		allColSpecs[8] = new DataColumnSpecCreator("PDB code", StringCell.TYPE).createSpec();
 		allColSpecs[9] = new DataColumnSpecCreator("Family", StringCell.TYPE).createSpec();
@@ -98,7 +105,8 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 				cells[3] = new StringCell(structure.getSpecies());
 				cells[4] = new StringCell(structure.getProtein());
 				cells[5] = new DoubleCell(structure.getResolution());
-				cells[6] = new StringCell(structure.getLigands().toString());
+				String ligands = jsonify.writeValueAsString(structure.getLigands());
+				cells[6] = jsoncellify.createCell(ligands);
 				cells[7] = new StringCell(structure.getPublication());
 				cells[8] = new StringCell(structure.getPdb_code());
 				cells[9] = new StringCell(structure.getFamily());
