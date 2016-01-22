@@ -11,7 +11,7 @@ Requirements:
 
 * KNIME, https://www.knime.org
 
-Steps to get distance measure inside KNIME:
+Steps to get GPCRDB nodes inside KNIME:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
