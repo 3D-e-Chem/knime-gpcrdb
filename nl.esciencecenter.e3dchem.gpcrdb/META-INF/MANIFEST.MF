@@ -2,16 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GPCRDB Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.gpcrdb;singleton:=true
-Bundle-Version: 1.0.5
+Bundle-Version: 1.0.6
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)",
  org.knime.json;bundle-version="[3.1.0,4.0.0)"
-Export-Package: javax.ws.rs.core,
+Export-Package: com.fasterxml.jackson.core,
+ javax.ws.rs.core,
  nl.esciencecenter.e3dchem.gpcrdb,
  nl.esciencecenter.e3dchem.gpcrdb.client,
  nl.esciencecenter.e3dchem.gpcrdb.client.model,
- nl.esciencecenter.e3dchem.gpcrdb.proteins
+ nl.esciencecenter.e3dchem.gpcrdb.proteins,
+ nl.esciencecenter.e3dchem.gpcrdb.residues
 Bundle-Vendor: Netherlands eScience Center
 Bundle-Activator: nl.esciencecenter.e3dchem.gpcrdb.NodePlugin
 Bundle-ActivationPolicy: lazy

@@ -2,7 +2,9 @@ package nl.esciencecenter.e3dchem.gpcrdb.residues;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -33,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.AlternativeGenericNumber;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueExtendedSerializer;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueSerializer;
 
@@ -60,7 +63,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	/**
 	 * Constructor for the node model.
 	 */
-	protected ResiduesNodeModel() {
+	public ResiduesNodeModel() {
 
 		// TODO one incoming port and one outgoing port is assumed
 		super(1, 1);
@@ -142,7 +145,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		}
 	}
 
-	private void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
+	public void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException, JsonProcessingException {
 		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryName);
 		for (ResidueExtendedSerializer residue : result) {
@@ -156,10 +159,14 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 			} else {
 				cells[4] = new StringCell(residue.getDisplayGenericNumber());
 			}
-			String alternativNumbers = jsonify.writeValueAsString(residue.getAlternativeGenericNumbers());
+			Map<String, String> alternatives = new HashMap<String,String>();
+			for ( AlternativeGenericNumber alternative : residue.getAlternativeGenericNumbers()) {
+				alternatives.put(alternative.getScheme(), alternative.getLabel());
+			}
+			String alternativNumbers = jsonify.writeValueAsString(alternatives);
 			cells[5] = jsoncellify.createCell(alternativNumbers);
 
-			RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
+			RowKey key = new RowKey(entryName + " - " + residue.getSequenceNumber());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)
