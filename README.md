@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-gpcrdb.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-gpcrdb)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/NLeSC/knime-gpcrdb)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.45265.svg)](http://dx.doi.org/10.5281/zenodo.45265)
 
 Knime plugin for retrieving data from http://gpcrdb.org
 
