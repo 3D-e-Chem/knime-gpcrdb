@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/NLeSC/knime-gpcrdb)
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.45265.svg)](http://dx.doi.org/10.5281/zenodo.45265)
 
-Knime plugin for retrieving data from http://gpcrdb.org
+Knime plugin for retrieving data from http://gpcrdb.org, GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
 
 # Installation
 
@@ -78,7 +78,7 @@ If Knime update site can not be contacted then use a local version.
 
 1. Download swagger code generator
 ```
-wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.1.5/swagger-codegen-cli-2.1.5.jar 
+wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.1.5/swagger-codegen-cli-2.1.5.jar
 ```
 
 2. Generate a client for GPCRDB web service
@@ -106,13 +106,18 @@ mvn package
 cp -r target/lib/* target/*jar ../nl.esciencecenter.e3dchem.gpcrdb/lib/
 ```
 
-5. Update MANIFEST.MF build.properties to reflect contents of lib/ 
+5. Update MANIFEST.MF build.properties to reflect contents of lib/
 
 # New release
 
-1. Bump version with 
+1. Bump version with
 ```
 mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<new version>
 ```
 
 2. Manually update version of "source" feature in `nl.esciencecenter.e3dchem.gpcrdb.p2/category.xml` file
+
+# References
+
+* V Isberg, S Mordalski, C Munk, K Rataj, K Harpsøe, AS Hauser, B Vroling, AJ Bojarski, G Vriend, DE Gloriam. “GPCRdb: an information system for G protein-coupled receptors”, 2016, Nucleic Acids Res., 44, D356-D364. 10.1093/nar/gkv1178
+* V Isberg, B Vroling, R van der Kant, K Li, G Vriend* and DE Gloriam*, “GPCRDB: an information system for G protein-coupled receptors”, 2014, Nucleic Acids Res., 42 (D1), D422-D425. 10.1093/nar/gkt1255
