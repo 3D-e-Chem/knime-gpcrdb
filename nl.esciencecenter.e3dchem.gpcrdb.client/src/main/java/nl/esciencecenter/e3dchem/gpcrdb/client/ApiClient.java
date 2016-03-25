@@ -41,7 +41,7 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.auth.HttpBasicAuth;
 import nl.esciencecenter.e3dchem.gpcrdb.client.auth.ApiKeyAuth;
 import nl.esciencecenter.e3dchem.gpcrdb.client.auth.OAuth;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-01-19T13:05:55.822+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-25T11:18:53.274+01:00")
 public class ApiClient {
   private Client client;
   private Map<String, Client> hostMap = new HashMap<String, Client>();

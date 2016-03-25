@@ -10,22 +10,24 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-01-19T13:05:55.822+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-25T11:18:53.274+01:00")
 public class WriteResidueExtendedSerializer   {
   
-  private Integer sequenceNumber = null;
+  private Long sequenceNumber = null;
   private String aminoAcid = null;
 
   
   /**
+   * minimum: -32768.0
+   * maximum: 32767.0
    **/
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("sequence_number")
-  public Integer getSequenceNumber() {
+  public Long getSequenceNumber() {
     return sequenceNumber;
   }
-  public void setSequenceNumber(Integer sequenceNumber) {
+  public void setSequenceNumber(Long sequenceNumber) {
     this.sequenceNumber = sequenceNumber;
   }
 

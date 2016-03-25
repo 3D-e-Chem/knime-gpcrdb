@@ -26,7 +26,7 @@ After the client libarary is installed/deployed, you can use it in your Maven pr
 <dependency>
     <groupId>nl.esciencecenter.e3dchem</groupId>
     <artifactId>nl.esciencecenter.e3dchem.gpcrdb.client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.5</version>
     <scope>compile</scope>
 </dependency>
 

@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-25T11:18:53.274+01:00")
-public class InlineResponseDefault   {
+public class WriteStructureLigandInteractionSerializer   {
   
 
   
@@ -20,7 +20,7 @@ public class InlineResponseDefault   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponseDefault inlineResponseDefault = (InlineResponseDefault) o;
+    WriteStructureLigandInteractionSerializer writeStructureLigandInteractionSerializer = (WriteStructureLigandInteractionSerializer) o;
     return true;
   }
 
@@ -32,7 +32,7 @@ public class InlineResponseDefault   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponseDefault {\n");
+    sb.append("class WriteStructureLigandInteractionSerializer {\n");
     
     sb.append("}");
     return sb.toString();

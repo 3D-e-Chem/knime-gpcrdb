@@ -12,7 +12,7 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.model.Structure;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-01-19T13:05:55.822+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-25T11:18:53.274+01:00")
 public class ServicesstructureApi {
   private ApiClient apiClient;
 
@@ -391,6 +391,60 @@ public class ServicesstructureApi {
 
     
     GenericType<InlineResponseDefault> returnType = new GenericType<InlineResponseDefault>() {};
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    
+  }
+  
+  /**
+   * Get a list of interactions between structure and ligand
+   * Get a list of interactions between structure and ligand&lt;br/&gt;/structure/{pdb_code}/interaction/{ligand_name&lt;br/&gt;{pdb_code} is a structure identifier from the Protein Data Bank, e.g. 2RH1&lt;br/&gt;{ligand_name} is a ligand name contained in the structure, e.g. Carazolol
+   * @param pdbCode 
+   * @param ligandName 
+   * @return StructureLigandInteractionSerializer
+   */
+  public StructureLigandInteractionSerializer structureLigandInteractionsGET(String pdbCode, String ligandName) throws ApiException {
+    Object postBody = null;
+    
+    // verify the required parameter 'pdbCode' is set
+    if (pdbCode == null) {
+      throw new ApiException(400, "Missing the required parameter 'pdbCode' when calling structureLigandInteractionsGET");
+    }
+    
+    // verify the required parameter 'ligandName' is set
+    if (ligandName == null) {
+      throw new ApiException(400, "Missing the required parameter 'ligandName' when calling structureLigandInteractionsGET");
+    }
+    
+    // create path and map variables
+    String path = "/services/structure/{pdb_code}/interaction/{ligand_name}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "pdb_code" + "\\}", apiClient.escapeString(pdbCode.toString()))
+      .replaceAll("\\{" + "ligand_name" + "\\}", apiClient.escapeString(ligandName.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, Object> formParams = new HashMap<String, Object>();
+
+    
+
+    
+
+    
+
+    final String[] accepts = {
+      
+    };
+    final String accept = apiClient.selectHeaderAccept(accepts);
+
+    final String[] contentTypes = {
+      
+    };
+    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+
+    String[] authNames = new String[] {  };
+
+    
+    GenericType<StructureLigandInteractionSerializer> returnType = new GenericType<StructureLigandInteractionSerializer>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }

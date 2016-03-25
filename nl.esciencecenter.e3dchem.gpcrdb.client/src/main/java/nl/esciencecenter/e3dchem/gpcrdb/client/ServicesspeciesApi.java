@@ -11,7 +11,7 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.model.SpeciesSerializer;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-01-19T13:05:55.822+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-25T11:18:53.274+01:00")
 public class ServicesspeciesApi {
   private ApiClient apiClient;
 
@@ -74,7 +74,7 @@ public class ServicesspeciesApi {
   
   /**
    * Get a single species instance
-   * Get a single species instance&lt;br/&gt;/species/{latin_name}/&lt;br/&gt;{latin_name} is a species identifier from Uniprot, e.g. Homo Sapiens
+   * Get a single species instance&lt;br/&gt;/species/{latin_name}/&lt;br/&gt;{latin_name} is a species identifier from Uniprot, e.g. Homo sapiens
    * @param latinName 
    * @return SpeciesSerializer
    */
