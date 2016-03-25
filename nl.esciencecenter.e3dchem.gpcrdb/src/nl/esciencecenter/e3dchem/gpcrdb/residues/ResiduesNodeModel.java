@@ -183,7 +183,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		}
 		DataColumnSpec[] allColSpecs = new DataColumnSpec[columnSize];
 		allColSpecs[0] = new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
-		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
+		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", LongCell.TYPE).createSpec();
 		allColSpecs[2] = new DataColumnSpecCreator("Amino acid", StringCell.TYPE).createSpec();
 		allColSpecs[3] = new DataColumnSpecCreator("Protein segment", StringCell.TYPE).createSpec();
 		allColSpecs[4] = new DataColumnSpecCreator("Generic number", StringCell.TYPE).createSpec();

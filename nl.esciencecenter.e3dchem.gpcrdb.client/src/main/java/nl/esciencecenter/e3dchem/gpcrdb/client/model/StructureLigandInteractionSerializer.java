@@ -16,7 +16,7 @@ public class StructureLigandInteractionSerializer   {
   private String pdbCode = null;
   private String ligandName = null;
   private String aminoAcid = null;
-  private String sequenceNumber = null;
+  private Long sequenceNumber = null;
   private String displayGenericNumber = null;
   private String interactionType = null;
 
@@ -65,10 +65,10 @@ public class StructureLigandInteractionSerializer   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("sequence_number")
-  public String getSequenceNumber() {
+  public Long getSequenceNumber() {
     return sequenceNumber;
   }
-  public void setSequenceNumber(String sequenceNumber) {
+  public void setSequenceNumber(Long sequenceNumber) {
     this.sequenceNumber = sequenceNumber;
   }
 
