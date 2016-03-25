@@ -38,7 +38,7 @@ public class ServicesmutantsApi {
    * @param entryName 
    * @return MutationSerializer
    */
-  public MutationSerializer mutantListGET(String entryName) throws ApiException {
+  public List<MutationSerializer> mutantListGET(String entryName) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'entryName' is set
@@ -74,7 +74,7 @@ public class ServicesmutantsApi {
     String[] authNames = new String[] {  };
 
     
-    GenericType<MutationSerializer> returnType = new GenericType<MutationSerializer>() {};
+    GenericType<List<MutationSerializer>> returnType = new GenericType<List<MutationSerializer>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
   }
