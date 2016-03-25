@@ -1,7 +1,6 @@
 package nl.esciencecenter.e3dchem.gpcrdb.residues;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -12,7 +11,7 @@ import org.junit.Test;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
-import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.LongCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.data.json.JSONCellFactory;
 import org.knime.core.node.BufferedDataContainer;
@@ -21,8 +20,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
-import nl.esciencecenter.e3dchem.gpcrdb.client.model.AlternativeGenericNumber;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueExtendedSerializer;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueGenericNumberSerializer;
 
 public class ResiduesNodeModelTest {
 
@@ -41,7 +40,7 @@ public class ResiduesNodeModelTest {
 		DataRow expectedRow = new DefaultRow(
 			new RowKey("adrb2_human - 1"),
 			new StringCell(entryName),
-			new IntCell(1),
+			new LongCell(1L),
 			new StringCell("G"),
 			new StringCell("TM"),
 			new StringCell("113"),
@@ -53,12 +52,12 @@ public class ResiduesNodeModelTest {
 	public List<ResidueExtendedSerializer> sampleExtendedResidueResponse() {
 		List<ResidueExtendedSerializer> response = new ArrayList<ResidueExtendedSerializer>();
 		ResidueExtendedSerializer residue = new ResidueExtendedSerializer();
-		residue.setSequenceNumber(1);
+		residue.setSequenceNumber(1L);
 		residue.setAminoAcid("G");
 		residue.setProteinSegment("TM");
 		residue.setDisplayGenericNumber("113");
-		List<AlternativeGenericNumber> alternativeGenericNumbers = new ArrayList<AlternativeGenericNumber>();
-		AlternativeGenericNumber anum = new AlternativeGenericNumber();
+		List<ResidueGenericNumberSerializer> alternativeGenericNumbers = new ArrayList<ResidueGenericNumberSerializer>();
+		ResidueGenericNumberSerializer anum = new ResidueGenericNumberSerializer();
 		anum.setScheme("Oliviera");
 		anum.setLabel("T113");
 		alternativeGenericNumbers.add(anum);
