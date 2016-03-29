@@ -10,7 +10,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * Node for retrieving mutations of protein (#4)
 * Node for retrieving interactions of structure with its ligands (#6)
-* 
 
 ## [1.0.6] - 2016-01-27
 
