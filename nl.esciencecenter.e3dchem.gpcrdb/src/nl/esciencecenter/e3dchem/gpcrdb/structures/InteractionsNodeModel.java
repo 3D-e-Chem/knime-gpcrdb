@@ -36,10 +36,9 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.model.StructureLigandInteractionS
 public class InteractionsNodeModel extends GpcrdbNodeModel {
 
 	public static final String CFGKEY_INPUTSTRUCTURECOLUMNNAME = "Structure name Column";
-	public static final String CFGKEY_INPUTLIGANDCOLUMNNAME = "Ligand name Column";
 	
 	private final SettingsModelString m_inputStructureColumnName = new SettingsModelString(CFGKEY_INPUTSTRUCTURECOLUMNNAME, null);
-	private final SettingsModelString m_inputLigandColumnName = new SettingsModelString(CFGKEY_INPUTLIGANDCOLUMNNAME, null);
+	private ServicesstructureApi service = new ServicesstructureApi(getApiClient());
 
 	/**
 	 * Constructor for the node model.
@@ -56,9 +55,6 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
-
-		ServicesstructureApi service = new ServicesstructureApi(getApiClient());
-
 		// the data table spec of the single output table,
 		// the table will have three columns:
 		DataTableSpec outputSpec = createOutputSpec();
@@ -73,13 +69,11 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 		long rowCount = table.size();
 		long currentRow = 0;
 		int structureColumnIndex = table.getDataTableSpec().findColumnIndex(m_inputStructureColumnName.getStringValue());
-		int ligandColumnIndex = table.getDataTableSpec().findColumnIndex(m_inputLigandColumnName.getStringValue());
 
 		for (DataRow inrow : table) {
 			String pdbCode = ((StringCell) inrow.getCell(structureColumnIndex)).getStringValue();
-			String ligandName = ((StringCell) inrow.getCell(ligandColumnIndex)).getStringValue();
 
-			fetchInteractions(service, container, pdbCode, ligandName);
+			fetchInteractions(container, pdbCode);
 			
 			// check if the user cancelled the execution
 			exec.checkCanceled();
@@ -94,19 +88,19 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 		return new BufferedDataTable[] { out };
 	}
 
-	private void fetchInteractions(ServicesstructureApi service, BufferedDataContainer container, String pdbCode, String ligandName)
+	public void fetchInteractions(BufferedDataContainer container, String pdbCode)
 			throws ApiException {
-		List<StructureLigandInteractionSerializer> interactions = service.structureLigandInteractionsGET(pdbCode, ligandName);
+		List<StructureLigandInteractionSerializer> interactions = service.structureLigandInteractionsGET(pdbCode);
 		for (StructureLigandInteractionSerializer interaction : interactions) {
 			DataCell[] cells = new DataCell[6];
 			cells[0] = new StringCell(pdbCode);
-			cells[1] = new StringCell(ligandName);
+			cells[1] = new StringCell(interaction.getLigandName());
 			cells[2] = new LongCell(interaction.getSequenceNumber());
 			cells[3] = new StringCell(interaction.getAminoAcid());
 			cells[4] = new StringCell(interaction.getDisplayGenericNumber());
 			cells[5] = new StringCell(interaction.getInteractionType());
 
-			RowKey key = new RowKey("Row " + pdbCode + " - " + interaction.getSequenceNumber());
+			RowKey key = new RowKey(pdbCode + " - " + interaction.getSequenceNumber());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)
@@ -160,7 +154,6 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 
 		super.saveSettingsTo(settings);
 		m_inputStructureColumnName.saveSettingsTo(settings);
-		m_inputLigandColumnName.saveSettingsTo(settings);
 	}
 
 	/**
@@ -175,7 +168,6 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 
 		super.loadValidatedSettingsFrom(settings);
 		m_inputStructureColumnName.loadSettingsFrom(settings);
-		m_inputLigandColumnName.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -191,7 +183,6 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 
 		super.validateSettings(settings);
 		m_inputStructureColumnName.validateSettings(settings);
-		m_inputLigandColumnName.validateSettings(settings);
 	}
 
 	/**
@@ -224,6 +215,14 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
 		// of). Save here only the other internals that need to be preserved
 		// (e.g. data used by the views).
 
+	}
+
+	public ServicesstructureApi getService() {
+		return service;
+	}
+
+	public void setService(ServicesstructureApi service) {
+		this.service = service;
 	}
 
 }

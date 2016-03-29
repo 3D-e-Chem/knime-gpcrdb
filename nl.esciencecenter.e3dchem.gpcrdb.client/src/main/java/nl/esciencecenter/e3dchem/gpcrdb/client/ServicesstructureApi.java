@@ -396,12 +396,13 @@ public class ServicesstructureApi {
 
 	/**
    * Get a list of interactions between structure and ligand
-   * Get a list of interactions between structure and ligand&lt;br/&gt;/structure/{pdb_code}/interaction/{ligand_name&lt;br/&gt;{pdb_code} is a structure identifier from the Protein Data Bank, e.g. 2RH1&lt;br/&gt;{ligand_name} is a ligand name contained in the structure, e.g. Carazolol
+   * Get a list of interactions between structure and ligand&lt;br/&gt;/structure/{pdb_code}/interaction/&lt;br/&gt;{pdb_code} is a structure identifier from the Protein Data Bank, e.g. 2RH1&lt;br/&gt;
+
 	 * @param pdbCode
 	 * @param ligandName
 	 * @return StructureLigandInteractionSerializer
 	 */
-	public List<StructureLigandInteractionSerializer> structureLigandInteractionsGET(String pdbCode, String ligandName)
+	public List<StructureLigandInteractionSerializer> structureLigandInteractionsGET(String pdbCode)
 			throws ApiException {
 		Object postBody = null;
 
@@ -410,15 +411,9 @@ public class ServicesstructureApi {
       throw new ApiException(400, "Missing the required parameter 'pdbCode' when calling structureLigandInteractionsGET");
 		}
 
-		// verify the required parameter 'ligandName' is set
-		if (ligandName == null) {
-      throw new ApiException(400, "Missing the required parameter 'ligandName' when calling structureLigandInteractionsGET");
-		}
-
 		// create path and map variables
-		String path = "/services/structure/{pdb_code}/interaction/{ligand_name}".replaceAll("\\{format\\}", "json")
-				.replaceAll("\\{" + "pdb_code" + "\\}", apiClient.escapeString(pdbCode.toString()))
-				.replaceAll("\\{" + "ligand_name" + "\\}", apiClient.escapeString(ligandName.toString()));
+		String path = "/services/structure/{pdb_code}/interaction/".replaceAll("\\{format\\}", "json")
+				.replaceAll("\\{" + "pdb_code" + "\\}", apiClient.escapeString(pdbCode.toString()));
 
 		// query params
 		List<Pair> queryParams = new ArrayList<Pair>();

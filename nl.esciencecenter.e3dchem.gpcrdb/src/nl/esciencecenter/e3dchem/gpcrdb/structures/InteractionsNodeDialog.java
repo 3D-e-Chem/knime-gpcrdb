@@ -29,10 +29,6 @@ public class InteractionsNodeDialog extends GpcrdbNodeDialog {
 				new SettingsModelString(InteractionsNodeModel.CFGKEY_INPUTSTRUCTURECOLUMNNAME, null),
 				"Column with PDB identifiers", 0, StringValue.class));
 
-		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelString(InteractionsNodeModel.CFGKEY_INPUTLIGANDCOLUMNNAME, null),
-				"Column with ligand names", 0, StringValue.class));
-
 		createNewTab("Advanced");
 
 		addBasePath();
