@@ -20,11 +20,7 @@
     <ports>
         <inPort index="0" name="In-Port name">Table with PDB structure identifiers</inPort>
         <!-- possibly more input ports here-->
-        <outPort index="0" name="Out-Port name">GPCRDB protein residues</outPort>
+        <outPort index="0" name="Out-Port name">GPCRDB Structure-ligand interactions</outPort>
         <!-- possibly more output ports here-->
     </ports>    
-    <views>
-        <view index="0" name="name of first view">Description of first view...</view>
-        <!--view index="1" name="name of second view">Description of second view...</view-->
-    </views>
 </knimeNode>
