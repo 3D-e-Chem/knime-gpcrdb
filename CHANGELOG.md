@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.7] - 2016-03-29
+
 ### Added
 
 * Node for retrieving mutations of protein (#4)
