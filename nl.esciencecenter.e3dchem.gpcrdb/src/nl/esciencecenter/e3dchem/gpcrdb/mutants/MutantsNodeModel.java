@@ -25,6 +25,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesmutantsApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.MutationSerializer;
 
@@ -39,10 +40,12 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 
 	private final SettingsModelString m_inputColumnName = new SettingsModelString(CFGKEY_INPUTCOLUMNNAME, null);
 
+	private ServicesmutantsApi service = new ServicesmutantsApi(getApiClient());
+
 	/**
 	 * Constructor for the node model.
 	 */
-	protected MutantsNodeModel() {
+	public MutantsNodeModel() {
 
 		// TODO one incoming port and one outgoing port is assumed
 		super(1, 1);
@@ -54,8 +57,6 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
-		ServicesmutantsApi service = new ServicesmutantsApi(getApiClient());
-
 		// the data table spec of the single output table,
 		// the table will have three columns:
 		DataColumnSpec[] allColSpecs = new DataColumnSpec[10];
@@ -83,23 +84,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 		for (DataRow inrow : table) {
 			String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 
-			List<MutationSerializer> mutants = service.mutantListGET(entryName);
-			for (MutationSerializer mutant : mutants) {
-				RowKey key = new RowKey("Row " + entryName + "-" + mutant.getMutationPos() + "-" + currentRow);
-				// the cells of the current row, the types of the cells must
-				// match
-				// the column spec (see above)
-				DataCell[] cells = new DataCell[7];
-				cells[0] = new StringCell(mutant.getProtein());
-				cells[1] = new LongCell(mutant.getMutationPos());
-				cells[2] = new StringCell(mutant.getMutationFrom());
-				cells[3] = new StringCell(mutant.getMutationTo());
-				cells[4] = new StringCell(mutant.getExpType() + " (" + mutant.getExpFunc() + ")");
-				cells[5] = new StringCell(mutant.getLigandName());
-				cells[6] = new StringCell(mutant.getReference());
-				DataRow row = new DefaultRow(key, cells);
-				container.addRowToTable(row);
-			}
+			fetchMutants(entryName, container);
 
 			// check if the user cancelled the execution
 			exec.checkCanceled();
@@ -112,6 +97,28 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 		container.close();
 		BufferedDataTable out = container.getTable();
 		return new BufferedDataTable[] { out };
+	}
+
+	public void fetchMutants(String entryName, BufferedDataContainer container) throws ApiException {
+		List<MutationSerializer> mutants = service.mutantListGET(entryName);
+		long currentRow = 0;
+		for (MutationSerializer mutant : mutants) {
+			RowKey key = new RowKey(entryName + " - " + currentRow);
+			// the cells of the current row, the types of the cells must
+			// match
+			// the column spec (see above)
+			DataCell[] cells = new DataCell[7];
+			cells[0] = new StringCell(mutant.getProtein());
+			cells[1] = new LongCell(mutant.getMutationPos());
+			cells[2] = new StringCell(mutant.getMutationFrom());
+			cells[3] = new StringCell(mutant.getMutationTo());
+			cells[4] = new StringCell(mutant.getExpType() + " (" + mutant.getExpFunc() + ")");
+			cells[5] = new StringCell(mutant.getLigandName());
+			cells[6] = new StringCell(mutant.getReference());
+			DataRow row = new DefaultRow(key, cells);
+			container.addRowToTable(row);
+			currentRow++;
+		}
 	}
 
 	/**
@@ -210,6 +217,14 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 		// of). Save here only the other internals that need to be preserved
 		// (e.g. data used by the views).
 
+	}
+
+	public ServicesmutantsApi getService() {
+		return service;
+	}
+
+	public void setService(ServicesmutantsApi service) {
+		this.service = service;
 	}
 
 }
