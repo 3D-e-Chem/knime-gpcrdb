@@ -72,12 +72,12 @@ public class InteractionsNodeModelTest {
         model.setService(service);
         BufferedDataContainer container = mock(BufferedDataContainer.class);
         // http://gpcrdb.org/interaction/3EML
-        // ZM 241385 L85 3.33x33 TM3 hydrophobic
+        // ZM 241385    H264            ECL3    aromatic (face-to-edge)
 
         model.fetchInteractions(container, pdbCode);
 
-        DataRow expectedRow = new DefaultRow(new RowKey("3EML - 168 - 0"), new StringCell(pdbCode), new StringCell("ZM 241385"),
-                new LongCell(168L), new StringCell("F"), new MissingCell("Position has no generic number"),
+        DataRow expectedRow = new DefaultRow(new RowKey("3EML - 264 - 0"), new StringCell(pdbCode), new StringCell("ZM 241385"),
+                new LongCell(264L), new StringCell("H"), new MissingCell("Position has no generic number"),
                 new StringCell("aromatic (face-to-face)"));
         verify(container).addRowToTable(expectedRow);
     }
@@ -95,8 +95,8 @@ public class InteractionsNodeModelTest {
         StructureLigandInteractionSerializer interaction = new StructureLigandInteractionSerializer();
         interaction.setPdbCode("3EML");
         interaction.setLigandName("ZM 241385");
-        interaction.setSequenceNumber(168L);
-        interaction.setAminoAcid("F");
+        interaction.setSequenceNumber(264L);
+        interaction.setAminoAcid("H");
         interaction.setDisplayGenericNumber(null);
         interaction.setInteractionType("aromatic (face-to-face)");
         response.add(interaction);
