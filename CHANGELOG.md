@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.8] - 2016-04-18
+
+### Added
+
+* Node for retrieving protein similarity (#5)
+
 ## [1.0.7] - 2016-03-29
 
 ### Added

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem</groupId>
 		<artifactId>nl.esciencecenter.e3dchem</artifactId>
-		<version>1.0.7</version>
+		<version>1.0.8</version>
 	</parent>
 
 	<artifactId>nl.esciencecenter.e3dchem.gpcrdb.feature</artifactId>
