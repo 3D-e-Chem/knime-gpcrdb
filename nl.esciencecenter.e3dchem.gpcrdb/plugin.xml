@@ -45,5 +45,11 @@
           factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory"
           id="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory">
     </node>
+    <node
+          category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory">
+    </node>
   </extension>
 </plugin>
