@@ -21,7 +21,7 @@
         <inPort index="0" name="Query">Table with Uniprot identifier as queries</inPort>
         <inPort index="1" name="Subjects">Table with Uniprot identifier as subjects</inPort>
         <!-- possibly more input ports here-->
-        <outPort index="0" name="Out-Port name">GPCRDB protein similarity</outPort>
+        <outPort index="0" name="Similarity pairs">GPCRDB protein similarity pairs</outPort>
         <!-- possibly more output ports here-->
     </ports>    
 </knimeNode>
