@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GPCRDB Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.gpcrdb;singleton:=true
-Bundle-Version: 1.0.6
+Bundle-Version: 1.0.8
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)",
@@ -12,8 +12,10 @@ Export-Package: com.fasterxml.jackson.core,
  nl.esciencecenter.e3dchem.gpcrdb,
  nl.esciencecenter.e3dchem.gpcrdb.client,
  nl.esciencecenter.e3dchem.gpcrdb.client.model,
+ nl.esciencecenter.e3dchem.gpcrdb.mutants,
  nl.esciencecenter.e3dchem.gpcrdb.proteins,
- nl.esciencecenter.e3dchem.gpcrdb.residues
+ nl.esciencecenter.e3dchem.gpcrdb.residues,
+ nl.esciencecenter.e3dchem.gpcrdb.structures
 Bundle-Vendor: Netherlands eScience Center
 Bundle-Activator: nl.esciencecenter.e3dchem.gpcrdb.NodePlugin
 Bundle-ActivationPolicy: lazy
@@ -44,5 +46,5 @@ Bundle-ClassPath: lib/aopalliance-repackaged-2.3.0-b10.jar,
  lib/mimepull-1.9.3.jar,
  lib/osgi-resource-locator-1.0.1.jar,
  lib/swagger-annotations-1.5.0.jar,
- lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.4.jar,
+ lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.8.jar,
  .

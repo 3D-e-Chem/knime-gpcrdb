@@ -33,7 +33,23 @@
           factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory"
           id="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory">
     </node>
+    <node
+    	  category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.mutants.MutantsNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.mutants.MutantsNodeFactory">
+    </node>
+    <node
+    	  category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory">
+    </node>
+    <node
+          category-path="/community/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory"
+          id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory">
+    </node>
   </extension>
-
-
 </plugin>

@@ -15,6 +15,7 @@ import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.LongCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.data.json.JSONCell;
 import org.knime.core.data.json.JSONCellFactory;
@@ -35,8 +36,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
-import nl.esciencecenter.e3dchem.gpcrdb.client.model.AlternativeGenericNumber;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueExtendedSerializer;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueGenericNumberSerializer;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueSerializer;
 
 /**
@@ -127,7 +128,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		for (ResidueSerializer residue : result) {
 			DataCell[] cells = new DataCell[5];
 			cells[0] = new StringCell(entryName);
-			cells[1] = new IntCell(residue.getSequenceNumber());
+			cells[1] = new LongCell(residue.getSequenceNumber());
 			cells[2] = new StringCell(residue.getAminoAcid());
 			cells[3] = new StringCell(residue.getProteinSegment());
 			if (residue.getDisplayGenericNumber() == null) {
@@ -151,7 +152,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		for (ResidueExtendedSerializer residue : result) {
 			DataCell[] cells = new DataCell[6];
 			cells[0] = new StringCell(entryName);
-			cells[1] = new IntCell(residue.getSequenceNumber());
+			cells[1] = new LongCell(residue.getSequenceNumber());
 			cells[2] = new StringCell(residue.getAminoAcid());
 			cells[3] = new StringCell(residue.getProteinSegment());
 			if (residue.getDisplayGenericNumber() == null) {
@@ -159,8 +160,8 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 			} else {
 				cells[4] = new StringCell(residue.getDisplayGenericNumber());
 			}
-			Map<String, String> alternatives = new HashMap<String,String>();
-			for ( AlternativeGenericNumber alternative : residue.getAlternativeGenericNumbers()) {
+			Map<String, String> alternatives = new HashMap<String, String>();
+			for (ResidueGenericNumberSerializer alternative : residue.getAlternativeGenericNumbers()) {
 				alternatives.put(alternative.getScheme(), alternative.getLabel());
 			}
 			String alternativNumbers = jsonify.writeValueAsString(alternatives);
@@ -182,7 +183,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		}
 		DataColumnSpec[] allColSpecs = new DataColumnSpec[columnSize];
 		allColSpecs[0] = new DataColumnSpecCreator("Protein", StringCell.TYPE).createSpec();
-		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
+		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", LongCell.TYPE).createSpec();
 		allColSpecs[2] = new DataColumnSpecCreator("Amino acid", StringCell.TYPE).createSpec();
 		allColSpecs[3] = new DataColumnSpecCreator("Protein segment", StringCell.TYPE).createSpec();
 		allColSpecs[4] = new DataColumnSpecCreator("Generic number", StringCell.TYPE).createSpec();

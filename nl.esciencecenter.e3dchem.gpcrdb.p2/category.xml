@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature-1.0.6.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature" version="1.0.6">
+   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature-1.0.8.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature" version="1.0.8">
       <category name="nl.esciencecenter.3D-e-Chem"/>
    </feature>
-   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature.source_1.0.6.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature.source" version="1.0.6">
+   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature.source_1.0.8.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature.source" version="1.0.8">
       <category name="nl.esciencecenter.3D-e-Chem.sources"/>
    </feature>
    <category-def name="nl.esciencecenter.3D-e-Chem" label="KNIME 3D-e-Chem Contributions">
