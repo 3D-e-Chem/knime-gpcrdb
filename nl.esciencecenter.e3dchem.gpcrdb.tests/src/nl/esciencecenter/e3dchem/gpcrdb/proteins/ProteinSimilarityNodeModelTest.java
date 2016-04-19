@@ -3,6 +3,7 @@ package nl.esciencecenter.e3dchem.gpcrdb.proteins;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +12,10 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.knime.core.data.DataRow;
+import org.knime.core.data.def.DefaultRow;
+import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
@@ -36,18 +41,33 @@ public class ProteinSimilarityNodeModelTest {
 		BufferedDataContainer container = mock(BufferedDataContainer.class);
 		Map<String, ProteinSimilarity> response = new HashMap<String, ProteinSimilarity>();
 		ProteinSimilarity ps1 = new ProteinSimilarity();
-		ps1.setIdentity(75);
 		ps1.setSimilarity(44);
+		ps1.setIdentity(75);
 		response.put("5ht2a_human", ps1);
 		ProteinSimilarity ps2 = new ProteinSimilarity();
-		ps2.setIdentity(86);
 		ps2.setSimilarity(56);
+		ps2.setIdentity(86);
 		response.put("cxcr4_human", ps2);
 		when(service.proteinSimilaritySearchAlignmentGET("adrb2_human,5ht2a_human,cxcr4_human", segments)).thenReturn(response);
 		
 		node.fetchSimilarities(query, segments, subjects, container);
 		
-		// TODO verify container filled
+		DataRow row1 = new DefaultRow(
+			"adrb2_human vs 5ht2a_human",
+			new StringCell("adrb2_human"),
+			new StringCell("5ht2a_human"),
+			new IntCell(44),
+			new IntCell(75)
+		);
+		verify(container).addRowToTable(row1);
+		DataRow row2 = new DefaultRow(
+			"adrb2_human vs cxcr4_human",
+			new StringCell("adrb2_human"),
+			new StringCell("cxcr4_human"),
+			new IntCell(56),
+			new IntCell(86)
+		);
+		verify(container).addRowToTable(row2);
 	}
 
 }

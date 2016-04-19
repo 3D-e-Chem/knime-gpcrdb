@@ -30,6 +30,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.defaultnodesettings.SettingsModelStringArray;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesalignmentApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.StringUtil;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSimilarity;
@@ -90,8 +91,6 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
         long currentRow = 0;
         int columnIndex = queryTable.getDataTableSpec().findColumnIndex(m_inColumnName.getStringValue());
         int subjectColumnIndex = subjectTable.getDataTableSpec().findColumnIndex(m_inColumnName.getStringValue());
-        int chunkSize = m_chunksize.getIntValue();
-        List<String> proteins = new ArrayList<>();
 
         List<String> subjects = new ArrayList<>();
         for (DataRow subjectRow : subjectTable) {
@@ -100,33 +99,7 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
 
         for (DataRow queryRow : queryTable) {
             String query = ((StringCell) queryRow.getCell(columnIndex)).getStringValue();
-            for (int i = 0; i < subjects.size(); i += chunkSize) {
-                proteins.clear();
-                proteins.add(query);
-                if (i + chunkSize < subjects.size()) {
-                    proteins.addAll(subjects.subList(i, i + chunkSize));
-                } else {
-                    proteins.addAll(subjects.subList(i, subjects.size()));
-                }
-                Map<String, ProteinSimilarity> result = service.proteinSimilaritySearchAlignmentGET(
-                        StringUtil.join(proteins.toArray(new String[proteins.size()]), ","), segments);
-                for (Entry<String, ProteinSimilarity> subject : result.entrySet()) {
-                    // skip self
-                    if (!query.equals(subject.getKey())) {
-                        RowKey key = new RowKey(query + " vs " + subject.getKey());
-	                    // the cells of the current row, the types of the cells must
-	                    // match
-	                    // the column spec (see above)
-	                    DataCell[] cells = new DataCell[4];
-	                    cells[0] = new StringCell(query);
-	                    cells[1] = new StringCell(subject.getKey());
-	                    cells[2] = new IntCell(subject.getValue().getSimilarity());
-	                    cells[3] = new IntCell(subject.getValue().getIdentity());
-	                    DataRow row = new DefaultRow(key, cells);
-	                    container.addRowToTable(row);
-                    }
-                }
-			}
+            fetchSimilarities(query, segments, subjects, container);
 
             // check if the user cancelled the execution
             exec.checkCanceled();
@@ -140,6 +113,38 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
         BufferedDataTable out = container.getTable();
         return new BufferedDataTable[] { out };
     }
+
+	public void fetchSimilarities(String query, String segments, List<String> subjects,
+			BufferedDataContainer container) throws ApiException {
+		int chunkSize = m_chunksize.getIntValue();
+		for (int i = 0; i < subjects.size(); i += chunkSize) {
+			List<String> proteins = new ArrayList<>();
+		    proteins.add(query);
+		    if (i + chunkSize < subjects.size()) {
+		        proteins.addAll(subjects.subList(i, i + chunkSize));
+		    } else {
+		        proteins.addAll(subjects.subList(i, subjects.size()));
+		    }
+		    Map<String, ProteinSimilarity> result = service.proteinSimilaritySearchAlignmentGET(
+		            StringUtil.join(proteins.toArray(new String[proteins.size()]), ","), segments);
+		    for (Entry<String, ProteinSimilarity> subject : result.entrySet()) {
+		        // skip self
+		        if (!query.equals(subject.getKey())) {
+		            RowKey key = new RowKey(query + " vs " + subject.getKey());
+		            // the cells of the current row, the types of the cells must
+		            // match
+		            // the column spec (see above)
+		            DataCell[] cells = new DataCell[4];
+		            cells[0] = new StringCell(query);
+		            cells[1] = new StringCell(subject.getKey());
+		            cells[2] = new IntCell(subject.getValue().getSimilarity());
+		            cells[3] = new IntCell(subject.getValue().getIdentity());
+		            DataRow row = new DefaultRow(key, cells);
+		            container.addRowToTable(row);
+		        }
+		    }
+		}
+	}
 
     /**
      * {@inheritDoc}
@@ -242,5 +247,13 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
         // (e.g. data used by the views).
 
     }
+
+	public ServicesalignmentApi getService() {
+		return service;
+	}
+
+	public void setService(ServicesalignmentApi service) {
+		this.service = service;
+	}
 
 }
