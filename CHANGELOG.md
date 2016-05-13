@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.9] - 2016-05-13
+
+### Fixed
+
+* Protein with single structure produce error (#8)
+
 ### Changed
 
 * Input is case-insensitive (#10)

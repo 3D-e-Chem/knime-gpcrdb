@@ -72,7 +72,7 @@ If Knime update site can not be contacted then use a local version.
 
 1. Download zip of update site from https://www.knime.org/downloads/update
 2. Unzip it
-3. To maven commands add `-Dknime.update.site=file://-Dknime.update.site=file://<path to update site directory>`
+3. To maven commands add `-Dknime.update.site=file://<path to update site directory>`
 
 # Create GPCRDB client
 
@@ -107,15 +107,6 @@ cp -r target/lib/* target/*jar ../nl.esciencecenter.e3dchem.gpcrdb/lib/
 ```
 
 5. Update MANIFEST.MF build.properties to reflect contents of lib/
-
-# New release
-
-1. Bump version with
-```
-mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<new version>
-```
-
-2. Manually update version of "source" feature in `nl.esciencecenter.e3dchem.gpcrdb.p2/category.xml` file
 
 # References
 
