@@ -32,14 +32,18 @@ public class ResiduesNodeModelTest {
 		ResiduesNodeModel model = new ResiduesNodeModel();
 		List<ResidueExtendedSerializer> response = sampleExtendedResidueResponse();
 		when(service.residuesExtendedListGET(entryName)).thenReturn(response);
-		
 		BufferedDataContainer container = mock(BufferedDataContainer.class);
+
 		model.fetchResiduesExtended(service, container, entryName);
 		
+		verifyContainer(container);
+	}
+
+	private void verifyContainer(BufferedDataContainer container) {
 		JSONCellFactory jsoncellify = new JSONCellFactory();
 		DataRow expectedRow = new DefaultRow(
 			new RowKey("adrb2_human - 1"),
-			new StringCell(entryName),
+			new StringCell("adrb2_human"),
 			new LongCell(1L),
 			new StringCell("G"),
 			new StringCell("TM"),
@@ -49,6 +53,21 @@ public class ResiduesNodeModelTest {
 		verify(container).addRowToTable(expectedRow);
 	}
 
+	@Test
+	public void testFetchResiduesExtended_upperCase() throws JsonProcessingException, ApiException {
+		String entryName = "ADRB2_HUMAN";
+		ServicesresiduesApi service = mock(ServicesresiduesApi.class);
+		ResiduesNodeModel model = new ResiduesNodeModel();
+		List<ResidueExtendedSerializer> response = sampleExtendedResidueResponse();
+		when(service.residuesExtendedListGET("adrb2_human")).thenReturn(response);
+		BufferedDataContainer container = mock(BufferedDataContainer.class);
+
+		model.fetchResiduesExtended(service, container, entryName);
+		
+		verifyContainer(container);
+	}
+
+	
 	public List<ResidueExtendedSerializer> sampleExtendedResidueResponse() {
 		List<ResidueExtendedSerializer> response = new ArrayList<ResidueExtendedSerializer>();
 		ResidueExtendedSerializer residue = new ResidueExtendedSerializer();

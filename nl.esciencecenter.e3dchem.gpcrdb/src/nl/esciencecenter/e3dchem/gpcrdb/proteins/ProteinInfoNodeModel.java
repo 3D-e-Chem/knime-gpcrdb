@@ -124,6 +124,7 @@ public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 
 		List<ProteinSerializer> proteins = new ArrayList<ProteinSerializer>(1);
 		if (IDTYPE_UNIPROTID.equals(idtype)) {
+			id = id.toLowerCase();
 			proteins.add(service4proteins.proteinDetailGET(id));
 		} else if (IDTYPE_UNIPROTACC.equals(idtype)) {
 			proteins.add(service4proteins.proteinByAccessionDetailGET(id));

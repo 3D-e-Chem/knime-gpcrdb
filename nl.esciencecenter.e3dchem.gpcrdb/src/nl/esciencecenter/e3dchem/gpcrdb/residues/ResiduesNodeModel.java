@@ -14,7 +14,6 @@ import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
-import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.LongCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.data.json.JSONCell;
@@ -124,6 +123,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	private void fetchResidues(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
+		entryName = entryName.toLowerCase();
 		List<ResidueSerializer> result = service.residuesListGET(entryName);
 		for (ResidueSerializer residue : result) {
 			DataCell[] cells = new DataCell[5];
@@ -148,6 +148,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	public void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException, JsonProcessingException {
+		entryName = entryName.toLowerCase();
 		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryName);
 		for (ResidueExtendedSerializer residue : result) {
 			DataCell[] cells = new DataCell[6];

@@ -35,7 +35,28 @@ public class MutantsNodeModelTest {
 
         model.fetchMutants(entryName, container);
 
-        DataCell[] expectedCells = new DataCell[23];
+        verifyContainer(container);
+    }
+
+
+    @Test
+    public void testFetchMutants_upperCase() throws ApiException {
+        String entryName = "HRH1_HUMAN";
+        MutantsNodeModel model = new MutantsNodeModel();
+        ServicesmutantsApi service = mock(ServicesmutantsApi.class);
+        List<MutationSerializer> response = sampleMutantsResponse();
+        when(service.mutantListGET("hrh1_human")).thenReturn(response);
+        model.setService(service);
+        BufferedDataContainer container = mock(BufferedDataContainer.class);
+
+        model.fetchMutants(entryName, container);
+
+        verifyContainer(container);
+    }
+
+
+	private void verifyContainer(BufferedDataContainer container) {
+		DataCell[] expectedCells = new DataCell[23];
         expectedCells[0] = new StringCell("hrh1_human");
         expectedCells[1] = new LongCell(107L);
         expectedCells[2] = new StringCell("D");
@@ -62,8 +83,8 @@ public class MutantsNodeModelTest {
 
         DataRow expectedRow = new DefaultRow(new RowKey("hrh1_human - 0"), expectedCells);
         verify(container).addRowToTable(expectedRow);
-    }
-
+	}
+    
     private List<MutationSerializer> sampleMutantsResponse() {
         ArrayList<MutationSerializer> response = new ArrayList<MutationSerializer>();
 

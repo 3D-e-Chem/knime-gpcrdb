@@ -36,7 +36,26 @@ public class InteractionsNodeModelTest {
 
         model.fetchInteractions(container, pdbCode);
 
-        DataRow expectedRow = new DefaultRow(new RowKey("3EML - 85 - 0"), new StringCell(pdbCode), new StringCell("ZM 241385"),
+        DataRow expectedRow = new DefaultRow(new RowKey("3EML - 85 - 0"), new StringCell("3EML"), new StringCell("ZM 241385"),
+                new LongCell(85L), new StringCell("L"), new StringCell("3.33x33"), new StringCell("hydrophobic"));
+        verify(container).addRowToTable(expectedRow);
+    }
+    
+    @Test
+    public void testFetchInteractions_filled_lowercase() throws ApiException {
+        String pdbCode = "3eml";
+        InteractionsNodeModel model = new InteractionsNodeModel();
+        ServicesstructureApi service = mock(ServicesstructureApi.class);
+        List<StructureLigandInteractionSerializer> response = getSampleInteractions();
+        when(service.structureLigandInteractionsGET("3EML")).thenReturn(response);
+        model.setService(service);
+        BufferedDataContainer container = mock(BufferedDataContainer.class);
+        // http://gpcrdb.org/interaction/3EML
+        // ZM 241385 L85 3.33x33 TM3 hydrophobic
+
+        model.fetchInteractions(container, pdbCode);
+
+        DataRow expectedRow = new DefaultRow(new RowKey("3EML - 85 - 0"), new StringCell("3EML"), new StringCell("ZM 241385"),
                 new LongCell(85L), new StringCell("L"), new StringCell("3.33x33"), new StringCell("hydrophobic"));
         verify(container).addRowToTable(expectedRow);
     }

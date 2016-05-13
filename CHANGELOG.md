@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+* Input is case-insensitive (#10)
+
 ## [1.0.8] - 2016-04-18
 
 ### Added

@@ -1,6 +1,5 @@
 package nl.esciencecenter.e3dchem.gpcrdb.proteins;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;

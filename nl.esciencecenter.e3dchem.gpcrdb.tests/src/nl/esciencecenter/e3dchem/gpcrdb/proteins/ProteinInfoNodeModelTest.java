@@ -52,6 +52,21 @@ public class ProteinInfoNodeModelTest {
 	}
 
 	@Test
+	public void testFetchProteinByUniprotId_upperCase() throws ApiException {
+
+		String idtype = ProteinInfoNodeModel.IDTYPE_UNIPROTID;
+		BufferedDataContainer container = mock(BufferedDataContainer.class);
+		ProteinSerializer response = sampleProtein();
+		String entryName = response.getEntryName();
+		when(service4proteins.proteinDetailGET(entryName)).thenReturn(response);
+
+		node.fetchProteins("ADRB2_HUMAN", idtype, container);
+
+		DataRow expectedRow = sampleRow(response);
+		verify(container).addRowToTable(expectedRow);
+	}
+
+	@Test
 	public void testFetchProteinByUniprotAccession() throws ApiException {
 
 		String idtype = ProteinInfoNodeModel.IDTYPE_UNIPROTACC;

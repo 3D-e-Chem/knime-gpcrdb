@@ -88,6 +88,7 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
     }
 
     public void fetchInteractions(BufferedDataContainer container, String pdbCode) throws ApiException {
+    	pdbCode = pdbCode.toUpperCase();
         List<StructureLigandInteractionSerializer> interactions = service.structureLigandInteractionsGET(pdbCode);
         long currentRow = 0;
         for (StructureLigandInteractionSerializer interaction : interactions) {

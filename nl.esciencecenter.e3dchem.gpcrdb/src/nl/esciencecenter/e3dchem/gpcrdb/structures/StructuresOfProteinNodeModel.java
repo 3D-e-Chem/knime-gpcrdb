@@ -14,7 +14,6 @@ import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.data.json.JSONCell;
-import org.knime.core.data.json.JSONCellContent;
 import org.knime.core.data.json.JSONCellFactory;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
@@ -26,10 +25,13 @@ import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesstructureApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.Ligand;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.Structure;
 
 /**
@@ -46,9 +48,7 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 	/**
 	 * Constructor for the node model.
 	 */
-	protected StructuresOfProteinNodeModel() {
-
-		// TODO one incoming port and one outgoing port is assumed
+	public StructuresOfProteinNodeModel() {
 		super(1, 1);
 	}
 
@@ -60,8 +60,6 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 			throws Exception {
 
 		ServicesstructureApi service = new ServicesstructureApi(getApiClient());
-		ObjectMapper jsonify = new ObjectMapper();
-		JSONCellFactory jsoncellify = new JSONCellFactory();
 
 		// the data table spec of the single output table,
 		// the table will have three columns:
@@ -92,27 +90,7 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 		for (DataRow inrow : table) {
 			String entryName = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 
-			List<Structure> structures = service.structureListProteinGET(entryName);
-			for (Structure structure : structures) {
-				RowKey key = new RowKey("Row " + entryName + '-' + structure.getPdb_code());
-				// the cells of the current row, the types of the cells must
-				// match
-				// the column spec (see above)
-				DataCell[] cells = new DataCell[10];
-				cells[0] = new StringCell(structure.getPublication_date());
-				cells[1] = new StringCell(structure.getPreferred_chain());
-				cells[2] = new StringCell(structure.getType());
-				cells[3] = new StringCell(structure.getSpecies());
-				cells[4] = new StringCell(structure.getProtein());
-				cells[5] = new DoubleCell(structure.getResolution());
-				String ligands = jsonify.writeValueAsString(structure.getLigands());
-				cells[6] = jsoncellify.createCell(ligands);
-				cells[7] = new StringCell(structure.getPublication());
-				cells[8] = new StringCell(structure.getPdb_code());
-				cells[9] = new StringCell(structure.getFamily());
-				DataRow row = new DefaultRow(key, cells);
-				container.addRowToTable(row);
-			}
+			fetchStructures(service, container, entryName);
 
 			// check if the user cancelled the execution
 			exec.checkCanceled();
@@ -127,6 +105,38 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 		return new BufferedDataTable[] { out };
 	}
 
+	public void fetchStructures(ServicesstructureApi service, BufferedDataContainer container, String entryName)
+			throws ApiException, JsonProcessingException {
+		entryName = entryName.toLowerCase();
+		List<Structure> structures = service.structureListProteinGET(entryName);
+		for (Structure structure : structures) {
+			RowKey key = new RowKey(entryName + " - " + structure.getPdb_code());
+			// the cells of the current row, the types of the cells must
+			// match
+			// the column spec (see above)
+			DataCell[] cells = new DataCell[10];
+			cells[0] = new StringCell(structure.getPublication_date());
+			cells[1] = new StringCell(structure.getPreferred_chain());
+			cells[2] = new StringCell(structure.getType());
+			cells[3] = new StringCell(structure.getSpecies());
+			cells[4] = new StringCell(structure.getProtein());
+			cells[5] = new DoubleCell(structure.getResolution());
+			cells[6] = string2jsoncell(structure.getLigands());
+			cells[7] = new StringCell(structure.getPublication());
+			cells[8] = new StringCell(structure.getPdb_code());
+			cells[9] = new StringCell(structure.getFamily());
+			DataRow row = new DefaultRow(key, cells);
+			container.addRowToTable(row);
+		}
+	}
+
+	protected DataCell string2jsoncell(List<Ligand> ligands) throws JsonProcessingException {
+		ObjectMapper jsonify = new ObjectMapper();
+		JSONCellFactory jsoncellify = new JSONCellFactory();
+		String ligandsjson = jsonify.writeValueAsString(ligands);
+		return jsoncellify.createCell(ligandsjson);
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

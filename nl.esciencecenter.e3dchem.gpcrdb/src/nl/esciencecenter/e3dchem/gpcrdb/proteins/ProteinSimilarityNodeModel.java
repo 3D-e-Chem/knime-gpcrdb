@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -94,11 +95,11 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
 
         List<String> subjects = new ArrayList<>();
         for (DataRow subjectRow : subjectTable) {
-            subjects.add(((StringCell) subjectRow.getCell(subjectColumnIndex)).getStringValue());
+            subjects.add(((StringCell) subjectRow.getCell(subjectColumnIndex)).getStringValue().toLowerCase());
         }
 
         for (DataRow queryRow : queryTable) {
-            String query = ((StringCell) queryRow.getCell(columnIndex)).getStringValue();
+            String query = ((StringCell) queryRow.getCell(columnIndex)).getStringValue().toLowerCase();
             fetchSimilarities(query, segments, subjects, container);
 
             // check if the user cancelled the execution

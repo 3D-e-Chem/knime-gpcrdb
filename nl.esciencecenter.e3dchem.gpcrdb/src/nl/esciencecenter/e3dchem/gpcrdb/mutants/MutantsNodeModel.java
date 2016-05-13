@@ -115,6 +115,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
     }
 
     public void fetchMutants(String entryName, BufferedDataContainer container) throws ApiException {
+    	entryName = entryName.toLowerCase();
         List<MutationSerializer> mutants = service.mutantListGET(entryName);
         long currentRow = 0;
         for (MutationSerializer mutant : mutants) {
