@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.core.GenericType;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.InlineResponseDefault;
@@ -154,10 +155,20 @@ public class ServicesstructureApi {
 		String[] authNames = new String[] {};
 
     
-    GenericType<List<Structure>> returnType = new GenericType<List<Structure>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
-
+		try {
+		    GenericType<List<Structure>> returnType = new GenericType<List<Structure>>() {};
+			return apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+		} catch (ProcessingException e) {
+			// service returned a object instead of an array
+			// fetch again, but expect a single structure
+			GenericType<Structure> returnType = new GenericType<Structure>() {};
+			Structure singleresult = apiClient.invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, accept, contentType, authNames, returnType);
+		    List<Structure> result = new ArrayList<Structure>(1);
+			result.add(singleresult);
+			return result;
+		}
 	}
+
 
 	/**
    * Get a list of representative structures of a protein (one for each activation state)
