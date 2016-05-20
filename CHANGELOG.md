@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+* Optional publication when requesting structures of protein (#12)
+
 ## [1.0.9] - 2016-05-13
 
 ### Fixed

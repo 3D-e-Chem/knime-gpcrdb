@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataRow;
+import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
@@ -37,7 +38,8 @@ public class StructuresOfProteinNodeModelTest {
 
         model.fetchStructures(service, container, entryName);
 
-        verifyContainer(container);
+		DataRow expectedRow = expectedContainer();
+        verify(container).addRowToTable(expectedRow);
     }
 
     @Test
@@ -51,10 +53,31 @@ public class StructuresOfProteinNodeModelTest {
 
         model.fetchStructures(service, container, entryName);
 
-        verifyContainer(container);
+		DataRow expectedRow = expectedContainer();
+        verify(container).addRowToTable(expectedRow);
     }
 
-	protected void verifyContainer(BufferedDataContainer container) {
+	@Test
+    public void testFetchStructures_nullpublication() throws ApiException, JsonProcessingException {
+    	String entryName = "ADRB2_HUMAN";
+        StructuresOfProteinNodeModel model = new StructuresOfProteinNodeModel();
+        ServicesstructureApi service = mock(ServicesstructureApi.class);
+        List<Structure> response = getSampleStructures();
+        response.get(0).setPublication(null);
+        when(service.structureListProteinGET("adrb2_human")).thenReturn(response);
+        BufferedDataContainer container = mock(BufferedDataContainer.class);
+
+        model.fetchStructures(service, container, entryName);
+
+		DataRow expectedRow = expectedContainer(new MissingCell("Publication missing"));
+        verify(container).addRowToTable(expectedRow);
+    }
+
+	protected DataRow expectedContainer() {
+		return expectedContainer(new StringCell("http://dx.doi.org/10.1126/SCIENCE.1150577"));
+	}
+
+    protected DataRow expectedContainer(DataCell publication) {
 		RowKey key = new RowKey("adrb2_human - 2RH1");
 		DataCell[] cells = new DataCell[10];
 		cells[0] = new StringCell("2007-10-30");
@@ -65,11 +88,11 @@ public class StructuresOfProteinNodeModelTest {
 		cells[5] = new DoubleCell((float) 2.4);
 		JSONCellFactory jsoncellify = new JSONCellFactory();
 		cells[6] = jsoncellify.createCell("[{\"name\": \"Carazolol\",\"type\": \"Small molecule\",\"function\": \"Inverse agonist\"}]");
-		cells[7] = new StringCell("http://dx.doi.org/10.1126/SCIENCE.1150577");
+		cells[7] = publication;
 		cells[8] = new StringCell("2RH1");
 		cells[9] = new StringCell("001_001_003_008");
 		DataRow expectedRow = new DefaultRow(key, cells);
-        verify(container).addRowToTable(expectedRow);
+		return expectedRow;
 	}
     
     private List<Structure> getSampleStructures() {

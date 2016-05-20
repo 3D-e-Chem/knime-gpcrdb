@@ -9,6 +9,7 @@ import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataColumnSpecCreator;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.MissingCell;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
@@ -122,7 +123,12 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 			cells[4] = new StringCell(structure.getProtein());
 			cells[5] = new DoubleCell(structure.getResolution());
 			cells[6] = string2jsoncell(structure.getLigands());
-			cells[7] = new StringCell(structure.getPublication());
+			String publication = structure.getPublication();
+			if (publication == null) {
+				cells[7] = new MissingCell("Publication missing");
+			} else {
+				cells[7] = new StringCell(publication);
+			}
 			cells[8] = new StringCell(structure.getPdb_code());
 			cells[9] = new StringCell(structure.getFamily());
 			DataRow row = new DefaultRow(key, cells);
