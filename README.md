@@ -32,8 +32,8 @@ See example workflow in `examples` folder.
 mvn verify
 ```
 
-Jar has been made in `nl.esciencecenter.e3dchem.gpcrdb/target` folder.
-An Eclipse update site will be made in `nl.esciencecenter.e3dchem.gpcrdb.p2/target/repository` repository.
+Jar has been made in `plugin/target` folder.
+An Eclipse update site will be made in `p2/target/repository` repository.
 
 # Development
 
@@ -58,9 +58,9 @@ During import the Tycho Eclipse providers must be installed.
 # New release
 
 1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>` command.
-2. Manually update version of "source" feature in `nl.esciencecenter.e3dchem.p2/category.xml` file.
+2. Manually update version of "source" feature in `p2/category.xml` file.
 3. Commit and push changes
-3. Create package with `mvn package`, will create update site in `nl.esciencecenter.e3dchem.gpcrdb.p2/target/repository`
+3. Create package with `mvn package`, will create update site in `p2/target/repository`
 4. Append new release to 3D-e-Chem update site
   1. Make clone of https://github.com/3D-e-Chem/3D-e-Chem.github.io repo
   2. Append release to 3D-e-Chem update site with `mvn install -Dtarget.update.site=<3D-e-Chem repo/updates>`
@@ -97,16 +97,16 @@ java -jar swagger-codegen-cli-2.1.5.jar generate \
 ```
 3. Compile client
 ```
-cd nl.esciencecenter.e3dchem.gpcrdb.client
+cd client
 mvn package
 ```
 
 4. Make client jar and it's dependencies available in plugin
 ```
-cp -r target/lib/* target/*jar ../nl.esciencecenter.e3dchem.gpcrdb/lib/
+cp -r target/lib/* target/*jar ../plugin/lib/
 ```
 
-5. Update MANIFEST.MF build.properties to reflect contents of lib/
+5. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
 
 # References
 

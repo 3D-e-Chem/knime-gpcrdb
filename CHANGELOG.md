@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+* Shortened maven modules names
+
 ### Fixed
 
 * Optional publication when requesting structures of protein (#12)

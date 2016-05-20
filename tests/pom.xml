@@ -4,8 +4,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nl.esciencecenter.e3dchem</groupId>
-		<artifactId>nl.esciencecenter.e3dchem</artifactId>
+		<groupId>nl.esciencecenter.e3dchem.gpcrdb.parent</groupId>
+		<artifactId>nl.esciencecenter.e3dchem.gpcrdb.parent</artifactId>
 		<version>1.0.9</version>
 	</parent>
 
