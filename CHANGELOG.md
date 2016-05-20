@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.10] - 2016-05-20
+
 ### Changed
 
 * Shortened maven modules names
