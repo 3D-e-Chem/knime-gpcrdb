@@ -52,6 +52,7 @@ Steps to get development enviroment setup:
     6. Install software & restart
 
 5. Import this repo as an Existing Maven project
+6. Import `client/` directory in repo as an Existing Maven project.
 
 During import the Tycho Eclipse providers must be installed.
 
