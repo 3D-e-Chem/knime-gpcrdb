@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -162,12 +161,19 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
      */
     @Override
     protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
-
-        // TODO: check if user settings are available, fit to the incoming
-        // table structure, and the incoming types are feasible for the node
-        // to execute. If the node can execute in its current state return
-        // the spec of its output data table(s) (if you can, otherwise an array
-        // with null elements), or throw an exception with a useful user message
+    	// check Uniprot columns
+    	if (inSpecs.length == 2 && inSpecs[0] != null && inSpecs[1] != null){
+        	int columnIndexOne = inSpecs[0].findColumnIndex(m_inColumnName.getStringValue());
+        	int columnIndexTwo = inSpecs[1].findColumnIndex(m_inColumnName.getStringValue());
+        	if (columnIndexOne < 0 || columnIndexTwo < 0){
+        		throw new InvalidSettingsException("No valid input column selected");
+        	}
+        }
+    	
+    	// check segment identifiers
+    	if (m_segments.getStringArrayValue().length == 0){
+    		throw new InvalidSettingsException("No segment identifiers selected");    		
+    	}
 
         return new DataTableSpec[] { null };
     }

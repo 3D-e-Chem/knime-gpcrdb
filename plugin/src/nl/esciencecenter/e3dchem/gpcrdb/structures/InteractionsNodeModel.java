@@ -142,11 +142,12 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
     @Override
     protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
 
-        // TODO: check if user settings are available, fit to the incoming
-        // table structure, and the incoming types are feasible for the node
-        // to execute. If the node can execute in its current state return
-        // the spec of its output data table(s) (if you can, otherwise an array
-        // with null elements), or throw an exception with a useful user message
+    	if (inSpecs.length > 0 && inSpecs[0] != null){
+        	int columnIndex = inSpecs[0].findColumnIndex(m_inputStructureColumnName.getStringValue());
+        	if (columnIndex < 0){
+        		throw new InvalidSettingsException("No valid input column selected");
+        	}
+        }
 
         return new DataTableSpec[] { null };
     }
