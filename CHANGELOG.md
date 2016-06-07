@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.11] - 2016-06-07
+
+### Added
+
+* Additional input and node configuration checks in line with KNIME specification
+
+
 ## [1.0.10] - 2016-05-20
 
 ### Changed
