@@ -20,7 +20,7 @@ Steps to get GPCRDB nodes inside KNIME:
 4. Select --all sites-- in work with pulldown
 5. Open KNIME 3D-e-Chem Contributions folder
 6. Select GPCRDB
-7. Install sofware & restart
+7. Install software & restart
 
 # Usage
 
