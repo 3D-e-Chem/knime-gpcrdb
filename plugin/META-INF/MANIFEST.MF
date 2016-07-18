@@ -6,7 +6,8 @@ Bundle-Version: 1.0.11
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)",
- org.knime.json;bundle-version="[3.1.0,4.0.0)"
+ org.knime.json;bundle-version="[3.1.0,4.0.0)",
+ nl.esciencecenter.e3dchem.plugin;bundle-version="[1.0.0,2.0.0)"
 Export-Package: com.fasterxml.jackson.core,
  javax.ws.rs.core,
  nl.esciencecenter.e3dchem.gpcrdb,
