@@ -4,6 +4,6 @@ jdk: oraclejdk8
 cache:  
   directories:  
    - $HOME/.m2
-install: mvn package -X -B
+install: mvn package -B
 script: mvn verify -B
   
