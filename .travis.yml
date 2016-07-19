@@ -4,10 +4,6 @@ jdk: oraclejdk8
 cache:  
   directories:  
    - $HOME/.m2
-install:
-- wget http://apache.cs.uu.nl/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-- tar -zxf apache-maven-3.3.9-bin.tar.gz
-- export PATH=$PWD/apache-maven-3.3.9/bin:$PATH
-- mvn package -B
+install: mvn package -X -B
 script: mvn verify -B
   
