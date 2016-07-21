@@ -5,6 +5,8 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.0.12] - 2017-07-18
+
 ### Changed
 
 - Moved nodes under /community/3d-e-chem (#15)
