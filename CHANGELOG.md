@@ -5,7 +5,14 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
-## [1.0.12] - 2017-07-18
+## [1.0.13] - 2016-09-13
+
+### Fixed
+
+- Don't export javax.ws.rs (#16)
+- Force Jersey2 runtime for gpcrdb http client (#16)
+
+## [1.0.12] - 2016-07-18
 
 ### Changed
 

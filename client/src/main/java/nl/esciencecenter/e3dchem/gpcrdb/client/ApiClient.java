@@ -10,9 +10,12 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.RuntimeDelegate;
 
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.internal.RuntimeDelegateImpl;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -550,6 +553,11 @@ public class ApiClient {
     if (debugging) {
       clientConfig.register(LoggingFilter.class);
     }
+
+    // when part of workflow with nodes which use CXF as impl, then this client will also default to a CXF implementation
+    // , but this client requires Jersey2 so force the correct impl
+    System.setProperty(ClientBuilder.JAXRS_DEFAULT_CLIENT_BUILDER_PROPERTY, JerseyClientBuilder.class.getName());
+    System.setProperty(RuntimeDelegate.JAXRS_RUNTIME_DELEGATE_PROPERTY, RuntimeDelegateImpl.class.getName());
     this.client = ClientBuilder.newClient(clientConfig);
   }
 
