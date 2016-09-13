@@ -553,12 +553,27 @@ public class ApiClient {
     if (debugging) {
       clientConfig.register(LoggingFilter.class);
     }
+    
+    // Ensure that the service loader uses the right class
+ 	// See: http://www.mail-archive.com/discuss@restlet.tigris.org/msg07539.html
+ 	ClassLoader oldcl = Thread.currentThread().getContextClassLoader();
+ 	ClassLoader newcl = RuntimeDelegate.class.getClassLoader();
+ 	
+ 	Thread.currentThread().setContextClassLoader(newcl);
+ 	try {
+ 	    // force jersey2 for jaxrs
+ 	    System.setProperty(ClientBuilder.JAXRS_DEFAULT_CLIENT_BUILDER_PROPERTY, JerseyClientBuilder.class.getName());
+ 	    System.setProperty(RuntimeDelegate.JAXRS_RUNTIME_DELEGATE_PROPERTY, RuntimeDelegateImpl.class.getName());
 
-    // when part of workflow with nodes which use CXF as impl, then this client will also default to a CXF implementation
-    // , but this client requires Jersey2 so force the correct impl
-    System.setProperty(ClientBuilder.JAXRS_DEFAULT_CLIENT_BUILDER_PROPERTY, JerseyClientBuilder.class.getName());
-    System.setProperty(RuntimeDelegate.JAXRS_RUNTIME_DELEGATE_PROPERTY, RuntimeDelegateImpl.class.getName());
-    this.client = ClientBuilder.newClient(clientConfig);
+ 	    // overwrite existing delegate when wrong class
+ 	    if (!(RuntimeDelegate.getInstance() instanceof RuntimeDelegateImpl)) {
+ 	        RuntimeDelegate.setInstance(new RuntimeDelegateImpl());
+ 	    }
+ 	    // bypass ClientBuilder lookups, directly create Jersey client, do not use ClientBuilder.newBuilder builder find mechanism
+ 	    this.client = JerseyClientBuilder.createClient(clientConfig);
+    } finally {
+ 		Thread.currentThread().setContextClassLoader(oldcl);
+ 	}
   }
 
   private Map<String, List<String>> buildResponseHeaders(Response response) {
