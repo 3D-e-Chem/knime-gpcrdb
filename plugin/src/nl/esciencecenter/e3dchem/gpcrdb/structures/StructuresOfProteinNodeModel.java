@@ -26,8 +26,7 @@ import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
@@ -107,17 +106,17 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 	}
 
 	public void fetchStructures(ServicesstructureApi service, BufferedDataContainer container, String entryName)
-			throws ApiException, JsonProcessingException {
+			throws ApiException {
 		entryName = entryName.toLowerCase();
 		List<Structure> structures = service.structureListProteinGET(entryName);
 		for (Structure structure : structures) {
-			RowKey key = new RowKey(entryName + " - " + structure.getPdb_code());
+			RowKey key = new RowKey(entryName + " - " + structure.getPdbCode());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)
 			DataCell[] cells = new DataCell[10];
-			cells[0] = new StringCell(structure.getPublication_date());
-			cells[1] = new StringCell(structure.getPreferred_chain());
+			cells[0] = new StringCell(structure.getPublicationDate());
+			cells[1] = new StringCell(structure.getPreferredChain());
 			cells[2] = new StringCell(structure.getType());
 			cells[3] = new StringCell(structure.getSpecies());
 			cells[4] = new StringCell(structure.getProtein());
@@ -129,17 +128,17 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 			} else {
 				cells[7] = new StringCell(publication);
 			}
-			cells[8] = new StringCell(structure.getPdb_code());
+			cells[8] = new StringCell(structure.getPdbCode());
 			cells[9] = new StringCell(structure.getFamily());
 			DataRow row = new DefaultRow(key, cells);
 			container.addRowToTable(row);
 		}
 	}
 
-	protected DataCell string2jsoncell(List<Ligand> ligands) throws JsonProcessingException {
-		ObjectMapper jsonify = new ObjectMapper();
+	protected DataCell string2jsoncell(List<Ligand> ligands) {
+		Gson jsonify = new Gson();
 		JSONCellFactory jsoncellify = new JSONCellFactory();
-		String ligandsjson = jsonify.writeValueAsString(ligands);
+		String ligandsjson = jsonify.toJson(ligands);
 		return jsoncellify.createCell(ligandsjson);
 	}
 	

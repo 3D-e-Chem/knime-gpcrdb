@@ -1,0 +1,9 @@
+response2array:
+- /services/proteinfamily/
+- /services/mutants/{entry_name}/
+- /services/proteinfamily/proteins/{slug}/
+- /services/proteinfamily/proteins/{slug}/{latin_name}/
+- /services/residues/{entry_name}/
+- /services/residues/extended/{entry_name}/
+- /services/structure/{pdb_code}/interaction/
+- /services/structure/protein/{entry_name}/

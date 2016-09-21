@@ -80,35 +80,48 @@ If Knime update site can not be contacted then use a local version.
 
 1. Download swagger code generator
 ```
-wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.1.5/swagger-codegen-cli-2.1.5.jar
+wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar
 ```
 
-2. Generate a client for GPCRDB web service
+2. Download and unpack the swagger rewriter
+
+3. Generate a Swagger spec for the client
+
 ```
-java -jar swagger-codegen-cli-2.1.5.jar generate \
--i http://gpcrdb.org/services/reference/api-docs/ \
--l java -o nl.esciencecenter.e3dchem.gpcrdb.client \
---api-package nl.esciencecenter.e3dchem.gpcrdb.client \
---artifact-id nl.esciencecenter.e3dchem.gpcrdb.client \
---artifact-version 1.0.0 \
---group-id nl.esciencecenter.e3dchem \
---library jersey2 \
---type-mappings slug=String \
---model-package nl.esciencecenter.e3dchem.gpcrdb.client.model \
---invoker-package nl.esciencecenter.e3dchem.gpcrdb.client
+swagger-rewriter/bin/swagger-rewriter \
+http://gpcrdb.org/services/reference/api-docs/ \
+client-config/swagger-rewriter.config.yml \
+client-config/gpcrdb.swagger-spec.json
 ```
-3. Compile client
+
+3.1 Optionally, make manual changes to client-config/gpcrdb.swagger-spec.json
+
+4. Generate a client for GPCRDB web service using the rewritten spec
+```
+java -jar swagger-codegen-cli-2.2.1.jar generate \
+--input-spec client-config/gpcrdb.swagger-spec.json \
+--output client \
+--lang java \
+--config client-config/swagger-codegen.config.json
+```
+5. Compile client
 ```
 cd client
 mvn package
 ```
 
-4. Make client jar and it's dependencies available in plugin
+6. Make client jar and it's dependencies available in plugin
 ```
 cp -r target/lib/* target/*jar ../plugin/lib/
 ```
 
-5. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
+7. Remove test dependencies
+
+```
+rm plugin/lib/*-tests.jar plugin/lib/junit* plugin/lib/hamcrest*
+```.
+
+8. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
 
 # References
 

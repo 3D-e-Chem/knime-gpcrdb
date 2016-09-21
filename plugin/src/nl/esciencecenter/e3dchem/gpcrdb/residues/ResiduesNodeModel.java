@@ -29,8 +29,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
@@ -56,7 +55,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	private final SettingsModelBoolean m_extended = createExtendedModel();
 
-	private ObjectMapper jsonify = new ObjectMapper();
+	private Gson jsonify = new Gson();
 
 	private JSONCellFactory jsoncellify = new JSONCellFactory();
 
@@ -147,7 +146,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	}
 
 	public void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
-			throws ApiException, JsonProcessingException {
+			throws ApiException {
 		entryName = entryName.toLowerCase();
 		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryName);
 		for (ResidueExtendedSerializer residue : result) {
@@ -165,8 +164,8 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 			for (ResidueGenericNumberSerializer alternative : residue.getAlternativeGenericNumbers()) {
 				alternatives.put(alternative.getScheme(), alternative.getLabel());
 			}
-			String alternativNumbers = jsonify.writeValueAsString(alternatives);
-			cells[5] = jsoncellify.createCell(alternativNumbers);
+			String alternativeNumbers = jsonify.toJson(alternatives);
+			cells[5] = jsoncellify.createCell(alternativeNumbers);
 
 			RowKey key = new RowKey(entryName + " - " + residue.getSequenceNumber());
 			// the cells of the current row, the types of the cells must

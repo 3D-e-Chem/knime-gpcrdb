@@ -19,6 +19,7 @@ import org.knime.core.node.BufferedDataContainer;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesalignmentApi;
+import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSimilarities;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSimilarity;
 
 public class ProteinSimilarityNodeModelTest {
@@ -38,7 +39,7 @@ public class ProteinSimilarityNodeModelTest {
 		String segments = "TM1,TM2,TM3";
 		List<String> subjects = Arrays.asList("5ht2a_human", "cxcr4_human");
 		BufferedDataContainer container = mock(BufferedDataContainer.class);
-		Map<String, ProteinSimilarity> response = new HashMap<String, ProteinSimilarity>();
+		ProteinSimilarities response = new ProteinSimilarities();
 		ProteinSimilarity ps1 = new ProteinSimilarity();
 		ps1.setSimilarity(44);
 		ps1.setIdentity(75);
