@@ -12,7 +12,7 @@ import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
-import org.knime.core.data.def.LongCell;
+import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
@@ -59,7 +59,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
         // the table will have three columns:
         DataColumnSpec[] allColSpecs = new DataColumnSpec[23];
         allColSpecs[0] = new DataColumnSpecCreator("Entry name", StringCell.TYPE).createSpec();
-        allColSpecs[1] = new DataColumnSpecCreator("Sequence number", LongCell.TYPE).createSpec();
+        allColSpecs[1] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
         allColSpecs[2] = new DataColumnSpecCreator("Mutation from", StringCell.TYPE).createSpec();
         allColSpecs[3] = new DataColumnSpecCreator("Mutation to", StringCell.TYPE).createSpec();
         allColSpecs[4] = new DataColumnSpecCreator("Ligand name", StringCell.TYPE).createSpec();
@@ -125,7 +125,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
             // the column spec (see above)
             DataCell[] cells = new DataCell[23];
             cells[0] = new StringCell(mutant.getProtein());
-            cells[1] = new LongCell(mutant.getMutationPos());
+            cells[1] = new IntCell(mutant.getMutationPos());
             cells[2] = new StringCell(mutant.getMutationFrom());
             cells[3] = new StringCell(mutant.getMutationTo());
             cells[4] = new StringCell(mutant.getLigandName());
