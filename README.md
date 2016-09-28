@@ -118,9 +118,23 @@ cp -r target/lib/* target/*jar ../plugin/lib/
 
 ```
 rm plugin/lib/*-tests.jar plugin/lib/junit* plugin/lib/hamcrest*
-```.
+```
 
 8. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
+
+# Create stub recordings for integration tests
+
+The test workflow are tested against a mocked web server and not the actual http://www.gpcrdb.org site.
+The mock server is called (WireMock)[http://WireMock.org/] and normally gives empty responses.
+To have WireMock server return filled responses, stubs stored in `tests/src/test/resources/` directory must be provided.
+The stubs can be recorded by starting a WireMock server in recording mode by:
+```
+java -jar WireMock-standalone-2.1.12.jar --proxy-all="http://gpcrdb.org/" \
+--port=8089 --record-mappings --verbose --root-dir=tests/src/test/resources/
+```
+
+Then in a KNIME workflow in the GPCRDB nodes set the base path to http://localhost:8089.
+Executing the workflow will fetch data from http://gpcrdb.org/ via the WireMock server and cause new stubs to be recorded in the `tests/src/test/resources/` directory.
 
 # References
 

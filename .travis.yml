@@ -5,5 +5,5 @@ cache:
   directories:  
    - $HOME/.m2
 install: mvn package -B
-script: mvn verify -B
+script: xvfb-run mvn verify -B
   
