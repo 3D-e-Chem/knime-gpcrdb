@@ -85,6 +85,7 @@ wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-
 
 3. Generate a Swagger spec for the client
 
+Install the swagger rewriter from https://github.com/3D-e-Chem/swagger-rewriter
 ```
 swagger-rewriter/bin/swagger-rewriter \
 http://gpcrdb.org/services/reference/api-docs/ \
