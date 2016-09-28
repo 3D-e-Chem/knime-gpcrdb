@@ -5,6 +5,10 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Added
+
+- Test workflow using WireMock server (#17)
+
 ## [1.0.13] - 2016-09-13
 
 ### Changed
