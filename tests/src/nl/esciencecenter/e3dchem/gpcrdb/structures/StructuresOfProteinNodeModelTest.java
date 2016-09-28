@@ -117,13 +117,13 @@ public class StructuresOfProteinNodeModelTest {
         
         Structure structure = new Structure();
         structure.setFamily("001_001_003_008");
-        structure.setPdb_code("2RH1");
-        structure.setPublication_date("2007-10-30");
+        structure.setPdbCode("2RH1");
+        structure.setPublicationDate("2007-10-30");
         structure.setResolution((float) 2.4);
         structure.setSpecies("Homo sapiens");
         structure.setProtein("adrb2_human");
         structure.setType("X-ray diffraction");
-        structure.setPreferred_chain("A");
+        structure.setPreferredChain("A");
         structure.setPublication("http://dx.doi.org/10.1126/SCIENCE.1150577");
         List<Ligand> ligands = new ArrayList<Ligand>(1);
         Ligand ligand = new Ligand();

@@ -73,7 +73,7 @@ public class InteractionsNodeModelTest {
         StructureLigandInteractionSerializer interaction = new StructureLigandInteractionSerializer();
         interaction.setPdbCode("3EML");
         interaction.setLigandName("ZM 241385");
-        interaction.setSequenceNumber(85L);
+        interaction.setSequenceNumber(85);
         interaction.setAminoAcid("L");
         interaction.setDisplayGenericNumber("3.33x33");
         interaction.setInteractionType("hydrophobic");
@@ -114,7 +114,7 @@ public class InteractionsNodeModelTest {
         StructureLigandInteractionSerializer interaction = new StructureLigandInteractionSerializer();
         interaction.setPdbCode("3EML");
         interaction.setLigandName("ZM 241385");
-        interaction.setSequenceNumber(264L);
+        interaction.setSequenceNumber(264);
         interaction.setAminoAcid("H");
         interaction.setDisplayGenericNumber(null);
         interaction.setInteractionType("aromatic (face-to-face)");

@@ -2,15 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GPCRDB Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.gpcrdb;singleton:=true
-Bundle-Version: 1.0.12
+Bundle-Version: 1.0.13
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.knime.core;bundle-version="[3.1.0,4.0.0)",
  org.knime.base;bundle-version="[3.1.0,4.0.0)",
  org.knime.json;bundle-version="[3.1.0,4.0.0)",
  nl.esciencecenter.e3dchem.plugin;bundle-version="[1.0.0,2.0.0)"
-Export-Package: com.fasterxml.jackson.core,
- javax.ws.rs.core,
- nl.esciencecenter.e3dchem.gpcrdb,
+Export-Package: nl.esciencecenter.e3dchem.gpcrdb,
  nl.esciencecenter.e3dchem.gpcrdb.client,
  nl.esciencecenter.e3dchem.gpcrdb.client.model,
  nl.esciencecenter.e3dchem.gpcrdb.mutants,
@@ -20,32 +18,10 @@ Export-Package: com.fasterxml.jackson.core,
 Bundle-Vendor: Netherlands eScience Center
 Bundle-Activator: nl.esciencecenter.e3dchem.gpcrdb.NodePlugin
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: lib/aopalliance-repackaged-2.3.0-b10.jar,
- lib/hk2-api-2.3.0-b10.jar,
- lib/hk2-locator-2.3.0-b10.jar,
- lib/hk2-utils-2.3.0-b10.jar,
- lib/jackson-annotations-2.4.2.jar,
- lib/jackson-core-2.4.2.jar,
- lib/jackson-databind-2.4.2.jar,
- lib/jackson-datatype-joda-2.1.5.jar,
- lib/jackson-jaxrs-base-2.5.4.jar,
- lib/jackson-jaxrs-json-provider-2.5.4.jar,
- lib/jackson-module-jaxb-annotations-2.5.4.jar,
- lib/javassist-3.18.1-GA.jar,
- lib/javax.annotation-api-1.2.jar,
- lib/javax.inject-2.3.0-b10.jar,
- lib/javax.ws.rs-api-2.0.1.jar,
- lib/jersey-client-2.12.jar,
- lib/jersey-common-2.12.jar,
- lib/jersey-entity-filtering-2.22.1.jar,
- lib/jersey-guava-2.12.jar,
- lib/jersey-media-json-jackson-2.22.1.jar,
- lib/jersey-media-multipart-2.12.jar,
- lib/joda-time-2.3.jar,
- lib/junit-4.8.1.jar,
- lib/migbase64-2.2.jar,
- lib/mimepull-1.9.3.jar,
- lib/osgi-resource-locator-1.0.1.jar,
- lib/swagger-annotations-1.5.0.jar,
- lib/nl.esciencecenter.e3dchem.gpcrdb.client-1.0.9.jar,
+Bundle-ClassPath: lib/gson-2.6.2.jar,
+ lib/logging-interceptor-2.7.5.jar,
+ lib/nl.esciencecenter.e3dchem.gpcrdb.client-2.0.0.jar,
+ lib/okhttp-2.7.5.jar,
+ lib/okio-1.6.0.jar,
+ lib/swagger-annotations-1.5.9.jar,
  .

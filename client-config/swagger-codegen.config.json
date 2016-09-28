@@ -1,0 +1,12 @@
+{
+  "modelPackage": "nl.esciencecenter.e3dchem.gpcrdb.client.model",
+  "apiPackage": "nl.esciencecenter.e3dchem.gpcrdb.client",
+  "invokerPackage": "nl.esciencecenter.e3dchem.gpcrdb.client",
+  "groupId": "nl.esciencecenter.e3dchem.gpcrdb",
+  "artifactId": "nl.esciencecenter.e3dchem.gpcrdb.client",
+  "artifactVersion": "2.0.0",
+  "serializableModel": true,
+  "hideGenerationTimestamp": "nl.esciencecenter.e3dchem.gpcrdb.client",
+  "dateLibrary": "java8",
+  "library": "okhttp-gson"
+}

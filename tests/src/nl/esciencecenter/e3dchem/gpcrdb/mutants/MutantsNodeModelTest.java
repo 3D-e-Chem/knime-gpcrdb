@@ -13,7 +13,7 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
-import org.knime.core.data.def.LongCell;
+import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 
@@ -58,7 +58,7 @@ public class MutantsNodeModelTest {
 	private void verifyContainer(BufferedDataContainer container) {
 		DataCell[] expectedCells = new DataCell[23];
         expectedCells[0] = new StringCell("hrh1_human");
-        expectedCells[1] = new LongCell(107L);
+        expectedCells[1] = new IntCell(107);
         expectedCells[2] = new StringCell("D");
         expectedCells[3] = new StringCell("E");
         expectedCells[4] = new StringCell("[3H]-mepyramine");
@@ -119,7 +119,7 @@ public class MutantsNodeModelTest {
         //		  },
         MutationSerializer mutant = new MutationSerializer();
         mutant.setProtein("hrh1_human");
-        mutant.setMutationPos(107L);
+        mutant.setMutationPos(107);
         mutant.setMutationFrom("D");
         mutant.setMutationTo("E");
         mutant.setLigandName("[3H]-mepyramine");

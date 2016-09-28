@@ -1,0 +1,1320 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "",
+    "title" : "",
+    "termsOfService" : "",
+    "contact" : {
+      "url" : ""
+    },
+    "license" : {
+      "name" : "",
+      "url" : ""
+    }
+  },
+  "host" : "gpcrdb.org",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/services/alignment/family/{slug}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a full sequence alignment of a protein family including a consensus sequence",
+        "description" : "Get a full sequence alignment of a protein family including a consensus sequence<br/>/alignment/family/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Family_Alignment_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/family/{slug}/statistics/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a full sequence alignment of a protein family including a consensus sequence",
+        "description" : "Get a full sequence alignment of a protein family including a consensus sequence<br/>/alignment/family/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Family_Alignment_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/family/{slug}/{segments}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a partial sequence alignment of a protein family",
+        "description" : "Get a partial sequence alignment of a protein family<br/>/alignment/family/{slug}/{segments}/<br/>{slug} is a protein family identifier, e.g. 001_001_001<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Family_Alignment_Partial_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/family/{slug}/{segments}/statistics/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a partial sequence alignment of a protein family",
+        "description" : "Get a partial sequence alignment of a protein family<br/>/alignment/family/{slug}/{segments}/<br/>{slug} is a protein family identifier, e.g. 001_001_001<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Family_Alignment_Partial_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/family/{slug}/{segments}/{latin_name}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a partial sequence alignment of a protein family",
+        "description" : "Get a partial sequence alignment of a protein family<br/>/alignment/family/{slug}/{segments}/{species}<br/>{slug} is a protein family identifier, e.g. 001_001_001<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50<br/>{species} is a species identifier from Uniprot, e.g. Homo sapiens",
+        "operationId" : "Family_Alignment_Partial_Species_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "latin_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/family/{slug}/{segments}/{latin_name}/statistics/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a partial sequence alignment of a protein family",
+        "description" : "Get a partial sequence alignment of a protein family<br/>/alignment/family/{slug}/{segments}/{species}<br/>{slug} is a protein family identifier, e.g. 001_001_001<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50<br/>{species} is a species identifier from Uniprot, e.g. Homo sapiens",
+        "operationId" : "Family_Alignment_Partial_Species_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "latin_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/protein/{proteins}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a full sequence alignment of two or more proteins",
+        "description" : "Get a full sequence alignment of two or more proteins<br/>/alignment/protein/{proteins}/<br/>{proteins} is a comma separated list of protein identifiers, e.g. adrb2_human,5ht2a_human",
+        "operationId" : "Protein_Alignment_GET",
+        "parameters" : [ {
+          "name" : "proteins",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/protein/{proteins}/statistics/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Add a /statics at the end of an alignment in order to",
+        "description" : "Add a /statics at the end of an alignment in order to \n    receive an additional residue property statistics output e.g.:<br/>/alignment/protein/{proteins}/{segments}/statistics<br/>{proteins} is a comma separated list of protein identifiers, e.g. adrb2_human,5ht2a_human<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Protein_Alignment_Statistics_GET",
+        "parameters" : [ {
+          "name" : "proteins",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/protein/{proteins}/{segments}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a partial sequence alignment of two or more proteins",
+        "description" : "Get a partial sequence alignment of two or more proteins<br/>/alignment/protein/{proteins}/{segments}/<br/>{proteins} is a comma separated list of protein identifiers, e.g. adrb2_human,5ht2a_human<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Protein_Alignment_Partial_GET",
+        "parameters" : [ {
+          "name" : "proteins",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/protein/{proteins}/{segments}/statistics/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Add a /statics at the end of an alignment in order to",
+        "description" : "Add a /statics at the end of an alignment in order to \n    receive an additional residue property statistics output e.g.:<br/>/alignment/protein/{proteins}/{segments}/statistics<br/>{proteins} is a comma separated list of protein identifiers, e.g. adrb2_human,5ht2a_human<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Protein_Alignment_Statistics_GET",
+        "parameters" : [ {
+          "name" : "proteins",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/alignment/similarity/{proteins}/{segments}/" : {
+      "get" : {
+        "tags" : [ "servicesalignment" ],
+        "summary" : "Get a segment sequence alignment of two or more proteins ranked by similarity",
+        "description" : "Get a segment sequence alignment of two or more proteins ranked by similarity<br/>/alignment/similarity/{proteins}/<br/>{proteins} is a comma separated list of protein identifiers, e.g. adrb2_human,5ht2a_human,cxcr4_human,\n    where the first protein is the query protein and the following the proteins to compare it to<br/>{segments} is a comma separated list of protein segment identifiers and/ or\n    generic GPCRdb numbers, e.g. TM2,TM3,ECL2,4x50",
+        "operationId" : "Protein_Similarity_Search_Alignment_GET",
+        "parameters" : [ {
+          "name" : "proteins",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinSimilarities" 
+            }
+          }
+        }
+      }
+    },
+    "/services/mutants/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesmutants" ],
+        "summary" : "Get a list of mutants of single protein instance by entry name",
+        "description" : "Get a list of mutants of single protein instance by entry name<br/>/mutant/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Mutant_List_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MutationSerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/plot/helixbox/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesplot" ],
+        "summary" : "Get SVG source code for a protein's helix box plot",
+        "description" : "Get SVG source code for a protein's helix box plot<br/>/plot/helixbox/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Helix_Box_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/plot/snake/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesplot" ],
+        "summary" : "Get SVG source code for a protein's snake plot",
+        "description" : "Get SVG source code for a protein's snake plot<br/>/plot/snake/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Snake_Plot_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/protein/accession/{accession}/" : {
+      "get" : {
+        "tags" : [ "servicesprotein" ],
+        "summary" : "Get a single protein instance by accession",
+        "description" : "Get a single protein instance by accession<br/>/protein/accession/{accession}/<br/>{accession} is a protein identifier from Uniprot, e.g. P07550",
+        "operationId" : "Protein_By_Accession_Detail_GET",
+        "parameters" : [ {
+          "name" : "accession",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinSerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/protein/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesprotein" ],
+        "summary" : "Get a single protein instance by entry name",
+        "description" : "Get a single protein instance by entry name<br/>/protein/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Protein_Detail_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinSerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a list of protein families",
+        "description" : "Get a list of protein families<br/>/proteinfamily/",
+        "operationId" : "Protein_Family_List_GET",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ProteinFamilySerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/children/{slug}/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a list of child families of a protein family",
+        "description" : "Get a list of child families of a protein family<br/>/proteinfamily/children/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Protein_Family_Children_List_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinFamilySerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/descendants/{slug}/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a list of descendant families of a protein family",
+        "description" : "Get a list of descendant families of a protein family<br/>/proteinfamily/descendants/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Protein_Family_Descendant_List_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinFamilySerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/proteins/{slug}/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a list of proteins in a protein family",
+        "description" : "Get a list of proteins in a protein family<br/>/proteinfamily/proteins/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Proteins_In_Family_List_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ProteinSerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/proteins/{slug}/{latin_name}/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a list of proteins in a protein family",
+        "description" : "Get a list of proteins in a protein family<br/>/proteinfamily/proteins/{slug}/{species}<br/>{slug} is a protein family identifier, e.g. 001_001_001<br/>{latin_name} is a species identifier from Uniprot, e.g. Homo sapiens",
+        "operationId" : "Proteins_In_Family_Species_List_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "latin_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ProteinSerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/proteinfamily/{slug}/" : {
+      "get" : {
+        "tags" : [ "servicesproteinfamily" ],
+        "summary" : "Get a single protein family instance",
+        "description" : "Get a single protein family instance<br/>/proteinfamily/{slug}/<br/>{slug} is a protein family identifier, e.g. 001_001_001",
+        "operationId" : "Protein_Family_Detail_GET",
+        "parameters" : [ {
+          "name" : "slug",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/ProteinFamilySerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/residues/extended/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesresidues" ],
+        "summary" : "Get a list of residues of a protein, including alternative generic numbers",
+        "description" : "Get a list of residues of a protein, including alternative generic numbers<br/>/residues/extended/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Residues_Extended_List_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ResidueExtendedSerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/residues/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesresidues" ],
+        "summary" : "Get a list of residues of a protein",
+        "description" : "Get a list of residues of a protein<br/>/residues/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Residues_List_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ResidueSerializer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/species/" : {
+      "get" : {
+        "tags" : [ "servicesspecies" ],
+        "summary" : "Get a list of species",
+        "description" : "Get a list of species<br/>/species/",
+        "operationId" : "Species_List_GET",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/SpeciesSerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/species/{latin_name}/" : {
+      "get" : {
+        "tags" : [ "servicesspecies" ],
+        "summary" : "Get a single species instance",
+        "description" : "Get a single species instance<br/>/species/{latin_name}/<br/>{latin_name} is a species identifier from Uniprot, e.g. Homo sapiens",
+        "operationId" : "Species_Detail_GET",
+        "parameters" : [ {
+          "name" : "latin_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/SpeciesSerializer"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a list of structures",
+        "description" : "Get a list of structures<br/>/structure/",
+        "operationId" : "Structure_List_GET",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/assign_generic_numbers" : {
+      "post" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file",
+        "description" : "Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.<br/>/structure/assign_generic_numbers<br/>    e.g.\n    curl -X POST -F \"pdb_file=@myfile.pdb\" http://gpcrdb.org/services/structure/assign_generic_numbers",
+        "operationId" : "Structure_Assign_Generic_Numbers_POST",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/protein/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a list of structures of a protein",
+        "description" : "Get a list of structures of a protein<br/>/structure/protein/{entry_name}",
+        "operationId" : "Structure_List_Protein_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Structure"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/protein/{entry_name}/representative/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a list of representative structures of a protein (one for each activation state)",
+        "description" : "Get a list of representative structures of a protein (one for each activation state)<br/>/structure/protein/{entry_name}/representative/",
+        "operationId" : "Representative_Structure_List_Protein_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/representative/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a list of representative structures (one for each protein and activation state)",
+        "description" : "Get a list of representative structures (one for each protein and activation state)<br/>/structure/representative/",
+        "operationId" : "Representative_Structure_List_GET",
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/template/{entry_name}/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get the most similar structure template for a protein using a 7TM alignment",
+        "description" : "Get the most similar structure template for a protein using a 7TM alignment<br/>/structure/template/{entry_name}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human",
+        "operationId" : "Structure_Template_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/template/{entry_name}/{segments}/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get the most similar structure template for a protein using a partial alignment",
+        "description" : "Get the most similar structure template for a protein using a partial alignment<br/>/structure/template/{entry_name}/{segments}/<br/>{entry_name} is a protein identifier from Uniprot, e.g. adrb2_human<br/>{segments} is a comma separated list of protein segment identifiers, e.g. TM3,TM5,TM6",
+        "operationId" : "Structure_Template_Partial_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "segments",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/{pdb_code}/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a single structure instance",
+        "description" : "Get a single structure instance<br/>/structure/{pdb_code}/<br/>{pdb_code} is a structure identifier from the Protein Data Bank, e.g. 2RH1",
+        "operationId" : "Structure_Detail_GET",
+        "parameters" : [ {
+          "name" : "pdb_code",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/{pdb_code}/interaction/" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get a list of interactions between structure and ligand",
+        "description" : "Get a list of interactions between structure and ligand<br/>/structure/{pdb_code}/interaction/<br/>{pdb_code} is a structure identifier from the Protein Data Bank, e.g. 2RH1",
+        "operationId" : "Structure_Ligand_Interactions_GET",
+        "parameters" : [ {
+          "name" : "pdb_code",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/StructureLigandInteractionSerializer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Ligand" : {
+      "required" : [ "name", "type", "function" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "function" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Structure" : {
+      "required" : [ "publication_date", "preferred_chain", "type", "species", "protein", "resolution", "ligands", "pdb_code", "family" ],
+      "properties" : {
+        "publication_date" : {
+          "type" : "string"
+        },
+        "preferred_chain" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "species" : {
+          "type" : "string"
+        },
+        "protein" : {
+          "type" : "string"
+        },
+        "resolution" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "ligands" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Ligand"
+          }
+        },
+        "publication" : {
+          "type" : "string"
+        },
+        "pdb_code" : {
+          "type" : "string"
+        },
+        "family" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProteinSimilarity" : {
+      "required" : [ "similarity", "identity", "AA"],
+      "properties" : {
+        "similarity": {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "identity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "AA" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProteinSimilarities" : {
+      "additionalProperties": {
+        "$ref" : "#/definitions/ProteinSimilarity"
+      }
+    },
+    "ResidueExtendedSerializer" : {
+      "required" : [ "alternative_generic_numbers", "amino_acid", "display_generic_number", "protein_segment", "sequence_number" ],
+      "properties" : {
+        "sequence_number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "amino_acid" : {
+          "type" : "string"
+        },
+        "protein_segment" : {
+          "type" : "string"
+        },
+        "display_generic_number" : {
+          "type" : "string"
+        },
+        "alternative_generic_numbers" : {
+          "type" : "array",
+          "items" : {
+            "$ref": "#/definitions/ResidueGenericNumberSerializer"
+          }
+        }
+      }
+    },
+    "WriteSpeciesSerializer" : {
+      "required" : [ "latin_name" ],
+      "properties" : {
+        "latin_name" : {
+          "type" : "string"
+        },
+        "common_name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteResidueSerializer" : {
+      "required" : [ "amino_acid", "sequence_number" ],
+      "properties" : {
+        "sequence_number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "amino_acid" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteProteinFamilySerializer" : {
+      "required" : [ "name", "slug" ],
+      "properties" : {
+        "slug" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteStructureLigandInteractionSerializer" : { },
+    "ParentProteinFamilySerializer" : {
+      "required" : [ "name", "slug" ],
+      "properties" : {
+        "slug" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MutationSerializer" : {
+      "required" : [ "exp_fold_change", "exp_func", "exp_mu_effect_ligand_prop", "exp_mu_effect_qual", "exp_mu_effect_sign", "exp_mu_effect_type", "exp_mu_effect_value", "exp_mu_ligand_ref", "exp_type", "exp_wt_unit", "exp_wt_value", "ligand_class", "ligand_id", "ligand_idtype", "ligand_name", "mutation_from", "mutation_pos", "mutation_to", "opt_agonist", "opt_mu", "opt_percentage", "opt_qual", "opt_sign", "opt_type", "opt_wt", "protein", "reference" ],
+      "properties" : {
+        "reference" : {
+          "type" : "string"
+        },
+        "protein" : {
+          "type" : "string"
+        },
+        "mutation_pos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mutation_from" : {
+          "type" : "string"
+        },
+        "mutation_to" : {
+          "type" : "string"
+        },
+        "ligand_name" : {
+          "type" : "string"
+        },
+        "ligand_idtype" : {
+          "type" : "string"
+        },
+        "ligand_id" : {
+          "type" : "string"
+        },
+        "ligand_class" : {
+          "type" : "string"
+        },
+        "exp_type" : {
+          "type" : "string"
+        },
+        "exp_func" : {
+          "type" : "string"
+        },
+        "exp_wt_value" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_wt_unit" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_sign" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_type" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_value" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_fold_change" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_mu_effect_qual" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_ligand_prop" : {
+          "type" : "string"
+        },
+        "exp_mu_ligand_ref" : {
+          "type" : "string"
+        },
+        "opt_type" : {
+          "type" : "string"
+        },
+        "opt_wt" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_mu" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_sign" : {
+          "type" : "string"
+        },
+        "opt_percentage" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_qual" : {
+          "type" : "string"
+        },
+        "opt_agonist" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteResidueGenericNumberSerializer" : {
+      "required" : [ "label" ],
+      "properties" : {
+        "label" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProteinFamilySerializer" : {
+      "required" : [ "name", "parent", "slug" ],
+      "properties" : {
+        "slug" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "parent" : {
+          "$ref" : "#/definitions/ParentProteinFamilySerializer"
+        }
+      }
+    },
+    "WriteParentProteinFamilySerializer" : {
+      "required" : [ "name", "slug" ],
+      "properties" : {
+        "slug" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteProteinSerializer" : {
+      "required" : [ "entry_name", "name", "sequence" ],
+      "properties" : {
+        "entry_name" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "accession" : {
+          "type" : "string"
+        },
+        "sequence" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProteinSerializer" : {
+      "required" : [ "accession", "entry_name", "family", "name", "residue_numbering_scheme", "sequence", "source", "species" ],
+      "properties" : {
+        "entry_name" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "accession" : {
+          "type" : "string"
+        },
+        "family" : {
+          "type" : "string"
+        },
+        "species" : {
+          "type" : "string"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "residue_numbering_scheme" : {
+          "type" : "string"
+        },
+        "sequence" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResidueSerializer" : {
+      "required" : [ "amino_acid", "display_generic_number", "protein_segment", "sequence_number" ],
+      "properties" : {
+        "sequence_number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "amino_acid" : {
+          "type" : "string"
+        },
+        "protein_segment" : {
+          "type" : "string"
+        },
+        "display_generic_number" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteResidueExtendedSerializer" : {
+      "required" : [ "amino_acid", "sequence_number" ],
+      "properties" : {
+        "sequence_number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "amino_acid" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SpeciesSerializer" : {
+      "required" : [ "common_name", "latin_name" ],
+      "properties" : {
+        "latin_name" : {
+          "type" : "string"
+        },
+        "common_name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "WriteMutationSerializer" : {
+      "required" : [ "exp_fold_change", "exp_func", "exp_mu_effect_ligand_prop", "exp_mu_effect_qual", "exp_mu_effect_sign", "exp_mu_effect_type", "exp_mu_effect_value", "exp_mu_ligand_ref", "exp_type", "exp_wt_unit", "exp_wt_value", "ligand_class", "ligand_id", "ligand_idtype", "ligand_name", "mutation_from", "mutation_pos", "mutation_to", "opt_agonist", "opt_mu", "opt_percentage", "opt_qual", "opt_sign", "opt_type", "opt_wt", "protein", "reference" ],
+      "properties" : {
+        "reference" : {
+          "type" : "string"
+        },
+        "protein" : {
+          "type" : "string"
+        },
+        "mutation_pos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mutation_from" : {
+          "type" : "string"
+        },
+        "mutation_to" : {
+          "type" : "string"
+        },
+        "ligand_name" : {
+          "type" : "string"
+        },
+        "ligand_idtype" : {
+          "type" : "string"
+        },
+        "ligand_id" : {
+          "type" : "string"
+        },
+        "ligand_class" : {
+          "type" : "string"
+        },
+        "exp_type" : {
+          "type" : "string"
+        },
+        "exp_func" : {
+          "type" : "string"
+        },
+        "exp_wt_value" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_wt_unit" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_sign" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_type" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_value" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_fold_change" : {
+          "type" : "number", "format" : "float"
+        },
+        "exp_mu_effect_qual" : {
+          "type" : "string"
+        },
+        "exp_mu_effect_ligand_prop" : {
+          "type" : "string"
+        },
+        "exp_mu_ligand_ref" : {
+          "type" : "string"
+        },
+        "opt_type" : {
+          "type" : "string"
+        },
+        "opt_wt" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_mu" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_sign" : {
+          "type" : "string"
+        },
+        "opt_percentage" : {
+          "type" : "number", "format" : "float"
+        },
+        "opt_qual" : {
+          "type" : "string"
+        },
+        "opt_agonist" : {
+          "type" : "string"
+        }
+      }
+    },
+    "StructureLigandInteractionSerializer" : {
+      "required" : [ "amino_acid", "display_generic_number", "interaction_type", "ligand_name", "pdb_code", "sequence_number" ],
+      "properties" : {
+        "pdb_code" : {
+          "type" : "string"
+        },
+        "ligand_name" : {
+          "type" : "string"
+        },
+        "amino_acid" : {
+          "type" : "string"
+        },
+        "sequence_number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "display_generic_number" : {
+          "type" : "string"
+        },
+        "interaction_type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResidueGenericNumberSerializer" : {
+      "required" : [ "label", "scheme" ],
+      "properties" : {
+        "scheme" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

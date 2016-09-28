@@ -1,4 +1,4 @@
-# GPCRDB node for Knime
+# GPCRDB node for KNIME
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-gpcrdb.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-gpcrdb)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Grade)
@@ -37,18 +37,24 @@ An Eclipse update site will be made in `p2/target/repository` repository.
 
 # Development
 
-Steps to get development enviroment setup:
+Steps to get development environment setup:
 
 1. Download KNIME SDK from https://www.knime.org/downloads/overview
 2. Install/Extract/start KNIME SDK
 3. Start SDK
-4. Install m2e (Maven integration for Eclipse) + Knime JSON-Processing + 3D-e-Chem node category
+4. Install m2e (Maven integration for Eclipse) + KNIME JSON-Processing + 3D-e-Chem node category
 
     1. Goto Help > Install new software ...
-    2. Make sure Update site http://update.knime.org/analytics-platform/3.1 and https://3d-e-chem.github.io/updates are in the pull down list otherwise add them
+    2. Make sure the following Update sites are in the pull down list otherwise add them
+
+        * http://download.eclipse.org/releases/mars
+        * http://download.eclipse.org/eclipse/updates/4.5
+        * http://update.knime.org/analytics-platform/3.1
+        * https://3d-e-chem.github.io/updates
+
     3. Select --all sites-- in work with pulldown
-    4. Select m2e (Maven integration for Eclipse)
-    5. Select `Knime JSON-Processing`
+    4. Select `m2e - Maven integration for Eclipse`
+    5. Select `KNIME JSON-Processing`
     6. Select `Splash & node category for 3D-e-Chem KNIME nodes`
     7. Install software & restart
 
@@ -68,47 +74,53 @@ During import the Tycho Eclipse providers must be installed.
   2. Append release to 3D-e-Chem update site with `mvn install -Dtarget.update.site=<3D-e-Chem repo/updates>`
 5. Commit and push changes in this repo and 3D-e-Chem.github.io repo
 
-## Offline Knime update site
-
-If Knime update site can not be contacted then use a local version.
-
-1. Download zip of update site from https://www.knime.org/downloads/update
-2. Unzip it
-3. To maven commands add `-Dknime.update.site=file://<path to update site directory>`
-
 # Create GPCRDB client
 
 1. Download swagger code generator
 ```
-wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.1.5/swagger-codegen-cli-2.1.5.jar
+wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar
 ```
 
-2. Generate a client for GPCRDB web service
+2. Download and unpack the swagger rewriter
+
+3. Generate a Swagger spec for the client
+
+Install the swagger rewriter from https://github.com/3D-e-Chem/swagger-rewriter
 ```
-java -jar swagger-codegen-cli-2.1.5.jar generate \
--i http://gpcrdb.org/services/reference/api-docs/ \
--l java -o nl.esciencecenter.e3dchem.gpcrdb.client \
---api-package nl.esciencecenter.e3dchem.gpcrdb.client \
---artifact-id nl.esciencecenter.e3dchem.gpcrdb.client \
---artifact-version 1.0.0 \
---group-id nl.esciencecenter.e3dchem \
---library jersey2 \
---type-mappings slug=String \
---model-package nl.esciencecenter.e3dchem.gpcrdb.client.model \
---invoker-package nl.esciencecenter.e3dchem.gpcrdb.client
+swagger-rewriter/bin/swagger-rewriter \
+http://gpcrdb.org/services/reference/api-docs/ \
+client-config/swagger-rewriter.config.yml \
+client-config/gpcrdb.swagger-spec.json
 ```
-3. Compile client
+
+3.1 Optionally, make manual changes to client-config/gpcrdb.swagger-spec.json
+
+4. Generate a client for GPCRDB web service using the rewritten spec
+```
+java -jar swagger-codegen-cli-2.2.1.jar generate \
+--input-spec client-config/gpcrdb.swagger-spec.json \
+--output client \
+--lang java \
+--config client-config/swagger-codegen.config.json
+```
+5. Compile client
 ```
 cd client
 mvn package
 ```
 
-4. Make client jar and it's dependencies available in plugin
+6. Make client jar and it's dependencies available in plugin
 ```
 cp -r target/lib/* target/*jar ../plugin/lib/
 ```
 
-5. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
+7. Remove test dependencies
+
+```
+rm plugin/lib/*-tests.jar plugin/lib/junit* plugin/lib/hamcrest*
+```.
+
+8. Update `plugin/META-INF/MANIFEST.MF`, `plugin/build.properties` files to reflect contents of lib/
 
 # References
 

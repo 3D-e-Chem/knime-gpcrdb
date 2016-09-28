@@ -71,7 +71,7 @@ public class ResiduesNodeModelTest {
 	public List<ResidueExtendedSerializer> sampleExtendedResidueResponse() {
 		List<ResidueExtendedSerializer> response = new ArrayList<ResidueExtendedSerializer>();
 		ResidueExtendedSerializer residue = new ResidueExtendedSerializer();
-		residue.setSequenceNumber(1L);
+		residue.setSequenceNumber(1);
 		residue.setAminoAcid("G");
 		residue.setProteinSegment("TM");
 		residue.setDisplayGenericNumber("113");
