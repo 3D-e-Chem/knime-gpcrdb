@@ -125,7 +125,7 @@ rm plugin/lib/*-tests.jar plugin/lib/junit* plugin/lib/hamcrest*
 # Create stub recordings for integration tests
 
 The test workflow are tested against a mocked web server and not the actual http://www.gpcrdb.org site.
-The mock server is called (WireMock)[http://WireMock.org/] and normally gives empty responses.
+The mock server is called [WireMock](http://WireMock.org/) and normally gives empty responses.
 To have WireMock server return filled responses, stubs stored in `tests/src/test/resources/` directory must be provided.
 The stubs can be recorded by starting a WireMock server in recording mode by:
 ```
