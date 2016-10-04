@@ -37,11 +37,11 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSerializer;
 public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 	public static final String CFGKEY_INPUTCOLUMNNAME = "In Column";
 
-	static final String IDTYPE_UNIPROTID = "Uniprot id";
+	public static final String IDTYPE_UNIPROTID = "Uniprot id";
 
-	static final String IDTYPE_UNIPROTACC = "Uniprot accesion";
+	public static final String IDTYPE_UNIPROTACC = "Uniprot accesion";
 
-	static final String IDTYPE_FAMILIYSLUG = "Protein family slug";
+	public static final String IDTYPE_FAMILIYSLUG = "Protein family slug";
 
 	public static final String[] LIST_IDENTIFIERTYPES = new String[] { IDTYPE_UNIPROTID, IDTYPE_UNIPROTACC,
 			IDTYPE_FAMILIYSLUG };
@@ -124,8 +124,7 @@ public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 
 		List<ProteinSerializer> proteins = new ArrayList<ProteinSerializer>(1);
 		if (IDTYPE_UNIPROTID.equals(idtype)) {
-			id = id.toLowerCase();
-			proteins.add(service4proteins.proteinDetailGET(id));
+			proteins.add(service4proteins.proteinDetailGET(id.toLowerCase()));
 		} else if (IDTYPE_UNIPROTACC.equals(idtype)) {
 			proteins.add(service4proteins.proteinByAccessionDetailGET(id));
 		} else if (IDTYPE_FAMILIYSLUG.equals(idtype)) {

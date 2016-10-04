@@ -115,11 +115,11 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
     }
 
     public void fetchMutants(String entryName, BufferedDataContainer container) throws ApiException {
-    	entryName = entryName.toLowerCase();
-        List<MutationSerializer> mutants = service.mutantListGET(entryName);
+        String entryNameLC = entryName.toLowerCase();
+        List<MutationSerializer> mutants = service.mutantListGET(entryNameLC);
         long currentRow = 0;
         for (MutationSerializer mutant : mutants) {
-            RowKey key = new RowKey(entryName + " - " + currentRow);
+            RowKey key = new RowKey(entryNameLC + " - " + currentRow);
             // the cells of the current row, the types of the cells must
             // match
             // the column spec (see above)

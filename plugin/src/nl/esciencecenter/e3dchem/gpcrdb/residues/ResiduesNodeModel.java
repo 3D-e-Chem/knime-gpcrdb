@@ -147,11 +147,11 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 
 	public void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
-		entryName = entryName.toLowerCase();
-		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryName);
+		String entryNameLc = entryName.toLowerCase();
+		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryNameLc);
 		for (ResidueExtendedSerializer residue : result) {
 			DataCell[] cells = new DataCell[6];
-			cells[0] = new StringCell(entryName);
+			cells[0] = new StringCell(entryNameLc);
 			cells[1] = new LongCell(residue.getSequenceNumber());
 			cells[2] = new StringCell(residue.getAminoAcid());
 			cells[3] = new StringCell(residue.getProteinSegment());
@@ -167,7 +167,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 			String alternativeNumbers = jsonify.toJson(alternatives);
 			cells[5] = jsoncellify.createCell(alternativeNumbers);
 
-			RowKey key = new RowKey(entryName + " - " + residue.getSequenceNumber());
+			RowKey key = new RowKey(entryNameLc + " - " + residue.getSequenceNumber());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)

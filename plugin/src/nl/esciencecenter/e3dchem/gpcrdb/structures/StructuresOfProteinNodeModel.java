@@ -107,10 +107,10 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 
 	public void fetchStructures(ServicesstructureApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
-		entryName = entryName.toLowerCase();
-		List<Structure> structures = service.structureListProteinGET(entryName);
+		String entryNameLC = entryName.toLowerCase();
+		List<Structure> structures = service.structureListProteinGET(entryNameLC);
 		for (Structure structure : structures) {
-			RowKey key = new RowKey(entryName + " - " + structure.getPdbCode());
+			RowKey key = new RowKey(entryNameLC + " - " + structure.getPdbCode());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)

@@ -11,9 +11,9 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
 
 public abstract class GpcrdbNodeModel extends NodeModel {
 
-	static final String CFGKEY_BASEPATH = "Base path";
+	public static final String CFGKEY_BASEPATH = "Base path";
 
-	static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
+	public static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
 
 	private final SettingsModelString m_basePath = basePathSettings();
 
