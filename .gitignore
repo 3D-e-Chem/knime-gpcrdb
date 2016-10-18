@@ -14,3 +14,13 @@ target
 .classpath
 
 swagger-codegen-cli-*.jar
+
+# Client generated files that are not used
+client/.gitignore
+client/.swagger-codegen-ignore
+client/.travis.yml
+client/build.sbt
+client/git_push.sh
+client/gradle/
+client/gradlew
+client/gradlew.bat
