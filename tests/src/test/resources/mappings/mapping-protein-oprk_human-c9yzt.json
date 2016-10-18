@@ -1,0 +1,22 @@
+{
+  "uuid" : "615cec58-4407-3b1b-a677-622877d1a49c",
+  "request" : {
+    "url" : "/services/structure/protein/oprk_human/?single",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-protein-oprk_human-c9yzt.json",
+    "headers" : {
+      "Date" : "Tue, 18 Oct 2016 13:24:06 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "Vary" : "Accept,Cookie",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  }
+}

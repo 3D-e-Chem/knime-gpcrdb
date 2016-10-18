@@ -112,8 +112,10 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 		List<Structure> structures = new ArrayList<Structure>();
 		try {
 			structures = service.structureListProteinGET(entryNameLC);
-		} catch (IllegalStateException e) {
-			if (e.getMessage().startsWith("Expected BEGIN_ARRAY but was BEGIN_OBJECT")) {
+		// Tried ApiException, IllegalStateException and JsonSyntaxException, 
+		// but they are not thrown by structureListProteinGET, so do a broad catch
+		} catch (Exception e) {
+			if (e.getMessage().contains("Expected BEGIN_ARRAY but was BEGIN_OBJECT")) {
 				// service returned a object instead of an array
 				// fetch again, but expect a single structure
 				structures.add(service.structureSingleProteinGET(entryNameLC));

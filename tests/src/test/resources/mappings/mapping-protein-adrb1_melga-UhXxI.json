@@ -1,0 +1,22 @@
+{
+  "uuid" : "d1c6d28a-6d54-33cc-9447-ec26b5505068",
+  "request" : {
+    "url" : "/services/structure/protein/adrb1_melga/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-protein-adrb1_melga-UhXxI.json",
+    "headers" : {
+      "Date" : "Tue, 18 Oct 2016 12:44:45 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "Vary" : "Accept,Cookie",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  }
+}
