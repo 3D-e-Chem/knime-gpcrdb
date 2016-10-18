@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.gpcrdb.tests
-Bundle-Version: 1.0.14
+Bundle-Version: 1.0.15
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.junit;bundle-version="4.12.0",
  nl.esciencecenter.e3dchem.gpcrdb,

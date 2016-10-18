@@ -5,6 +5,14 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.0.15] - 2016-10-18
+
+### Fixed
+
+- Protein with single structure produce error (#8)
+
+## [1.0.14] - 2016-10-18
+
 ### Added
 
 - Test workflow using WireMock server (#17)
