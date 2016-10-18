@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**structureLigandInteractionsGET**](ServicesstructureApi.md#structureLigandInteractionsGET) | **GET** /services/structure/{pdb_code}/interaction/ | Get a list of interactions between structure and ligand
 [**structureListGET**](ServicesstructureApi.md#structureListGET) | **GET** /services/structure/ | Get a list of structures
 [**structureListProteinGET**](ServicesstructureApi.md#structureListProteinGET) | **GET** /services/structure/protein/{entry_name}/ | Get a list of structures of a protein
+[**structureSingleProteinGET**](ServicesstructureApi.md#structureSingleProteinGET) | **GET** /services/structure/protein/{entry_name}/?single | Get the structure of a protein
 [**structureTemplateGET**](ServicesstructureApi.md#structureTemplateGET) | **GET** /services/structure/template/{entry_name}/ | Get the most similar structure template for a protein using a 7TM alignment
 [**structureTemplatePartialGET**](ServicesstructureApi.md#structureTemplatePartialGET) | **GET** /services/structure/template/{entry_name}/{segments}/ | Get the most similar structure template for a protein using a partial alignment
 
@@ -308,6 +309,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;Structure&gt;**](Structure.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="structureSingleProteinGET"></a>
+# **structureSingleProteinGET**
+> Structure structureSingleProteinGET(entryName)
+
+Get the structure of a protein
+
+Get the structure of a protein&lt;br/&gt;/structure/protein/{entry_name}
+
+### Example
+```java
+// Import classes:
+//import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
+//import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesstructureApi;
+
+
+ServicesstructureApi apiInstance = new ServicesstructureApi();
+String entryName = "entryName_example"; // String | 
+try {
+    Structure result = apiInstance.structureSingleProteinGET(entryName);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ServicesstructureApi#structureSingleProteinGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entryName** | **String**|  |
+
+### Return type
+
+[**Structure**](Structure.md)
 
 ### Authorization
 

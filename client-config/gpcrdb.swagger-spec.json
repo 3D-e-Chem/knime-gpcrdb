@@ -298,7 +298,7 @@
           "default" : {
             "description" : "success",
             "schema" : {
-              "$ref" : "#/definitions/ProteinSimilarities" 
+              "$ref" : "#/definitions/ProteinSimilarities"
             }
           }
         }
@@ -701,6 +701,28 @@
               "items" : {
                 "$ref" : "#/definitions/Structure"
               }
+            }
+          }
+        }
+      }
+    },
+    "/services/structure/protein/{entry_name}/?single" : {
+      "get" : {
+        "tags" : [ "servicesstructure" ],
+        "summary" : "Get the structure of a protein",
+        "description" : "Get the structure of a protein<br/>/structure/protein/{entry_name}",
+        "operationId" : "Structure_Single_Protein_GET",
+        "parameters" : [ {
+          "name" : "entry_name",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "success",
+            "schema" : {
+              "$ref" : "#/definitions/Structure"
             }
           }
         }
