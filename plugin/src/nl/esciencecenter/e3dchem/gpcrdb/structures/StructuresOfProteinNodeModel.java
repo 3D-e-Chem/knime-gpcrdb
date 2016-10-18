@@ -2,6 +2,7 @@ package nl.esciencecenter.e3dchem.gpcrdb.structures;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.knime.core.data.DataCell;
@@ -108,7 +109,19 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 	public void fetchStructures(ServicesstructureApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
 		String entryNameLC = entryName.toLowerCase();
-		List<Structure> structures = service.structureListProteinGET(entryNameLC);
+		List<Structure> structures = new ArrayList<Structure>();
+		try {
+			structures = service.structureListProteinGET(entryNameLC);
+		} catch (IllegalStateException e) {
+			if (e.getMessage().startsWith("Expected BEGIN_ARRAY but was BEGIN_OBJECT")) {
+				// service returned a object instead of an array
+				// fetch again, but expect a single structure
+				structures.add(service.structureSingleProteinGET(entryNameLC));
+			} else {
+				throw e;
+			}
+		}
+
 		for (Structure structure : structures) {
 			RowKey key = new RowKey(entryNameLC + " - " + structure.getPdbCode());
 			// the cells of the current row, the types of the cells must

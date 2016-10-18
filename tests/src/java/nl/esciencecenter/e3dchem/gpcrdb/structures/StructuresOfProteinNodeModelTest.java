@@ -73,6 +73,22 @@ public class StructuresOfProteinNodeModelTest {
         verify(container).addRowToTable(expectedRow);
     }
 
+	@Test
+	public void testFetchStructures_singleStructure_AlternateEndpoint() throws ApiException {
+        String entryName = "adrb2_human";
+        StructuresOfProteinNodeModel model = new StructuresOfProteinNodeModel();
+        ServicesstructureApi service = mock(ServicesstructureApi.class);
+        List<Structure> response = getSampleStructures();
+        when(service.structureListProteinGET(entryName)).thenThrow(new IllegalStateException("Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 2 path $"));
+        when(service.structureSingleProteinGET(entryName)).thenReturn(response.get(0));
+        BufferedDataContainer container = mock(BufferedDataContainer.class);
+
+        model.fetchStructures(service, container, entryName);
+
+		DataRow expectedRow = expectedContainer();
+        verify(container).addRowToTable(expectedRow);
+	}
+
 	protected DataRow expectedContainer() {
 		return expectedContainer(new StringCell("http://dx.doi.org/10.1126/SCIENCE.1150577"));
 	}

@@ -9,6 +9,10 @@ Formatted as described on http://keepachangelog.com/.
 
 - Test workflow using WireMock server (#17)
 
+### Fixed
+
+- Protein with single structure produce error (#8)
+
 ## [1.0.13] - 2016-09-13
 
 ### Changed
