@@ -6,9 +6,9 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem.gpcrdb.parent</groupId>
 		<artifactId>nl.esciencecenter.e3dchem.gpcrdb.parent</artifactId>
-		<version>1.0.15</version>
+		<version>1.0.19</version>
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.gpcrdb</artifactId>
 	<packaging>eclipse-plugin</packaging>
-<version>1.0.15</version>
+<version>1.0.19</version>
 </project>

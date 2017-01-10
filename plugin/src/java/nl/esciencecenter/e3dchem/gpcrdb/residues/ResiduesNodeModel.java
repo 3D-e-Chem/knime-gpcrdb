@@ -122,56 +122,64 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	private void fetchResidues(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
 		entryName = entryName.toLowerCase();
-		List<ResidueSerializer> result = service.residuesListGET(entryName);
-		for (ResidueSerializer residue : result) {
-			DataCell[] cells = new DataCell[5];
-			cells[0] = new StringCell(entryName);
-			cells[1] = new LongCell(residue.getSequenceNumber());
-			cells[2] = new StringCell(residue.getAminoAcid());
-			cells[3] = new StringCell(residue.getProteinSegment());
-			if (residue.getDisplayGenericNumber() == null) {
-				cells[4] = new MissingCell("Position has no generic number");
-			} else {
-				cells[4] = new StringCell(residue.getDisplayGenericNumber());
-			}
+		try {
+			List<ResidueSerializer> result = service.residuesListGET(entryName);
+			for (ResidueSerializer residue : result) {
+				DataCell[] cells = new DataCell[5];
+				cells[0] = new StringCell(entryName);
+				cells[1] = new LongCell(residue.getSequenceNumber());
+				cells[2] = new StringCell(residue.getAminoAcid());
+				cells[3] = new StringCell(residue.getProteinSegment());
+				if (residue.getDisplayGenericNumber() == null) {
+					cells[4] = new MissingCell("Position has no generic number");
+				} else {
+					cells[4] = new StringCell(residue.getDisplayGenericNumber());
+				}
 
-			RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
-			// the cells of the current row, the types of the cells must
-			// match
-			// the column spec (see above)
-			DataRow row = new DefaultRow(key, cells);
-			container.addRowToTable(row);
+				RowKey key = new RowKey("Row " + entryName + " - " + residue.getSequenceNumber());
+				// the cells of the current row, the types of the cells must
+				// match
+				// the column spec (see above)
+				DataRow row = new DefaultRow(key, cells);
+				container.addRowToTable(row);
+			}
+		} catch (ApiException e) {
+			handleApiException(e, entryName);
 		}
 	}
 
 	public void fetchResiduesExtended(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
 		String entryNameLc = entryName.toLowerCase();
-		List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryNameLc);
-		for (ResidueExtendedSerializer residue : result) {
-			DataCell[] cells = new DataCell[6];
-			cells[0] = new StringCell(entryNameLc);
-			cells[1] = new LongCell(residue.getSequenceNumber());
-			cells[2] = new StringCell(residue.getAminoAcid());
-			cells[3] = new StringCell(residue.getProteinSegment());
-			if (residue.getDisplayGenericNumber() == null) {
-				cells[4] = new MissingCell("Position has no generic number");
-			} else {
-				cells[4] = new StringCell(residue.getDisplayGenericNumber());
-			}
-			Map<String, String> alternatives = new HashMap<String, String>();
-			for (ResidueGenericNumberSerializer alternative : residue.getAlternativeGenericNumbers()) {
-				alternatives.put(alternative.getScheme(), alternative.getLabel());
-			}
-			String alternativeNumbers = jsonify.toJson(alternatives);
-			cells[5] = jsoncellify.createCell(alternativeNumbers);
+		try {
+			List<ResidueExtendedSerializer> result = service.residuesExtendedListGET(entryNameLc);
+			for (ResidueExtendedSerializer residue : result) {
+				DataCell[] cells = new DataCell[6];
+				cells[0] = new StringCell(entryNameLc);
+				cells[1] = new LongCell(residue.getSequenceNumber());
+				cells[2] = new StringCell(residue.getAminoAcid());
+				cells[3] = new StringCell(residue.getProteinSegment());
+				if (residue.getDisplayGenericNumber() == null) {
+					cells[4] = new MissingCell("Position has no generic number");
+				} else {
+					cells[4] = new StringCell(residue.getDisplayGenericNumber());
+				}
+				Map<String, String> alternatives = new HashMap<String, String>();
+				for (ResidueGenericNumberSerializer alternative : residue.getAlternativeGenericNumbers()) {
+					alternatives.put(alternative.getScheme(), alternative.getLabel());
+				}
+				String alternativeNumbers = jsonify.toJson(alternatives);
+				cells[5] = jsoncellify.createCell(alternativeNumbers);
 
-			RowKey key = new RowKey(entryNameLc + " - " + residue.getSequenceNumber());
-			// the cells of the current row, the types of the cells must
-			// match
-			// the column spec (see above)
-			DataRow row = new DefaultRow(key, cells);
-			container.addRowToTable(row);
+				RowKey key = new RowKey(entryNameLc + " - " + residue.getSequenceNumber());
+				// the cells of the current row, the types of the cells must
+				// match
+				// the column spec (see above)
+				DataRow row = new DefaultRow(key, cells);
+				container.addRowToTable(row);
+			}
+		} catch (ApiException e) {
+			handleApiException(e, entryName);
 		}
 	}
 

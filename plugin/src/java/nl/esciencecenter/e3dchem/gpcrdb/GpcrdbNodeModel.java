@@ -10,6 +10,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 
 public abstract class GpcrdbNodeModel extends NodeModel {
 
@@ -72,6 +73,17 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
 		m_basePath.validateSettings(settings);
 		m_timeout.validateSettings(settings);
+	}
+
+	protected void handleApiException(ApiException e, String thing) throws ApiException {
+		Throwable cause = e.getCause();
+		if (cause == null) {
+			throw e;
+		}
+		if (cause.getMessage().equals("timeout")) {
+			throw new ApiException("GPCRDB webservice server timed out: Increase timeout in advanced tab of options dialog or try again later when server is less busy");
+		}
+		throw e;
 	}
 
 	public ApiClient getApiClient() {

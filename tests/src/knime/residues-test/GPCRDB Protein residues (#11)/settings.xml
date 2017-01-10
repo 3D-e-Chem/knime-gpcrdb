@@ -48,7 +48,7 @@
 <entry key="node-bundle-name" type="xstring" value="GPCRDB Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.gpcrdb"/>
 <entry key="node-bundle-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-bundle-version" type="xstring" value="1.0.15"/>
+<entry key="node-bundle-version" type="xstring" value="1.0.19"/>
 <entry key="node-feature-name" type="xstring" isnull="true" value=""/>
 <entry key="node-feature-symbolic-name" type="xstring" isnull="true" value=""/>
 <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
@@ -68,6 +68,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="a46e2416-fde8-42ee-89e2-a0242bd1127c"/>
+<entry key="file_store_id" type="xstring" value="6b9f73e1-09b3-44ae-bd71-fb8df7b333fa"/>
 </config>
 </config>
