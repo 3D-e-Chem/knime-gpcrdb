@@ -32,6 +32,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import com.google.gson.Gson;
 
 import nl.esciencecenter.e3dchem.gpcrdb.GpcrdbNodeModel;
+import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ServicesresiduesApi;
 import nl.esciencecenter.e3dchem.gpcrdb.client.model.ResidueExtendedSerializer;
@@ -63,8 +64,6 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	 * Constructor for the node model.
 	 */
 	public ResiduesNodeModel() {
-
-		// TODO one incoming port and one outgoing port is assumed
 		super(1, 1);
 	}
 
@@ -80,8 +79,8 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
-
-		ServicesresiduesApi service = new ServicesresiduesApi(getApiClient());
+		ApiClient client = getApiClient();
+		ServicesresiduesApi service = new ServicesresiduesApi(client);
 
 		// the data table spec of the single output table,
 		// the table will have three columns:

@@ -1,0 +1,24 @@
+{
+  "id" : "bc7fc96d-e9f7-37ce-8061-920997a74cd7",
+  "request" : {
+    "url" : "/services/residues/adrb1_melga/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-residues-adrb1_melga-acqZB.json",
+    "fixedDelayMilliseconds": 15000,
+    "headers" : {
+      "Date" : "Tue, 10 Jan 2017 10:06:33 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Vary" : "Accept,Cookie",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "bc7fc96d-e9f7-37ce-8061-920997a74cd7"
+}

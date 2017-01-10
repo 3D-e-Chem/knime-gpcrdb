@@ -1,0 +1,23 @@
+{
+  "id" : "97b89d70-55e4-3bfe-839c-68664284441d",
+  "request" : {
+    "url" : "/services/residues/oprk_human/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-residues-oprk_human-NhBhU.json",
+    "headers" : {
+      "Date" : "Tue, 10 Jan 2017 10:07:06 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Vary" : "Accept,Cookie",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "97b89d70-55e4-3bfe-839c-68664284441d"
+}

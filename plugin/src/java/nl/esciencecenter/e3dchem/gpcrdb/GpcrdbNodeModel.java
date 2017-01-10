@@ -36,7 +36,13 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 		apiClient = new ApiClient();
 		apiClient.setBasePath(m_basePath.getStringValue());
 		apiClient.addDefaultHeader("Accept", "application/json");
+		updateHttpClientTimeout();
+	}
+
+	private void updateHttpClientTimeout() {
+		apiClient.getHttpClient().setConnectTimeout(m_timeout.getIntValue(), TimeUnit.SECONDS);
 		apiClient.getHttpClient().setReadTimeout(m_timeout.getIntValue(), TimeUnit.SECONDS);
+		apiClient.getHttpClient().setWriteTimeout(m_timeout.getIntValue(), TimeUnit.SECONDS);
 	}
 
 	/**
@@ -45,6 +51,7 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
 		m_basePath.saveSettingsTo(settings);
+		m_timeout.saveSettingsTo(settings);
 	}
 
 	/**
@@ -53,8 +60,9 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
 		m_basePath.loadSettingsFrom(settings);
+		m_timeout.loadSettingsFrom(settings);
 		apiClient.setBasePath(m_basePath.getStringValue());
-		apiClient.getHttpClient().setReadTimeout(m_timeout.getIntValue(), TimeUnit.SECONDS);
+		updateHttpClientTimeout();
 	}
 
 	/**
@@ -63,6 +71,7 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	@Override
 	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
 		m_basePath.validateSettings(settings);
+		m_timeout.validateSettings(settings);
 	}
 
 	public ApiClient getApiClient() {
@@ -79,6 +88,7 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 
 	public void setBasePath(String basePath) {
 		m_basePath.setStringValue(basePath);
+		apiClient.setBasePath(m_basePath.getStringValue());
 	}
 
 	public int getTimeout() {
@@ -87,5 +97,6 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 
 	public void setTimeout(int timeout) {
 		m_timeout.setIntValue(timeout);
+		updateHttpClientTimeout();
 	}
 }
