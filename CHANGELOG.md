@@ -9,6 +9,10 @@ Formatted as described on http://keepachangelog.com/.
 
 - Change default port names to specific names (#22)
 
+### Added
+
+- Test coverage (#25)
+
 ## [1.0.15] - 2016-10-18
 
 ### Fixed
