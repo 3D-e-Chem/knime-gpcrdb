@@ -129,7 +129,7 @@ The mock server is called [WireMock](http://WireMock.org/) and normally gives em
 To have WireMock server return filled responses, stubs stored in `tests/src/test/resources/` directory must be provided.
 The stubs can be recorded by starting a WireMock server in recording mode by:
 ```
-java -jar WireMock-standalone-2.1.12.jar --proxy-all="http://gpcrdb.org/" \
+java -jar tests/lib/wiremock-standalone-2.5.0.jar --proxy-all="http://gpcrdb.org/" \
 --port=8089 --record-mappings --verbose --root-dir=tests/src/test/resources/
 ```
 
