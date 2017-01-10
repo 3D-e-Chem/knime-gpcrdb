@@ -82,7 +82,6 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
         // will buffer to disc if necessary.
         BufferedDataContainer container = exec.createDataContainer(outputSpec);
 
-        System.err.println(m_segments.getStringArrayValue());
         String segments = StringUtil.join(m_segments.getStringArrayValue(), ",");
 
         BufferedDataTable queryTable = inData[0];
