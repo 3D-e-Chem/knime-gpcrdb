@@ -36,6 +36,6 @@ public class ResiduesNodeDialog extends GpcrdbNodeDialog {
 
 		createNewTab("Advanced");
 
-		addBasePath();
+		addAdvancedSettings();
 	}
 }

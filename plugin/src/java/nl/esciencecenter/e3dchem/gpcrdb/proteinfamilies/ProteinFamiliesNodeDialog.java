@@ -22,7 +22,7 @@ public class ProteinFamiliesNodeDialog extends GpcrdbNodeDialog {
 	protected ProteinFamiliesNodeDialog() {
 		super();
 
-		addBasePath();
+		addAdvancedSettings();
 		
 	}
 }

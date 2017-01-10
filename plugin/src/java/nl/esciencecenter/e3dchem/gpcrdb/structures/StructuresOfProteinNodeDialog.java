@@ -32,6 +32,6 @@ public class StructuresOfProteinNodeDialog extends GpcrdbNodeDialog {
 
 		createNewTab("Advanced");
 
-		addBasePath();
+		addAdvancedSettings();
 	}
 }

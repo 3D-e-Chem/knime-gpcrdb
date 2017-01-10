@@ -31,6 +31,6 @@ public class InteractionsNodeDialog extends GpcrdbNodeDialog {
 
 		createNewTab("Advanced");
 
-		addBasePath();
+		addAdvancedSettings();
 	}
 }

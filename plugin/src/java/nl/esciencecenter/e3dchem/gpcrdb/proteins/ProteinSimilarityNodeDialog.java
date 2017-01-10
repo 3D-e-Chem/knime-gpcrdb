@@ -49,6 +49,6 @@ public class ProteinSimilarityNodeDialog extends GpcrdbNodeDialog {
         addDialogComponent(new DialogComponentNumber(
                 new SettingsModelIntegerBounded(ProteinSimilarityNodeModel.CFGKEY_CHUNKSIZE, 20, 1, 100), "Chunk Size", 1));
 
-        addBasePath();
+        addAdvancedSettings();
     }
 }

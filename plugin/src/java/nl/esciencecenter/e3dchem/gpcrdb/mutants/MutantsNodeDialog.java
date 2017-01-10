@@ -32,6 +32,6 @@ public class MutantsNodeDialog extends GpcrdbNodeDialog {
 
 		createNewTab("Advanced");
 
-		addBasePath();
+		addAdvancedSettings();
 	}
 }

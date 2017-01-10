@@ -36,6 +36,6 @@ public class ProteinInfoNodeDialog extends GpcrdbNodeDialog {
 
 		createNewTab("Advanced");
 
-		addBasePath();
+		addAdvancedSettings();
 	}
 }

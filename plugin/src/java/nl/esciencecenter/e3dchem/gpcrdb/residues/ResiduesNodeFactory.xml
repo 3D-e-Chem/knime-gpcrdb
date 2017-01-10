@@ -14,6 +14,7 @@
         <option name="Extended">Whether to return alternative generic numbers</option>
         <tab name="Advanced Options">
 	        <option name="Base path">Url to use as base path for GPCRDB webservice</option>
+	        <option name="Timeout">Timeout in seconds to wait for GPCRDB webservice response</option>
         </tab>
     </fullDescription>
     

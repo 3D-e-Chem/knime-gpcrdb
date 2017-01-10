@@ -12,6 +12,7 @@ Formatted as described on http://keepachangelog.com/.
 ### Added
 
 - Test coverage (#25)
+- Timeout option (#21)
 
 ## [1.0.15] - 2016-10-18
 
