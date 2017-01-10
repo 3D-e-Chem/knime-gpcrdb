@@ -5,6 +5,10 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Fixed
+
+- Change default port names to specific names (#22)
+
 ## [1.0.15] - 2016-10-18
 
 ### Fixed

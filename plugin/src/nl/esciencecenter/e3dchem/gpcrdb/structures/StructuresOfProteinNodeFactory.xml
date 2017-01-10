@@ -17,9 +17,9 @@
     </fullDescription>
     
     <ports>
-        <inPort index="0" name="In-Port name">Table with Uniprot identifiers</inPort>
+        <inPort index="0" name="Input table with Uniprot identifiers">Table with Uniprot identifiers</inPort>
         <!-- possibly more input ports here-->
-        <outPort index="0" name="Out-Port name">GPCRDB protein structures</outPort>
+        <outPort index="0" name="GPCRDB protein structures">GPCRDB protein structures</outPort>
         <!-- possibly more output ports here-->
     </ports>    
 </knimeNode>
