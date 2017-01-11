@@ -24,7 +24,7 @@ public class ProteinFamiliesNodeFactory
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**
@@ -33,7 +33,7 @@ public class ProteinFamiliesNodeFactory
     @Override
     public NodeView<ProteinFamiliesNodeModel> createNodeView(final int viewIndex,
             final ProteinFamiliesNodeModel nodeModel) {
-        return new ProteinFamiliesNodeView(nodeModel);
+        return null;
     }
 
     /**

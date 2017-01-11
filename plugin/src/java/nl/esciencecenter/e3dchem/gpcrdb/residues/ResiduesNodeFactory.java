@@ -24,7 +24,7 @@ public class ResiduesNodeFactory
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**
@@ -33,7 +33,7 @@ public class ResiduesNodeFactory
     @Override
     public NodeView<ResiduesNodeModel> createNodeView(final int viewIndex,
             final ResiduesNodeModel nodeModel) {
-        return new ResiduesNodeView(nodeModel);
+        return null;
     }
 
     /**

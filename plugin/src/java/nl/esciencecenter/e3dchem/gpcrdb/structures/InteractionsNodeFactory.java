@@ -24,7 +24,7 @@ public class InteractionsNodeFactory
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**
@@ -33,7 +33,7 @@ public class InteractionsNodeFactory
     @Override
     public NodeView<InteractionsNodeModel> createNodeView(final int viewIndex,
             final InteractionsNodeModel nodeModel) {
-        return new InteractionsNodeView(nodeModel);
+        return null;
     }
 
     /**

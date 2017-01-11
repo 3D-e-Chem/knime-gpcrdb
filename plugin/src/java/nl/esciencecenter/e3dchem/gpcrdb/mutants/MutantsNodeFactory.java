@@ -24,7 +24,7 @@ public class MutantsNodeFactory
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**
@@ -33,7 +33,7 @@ public class MutantsNodeFactory
     @Override
     public NodeView<MutantsNodeModel> createNodeView(final int viewIndex,
             final MutantsNodeModel nodeModel) {
-        return new MutantsNodeView(nodeModel);
+        return null;
     }
 
     /**

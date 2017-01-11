@@ -22,7 +22,7 @@ public class ProteinSimilarityNodeFactory extends NodeFactory<ProteinSimilarityN
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**
@@ -43,7 +43,7 @@ public class ProteinSimilarityNodeFactory extends NodeFactory<ProteinSimilarityN
 
     @Override
     public NodeView<ProteinSimilarityNodeModel> createNodeView(int viewIndex, ProteinSimilarityNodeModel nodeModel) {
-        return new ProteinSimilarityNodeView(nodeModel);
+        return null;
     }
 
 }
