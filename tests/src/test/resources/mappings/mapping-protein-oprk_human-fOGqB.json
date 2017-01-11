@@ -1,0 +1,23 @@
+{
+  "id" : "840563dd-72af-36b9-8ebe-2f1ac0da1800",
+  "request" : {
+    "url" : "/services/protein/oprk_human/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-protein-oprk_human-fOGqB.json",
+    "headers" : {
+      "Date" : "Wed, 11 Jan 2017 13:07:02 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Vary" : "Accept,Cookie",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "840563dd-72af-36b9-8ebe-2f1ac0da1800"
+}

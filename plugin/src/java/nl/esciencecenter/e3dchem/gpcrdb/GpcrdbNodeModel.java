@@ -10,6 +10,8 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 
@@ -85,6 +87,9 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 
 	protected void handleApiException(ApiException e, String thing) throws ApiException {
 		Throwable cause = e.getCause();
+		if (e.getCode() == HTTP_NOT_FOUND) {
+			throw new ApiException("Item '" + thing + "' could not be found on GPCRDB server, please check if item is correct");
+		}
 		if (cause == null) {
 			throw e;
 		}

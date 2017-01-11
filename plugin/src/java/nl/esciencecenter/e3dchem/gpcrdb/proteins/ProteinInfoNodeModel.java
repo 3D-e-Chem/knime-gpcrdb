@@ -102,7 +102,11 @@ public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 			String id = ((StringCell) inrow.getCell(columnIndex)).getStringValue();
 			String idtype = m_idtype.getStringValue();
 
-			fetchProteins(id, idtype, container);
+			try {
+				fetchProteins(id, idtype, container);
+			} catch (ApiException e) {
+				handleApiException(e, id);
+			}
 
 			// check if the user cancelled the execution
 			exec.checkCanceled();

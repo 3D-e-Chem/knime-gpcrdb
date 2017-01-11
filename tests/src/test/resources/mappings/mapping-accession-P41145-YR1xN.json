@@ -1,0 +1,23 @@
+{
+  "id" : "e7b7832b-f76d-354f-baba-cd62bbcb20fd",
+  "request" : {
+    "url" : "/services/protein/accession/P41145/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-accession-P41145-YR1xN.json",
+    "headers" : {
+      "Date" : "Wed, 11 Jan 2017 13:08:51 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Vary" : "Accept,Cookie",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "e7b7832b-f76d-354f-baba-cd62bbcb20fd"
+}
