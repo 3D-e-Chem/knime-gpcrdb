@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-gpcrdb.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-gpcrdb)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Coverage)
 [![DOI](https://zenodo.org/badge/19641/3D-e-Chem/knime-gpcrdb.svg)](https://zenodo.org/badge/latestdoi/19641/3D-e-Chem/knime-gpcrdb)
 
 KNIME plugin for retrieving data from http://gpcrdb.org, GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
@@ -135,6 +136,13 @@ java -jar tests/lib/wiremock-standalone-2.5.0.jar --proxy-all="http://gpcrdb.org
 
 Then in a KNIME workflow in the GPCRDB nodes set the base path to http://localhost:8089.
 Executing the workflow will fetch data from http://gpcrdb.org/ via the WireMock server and cause new stubs to be recorded in the `tests/src/test/resources/` directory.
+
+To run the test workflows from inside KNIME desktop enviroment start the WireMock server in mock mode by:
+
+```
+java -jar tests/lib/wiremock-standalone-2.5.0.jar --port=8089 --verbose --root-dir=tests/src/test/resources/
+```
+Then import the test workflows in `tests/src/knime/` directory, select the workflow in the KNIME explorer and in the context menu (right-click) select `Run as workflow test`.
 
 # References
 
