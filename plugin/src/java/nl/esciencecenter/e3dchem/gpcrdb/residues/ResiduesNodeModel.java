@@ -63,7 +63,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		super(1, 1);
 	}
 
-	private static SettingsModelBoolean createExtendedModel() {
+	public static SettingsModelBoolean createExtendedModel() {
 		final SettingsModelBoolean model = new SettingsModelBoolean(ResiduesNodeModel.CFGKEY_EXTENDED,
 				ResiduesNodeModel.DEFAULT_EXTENDED);
 		return model;
