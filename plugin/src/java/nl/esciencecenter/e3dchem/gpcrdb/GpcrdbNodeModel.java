@@ -3,6 +3,8 @@ package nl.esciencecenter.e3dchem.gpcrdb;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
+import org.knime.core.node.CanceledExecutionException;
+import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
@@ -11,6 +13,9 @@ import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+
+import java.io.File;
+import java.io.IOException;
 
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiClient;
 import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
@@ -123,5 +128,47 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	public void setTimeout(int timeout) {
 		m_timeout.setIntValue(timeout);
 		updateHttpClientTimeout();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void reset() {
+		// TODO Code executed on reset.
+		// Models build during execute are cleared here.
+		// Also data handled in load/saveInternals will be erased here.
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void loadInternals(final File internDir, final ExecutionMonitor exec)
+			throws IOException, CanceledExecutionException {
+
+		// TODO load internal data.
+		// Everything handed to output ports is loaded automatically (data
+		// returned by the execute method, models loaded in loadModelContent,
+		// and user settings set through loadSettingsFrom - is all taken care
+		// of). Load here only the other internals that need to be restored
+		// (e.g. data used by the views).
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void saveInternals(final File internDir, final ExecutionMonitor exec)
+			throws IOException, CanceledExecutionException {
+
+		// TODO save internal models.
+		// Everything written to output ports is saved automatically (data
+		// returned by the execute method, models saved in the saveModelContent,
+		// and user settings saved through saveSettingsTo - is all taken care
+		// of). Save here only the other internals that need to be preserved
+		// (e.g. data used by the views).
+
 	}
 }
