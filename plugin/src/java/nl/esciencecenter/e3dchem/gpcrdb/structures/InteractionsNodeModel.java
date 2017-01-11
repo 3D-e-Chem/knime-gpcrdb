@@ -72,7 +72,11 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
         for (DataRow inrow : table) {
             String pdbCode = ((StringCell) inrow.getCell(structureColumnIndex)).getStringValue();
 
-            fetchInteractions(container, pdbCode);
+            try {
+                fetchInteractions(container, pdbCode);
+			} catch (ApiException e) {
+				handleApiException(e, pdbCode);
+			}
 
             // check if the user cancelled the execution
             exec.checkCanceled();
