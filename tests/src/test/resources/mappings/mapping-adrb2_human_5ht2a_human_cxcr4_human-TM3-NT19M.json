@@ -1,0 +1,23 @@
+{
+  "id" : "08e2a6f3-f985-33ba-b5da-ee5f1436e013",
+  "request" : {
+    "url" : "/services/alignment/similarity/adrb2_human%2C5ht2a_human%2Ccxcr4_human/TM3/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-adrb2_human_5ht2a_human_cxcr4_human-TM3-NT19M.json",
+    "headers" : {
+      "Date" : "Wed, 11 Jan 2017 15:53:17 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Vary" : "Accept,Cookie",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=100",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "08e2a6f3-f985-33ba-b5da-ee5f1436e013"
+}
