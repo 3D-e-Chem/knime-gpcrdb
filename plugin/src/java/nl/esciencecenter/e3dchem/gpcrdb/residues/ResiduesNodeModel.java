@@ -119,7 +119,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 		return new BufferedDataTable[] { out };
 	}
 
-	private void fetchResidues(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
+	public void fetchResidues(ServicesresiduesApi service, BufferedDataContainer container, String entryName)
 			throws ApiException {
 		entryName = entryName.toLowerCase();
 		try {

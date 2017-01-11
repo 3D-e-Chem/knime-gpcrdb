@@ -29,6 +29,7 @@ public class ResiduesFlowTest {
 	public void setUp() {
 	    TestrunConfiguration runConfiguration = new TestrunConfiguration();
 	    runConfiguration.setTestViews(false);
+	    runConfiguration.setTestDialogs(true);
 	    runner = new TestFlowRunner(collector, runConfiguration);
 	}
 	

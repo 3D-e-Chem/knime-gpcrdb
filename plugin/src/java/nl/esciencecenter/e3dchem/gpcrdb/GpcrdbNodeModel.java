@@ -1,5 +1,6 @@
 package nl.esciencecenter.e3dchem.gpcrdb;
 
+import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import org.knime.core.node.InvalidSettingsException;
@@ -61,8 +62,15 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
 		m_basePath.loadSettingsFrom(settings);
-		m_timeout.loadSettingsFrom(settings);
 		apiClient.setBasePath(m_basePath.getStringValue());
+		if (settings.containsKey(CFGKEY_TIMEOUT)) {
+			m_timeout.loadSettingsFrom(settings);
+		} else {
+			// timeout setting was added later,
+			// to not get warnings when a old workflow is loaded which is missing the timeout setting
+			// set it to a default
+			m_timeout.setIntValue(DEFAULT_TIMEOUT);
+		}
 		updateHttpClientTimeout();
 	}
 
@@ -80,7 +88,7 @@ public abstract class GpcrdbNodeModel extends NodeModel {
 		if (cause == null) {
 			throw e;
 		}
-		if (cause.getMessage().equals("timeout")) {
+		if (cause instanceof SocketTimeoutException) {
 			throw new ApiException("GPCRDB webservice server timed out: Increase timeout in advanced tab of options dialog or try again later when server is less busy");
 		}
 		throw e;
