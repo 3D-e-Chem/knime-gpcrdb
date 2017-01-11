@@ -6,7 +6,7 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<entry key="owner" type="xstring" value="stefanv@inf.uni-konstanz.de"/>
+<entry key="owner" type="xstring" value="s.verhoeven@esciencecenter.nl"/>
 <config key="requiredLogErrors">
 <entry key="array-size" type="xint" value="0"/>
 </config>
