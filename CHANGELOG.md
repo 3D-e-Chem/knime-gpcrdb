@@ -5,15 +5,21 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
-### Fixed
-
-- Change default port names to specific names (#22)
+## [1.1.0] - 2017-01-12
 
 ### Added
 
 - Test coverage (#25)
 - Timeout option (#21)
-- Workflow test for residues node (#24)
+- Workflow test for all nodes (#24)
+
+### Changed
+
+- Nicer message for Timeout and not found exceptions (#23)
+
+### Fixed
+
+- Change default port names to specific names (#22)
 
 ## [1.0.15] - 2016-10-18
 
