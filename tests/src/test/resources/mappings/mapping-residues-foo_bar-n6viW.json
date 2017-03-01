@@ -1,22 +1,23 @@
 {
-  "uuid" : "615cec58-4407-3b1b-a677-622877d1a49c",
+  "id" : "a150641c-4a6a-341c-a302-2c91e58aef40",
   "request" : {
-    "url" : "/services/structure/protein/oprk_human/?single",
+    "url" : "/services/residues/foo_bar/",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-protein-oprk_human-c9yzt.json",
+    "bodyFileName" : "body-residues-foo_bar-n6viW.json",
     "headers" : {
-      "Date" : "Tue, 18 Oct 2016 13:24:06 GMT",
+      "Date" : "Wed, 01 Mar 2017 12:11:47 GMT",
       "Server" : "Apache/2.4.7 (Ubuntu)",
-      "X-Frame-Options" : "SAMEORIGIN",
       "Allow" : "GET, HEAD, OPTIONS",
       "Vary" : "Accept,Cookie",
+      "X-Frame-Options" : "SAMEORIGIN",
       "Keep-Alive" : "timeout=5, max=100",
       "Connection" : "Keep-Alive",
       "Transfer-Encoding" : "chunked",
       "Content-Type" : "application/json"
     }
-  }
+  },
+  "uuid" : "a150641c-4a6a-341c-a302-2c91e58aef40"
 }

@@ -123,7 +123,7 @@ public class ProteinSimilarityNodeModel extends GpcrdbNodeModel {
 		    for (Entry<String, ProteinSimilarity> subject : result.entrySet()) {
 		        // skip self
 		        if (!query.equals(subject.getKey())) {
-		            RowKey key = new RowKey(query + " vs " + subject.getKey());
+					RowKey key = RowKey.createRowKey(container.size());
 		            // the cells of the current row, the types of the cells must
 		            // match
 		            // the column spec (see above)

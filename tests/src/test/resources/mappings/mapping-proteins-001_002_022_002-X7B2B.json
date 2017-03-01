@@ -1,0 +1,23 @@
+{
+  "id" : "72dd5cf8-a285-3345-899b-9783e1d7a39a",
+  "request" : {
+    "url" : "/services/proteinfamily/proteins/001_002_022_002/",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-proteins-001_002_022_002-X7B2B.json",
+    "headers" : {
+      "Date" : "Wed, 01 Mar 2017 12:03:37 GMT",
+      "Server" : "Apache/2.4.7 (Ubuntu)",
+      "Allow" : "GET, HEAD, OPTIONS",
+      "Vary" : "Accept,Cookie",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "Keep-Alive" : "timeout=5, max=98",
+      "Connection" : "Keep-Alive",
+      "Transfer-Encoding" : "chunked",
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "72dd5cf8-a285-3345-899b-9783e1d7a39a"
+}

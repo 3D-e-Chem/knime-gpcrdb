@@ -62,7 +62,7 @@ public class ProteinFamiliesNodeModel extends GpcrdbNodeModel {
 
 		List<ProteinFamilySerializer> families = service.proteinFamilyListGET();
 		for (ProteinFamilySerializer family : families) {
-			RowKey key = new RowKey(family.getSlug());
+			RowKey key = RowKey.createRowKey(container.size());
 			// the cells of the current row, the types of the cells must match
 			// the column spec (see above)
 			DataCell[] cells = new DataCell[3];

@@ -131,8 +131,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 				} else {
 					cells[4] = new StringCell(residue.getDisplayGenericNumber());
 				}
-
-				RowKey key = new RowKey("Row " + entryNameLc + " - " + residue.getSequenceNumber());
+				RowKey key = RowKey.createRowKey(container.size());
 				// the cells of the current row, the types of the cells must
 				// match
 				// the column spec (see above)
@@ -167,7 +166,7 @@ public class ResiduesNodeModel extends GpcrdbNodeModel {
 				String alternativeNumbers = jsonify.toJson(alternatives);
 				cells[5] = jsoncellify.createCell(alternativeNumbers);
 
-				RowKey key = new RowKey(entryNameLc + " - " + residue.getSequenceNumber());
+				RowKey key = RowKey.createRowKey(container.size());
 				// the cells of the current row, the types of the cells must
 				// match
 				// the column spec (see above)

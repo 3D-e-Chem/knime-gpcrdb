@@ -7,10 +7,14 @@
 <entry key="authored-by" type="xstring" value="stefanv"/>
 <entry key="authored-when" type="xstring" value="2017-01-11 14:02:27 +0100"/>
 <entry key="lastEdited-by" type="xstring" value="stefanv"/>
-<entry key="lastEdited-when" type="xstring" value="2017-01-11 14:49:36 +0100"/>
+<entry key="lastEdited-when" type="xstring" value="2017-03-01 13:29:55 +0100"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="IDLE"/>
+<config key="nodecontainer_message">
+<entry key="type" type="xstring" value="ERROR"/>
+<entry key="message" type="xstring" value="Error in sub flow."/>
+</config>
 <config key="workflow_credentials"/>
 <config key="nodes">
 <config key="node_1">

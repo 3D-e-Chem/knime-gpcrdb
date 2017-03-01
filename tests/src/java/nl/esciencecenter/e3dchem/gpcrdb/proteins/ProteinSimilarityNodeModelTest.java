@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.knime.core.data.DataRow;
+import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.IntCell;
 import org.knime.core.data.def.StringCell;
@@ -51,7 +52,7 @@ public class ProteinSimilarityNodeModelTest {
 		node.fetchSimilarities(query, segments, subjects, container);
 		
 		DataRow row1 = new DefaultRow(
-			"adrb2_human vs 5ht2a_human",
+			RowKey.createRowKey(0L),
 			new StringCell("adrb2_human"),
 			new StringCell("5ht2a_human"),
 			new IntCell(44),
@@ -59,7 +60,7 @@ public class ProteinSimilarityNodeModelTest {
 		);
 		verify(container).addRowToTable(row1);
 		DataRow row2 = new DefaultRow(
-			"adrb2_human vs cxcr4_human",
+			RowKey.createRowKey(0L),
 			new StringCell("adrb2_human"),
 			new StringCell("cxcr4_human"),
 			new IntCell(56),

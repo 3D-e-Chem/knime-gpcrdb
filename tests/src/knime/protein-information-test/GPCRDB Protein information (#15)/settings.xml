@@ -6,16 +6,6 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<config key="In Column_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="In Column" type="xstring" value="family_slug"/>
-<config key="In column type_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="In column type" type="xstring" value="Protein family slug"/>
 <config key="Base path_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -26,6 +16,16 @@
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
 <entry key="Timeout" type="xint" value="10"/>
+<config key="In Column_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="In Column" type="xstring" value="family_slug"/>
+<config key="In column type_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="In column type" type="xstring" value="Protein family slug"/>
 </config>
 <config key="nodeAnnotation">
 <entry key="text" type="xstring" value="Expected from real server"/>
@@ -48,11 +48,11 @@
 <entry key="node-bundle-name" type="xstring" value="GPCRDB Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.gpcrdb"/>
 <entry key="node-bundle-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-bundle-version" type="xstring" value="1.0.20"/>
+<entry key="node-bundle-version" type="xstring" value="1.1.0"/>
 <entry key="node-feature-name" type="xstring" value="GPCRDB Nodes for Knime"/>
 <entry key="node-feature-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.gpcrdb.feature.feature.group"/>
 <entry key="node-feature-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-feature-version" type="xstring" value="1.0.20"/>
+<entry key="node-feature-version" type="xstring" value="1.1.0"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="GPCRDB Protein information"/>
 <entry key="hasContent" type="xboolean" value="true"/>
@@ -68,6 +68,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="9c8ddb65-2bbe-4acb-9f13-3accffe7c279"/>
+<entry key="file_store_id" type="xstring" value="f250f5c2-c56e-4f71-a0fc-40de2f57f747"/>
 </config>
 </config>

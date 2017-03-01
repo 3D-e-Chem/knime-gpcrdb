@@ -94,7 +94,7 @@ public class StructuresOfProteinNodeModelTest {
 	}
 
     protected DataRow expectedContainer(DataCell publication) {
-		RowKey key = new RowKey("adrb2_human - 2RH1");
+		RowKey key = RowKey.createRowKey(0L);
 		DataCell[] cells = new DataCell[10];
 		cells[0] = new StringCell("2007-10-30");
 		cells[1] = new StringCell("A");

@@ -81,7 +81,7 @@ public class MutantsNodeModelTest {
         expectedCells[21] = new StringCell("");
         expectedCells[22] = new StringCell("8093027");
 
-        DataRow expectedRow = new DefaultRow(new RowKey("hrh1_human - 0"), expectedCells);
+        DataRow expectedRow = new DefaultRow(RowKey.createRowKey(0L), expectedCells);
         verify(container).addRowToTable(expectedRow);
 	}
     

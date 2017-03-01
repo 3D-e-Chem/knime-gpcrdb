@@ -5,6 +5,10 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Fixed
+
+- Use rowkey generator instead of custom rowkey (#28)
+
 ## [1.1.0] - 2017-01-12
 
 ### Added

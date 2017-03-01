@@ -43,7 +43,7 @@ public class ResiduesNodeModelTest {
 	private void verifyContainer(BufferedDataContainer container) {
 		JSONCellFactory jsoncellify = new JSONCellFactory();
 		DataRow expectedRow = new DefaultRow(
-			new RowKey("adrb2_human - 1"),
+			RowKey.createRowKey(0L),
 			new StringCell("adrb2_human"),
 			new LongCell(1L),
 			new StringCell("G"),

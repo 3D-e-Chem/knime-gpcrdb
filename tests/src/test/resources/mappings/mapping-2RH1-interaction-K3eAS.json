@@ -1,17 +1,17 @@
 {
-  "id" : "e7b7832b-f76d-354f-baba-cd62bbcb20fd",
+  "id" : "6be00d2a-841c-3a25-8482-f11bcd4283f7",
   "request" : {
-    "url" : "/services/protein/accession/P41145/",
+    "url" : "/services/structure/2RH1/interaction/",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-accession-P41145-YR1xN.json",
+    "bodyFileName" : "body-2RH1-interaction-K3eAS.json",
     "headers" : {
-      "Date" : "Wed, 11 Jan 2017 13:08:51 GMT",
+      "Date" : "Wed, 01 Mar 2017 12:04:27 GMT",
       "Server" : "Apache/2.4.7 (Ubuntu)",
-      "Vary" : "Accept,Cookie",
       "Allow" : "GET, HEAD, OPTIONS",
+      "Vary" : "Accept,Cookie",
       "X-Frame-Options" : "SAMEORIGIN",
       "Keep-Alive" : "timeout=5, max=100",
       "Connection" : "Keep-Alive",
@@ -19,5 +19,5 @@
       "Content-Type" : "application/json"
     }
   },
-  "uuid" : "e7b7832b-f76d-354f-baba-cd62bbcb20fd"
+  "uuid" : "6be00d2a-841c-3a25-8482-f11bcd4283f7"
 }

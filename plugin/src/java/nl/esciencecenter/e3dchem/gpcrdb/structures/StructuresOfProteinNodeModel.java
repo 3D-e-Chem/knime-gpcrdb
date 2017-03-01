@@ -121,7 +121,7 @@ public class StructuresOfProteinNodeModel extends GpcrdbNodeModel {
 		}
 
 		for (Structure structure : structures) {
-			RowKey key = new RowKey(entryNameLC + " - " + structure.getPdbCode());
+			RowKey key = RowKey.createRowKey(container.size());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)

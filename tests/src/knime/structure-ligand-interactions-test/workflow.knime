@@ -7,7 +7,7 @@
 <entry key="authored-by" type="xstring" value="stefanv"/>
 <entry key="authored-when" type="xstring" value="2017-01-11 17:28:03 +0100"/>
 <entry key="lastEdited-by" type="xstring" value="stefanv"/>
-<entry key="lastEdited-when" type="xstring" value="2017-01-11 17:30:48 +0100"/>
+<entry key="lastEdited-when" type="xstring" value="2017-03-01 13:04:28 +0100"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="IDLE"/>
@@ -103,13 +103,13 @@
 </config>
 <config key="connection_1">
 <entry key="sourceID" type="xint" value="4"/>
-<entry key="destID" type="xint" value="1"/>
+<entry key="destID" type="xint" value="5"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_2">
 <entry key="sourceID" type="xint" value="4"/>
-<entry key="destID" type="xint" value="5"/>
+<entry key="destID" type="xint" value="1"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>

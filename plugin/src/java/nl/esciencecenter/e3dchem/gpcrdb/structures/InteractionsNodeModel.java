@@ -88,7 +88,6 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
     public void fetchInteractions(BufferedDataContainer container, String pdbCode) throws ApiException {
         String pdbCodeLC = pdbCode.toUpperCase();
         List<StructureLigandInteractionSerializer> interactions = service.structureLigandInteractionsGET(pdbCodeLC);
-        long currentRow = 0;
         for (StructureLigandInteractionSerializer interaction : interactions) {
             DataCell[] cells = new DataCell[6];
             cells[0] = new StringCell(pdbCodeLC);
@@ -102,13 +101,12 @@ public class InteractionsNodeModel extends GpcrdbNodeModel {
             }
             cells[5] = new StringCell(interaction.getInteractionType());
 
-            RowKey key = new RowKey(pdbCodeLC + " - " + interaction.getSequenceNumber() + " - " + currentRow);
+			RowKey key = RowKey.createRowKey(container.size());
             // the cells of the current row, the types of the cells must
             // match
             // the column spec (see above)
             DataRow row = new DefaultRow(key, cells);
             container.addRowToTable(row);
-            currentRow++;
         }
     }
 

@@ -130,7 +130,7 @@ public class ProteinInfoNodeModel extends GpcrdbNodeModel {
 		}
 
 		for (ProteinSerializer protein : proteins) {
-			RowKey key = new RowKey(protein.getEntryName());
+			RowKey key = RowKey.createRowKey(container.size());
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)

@@ -1,23 +1,23 @@
 {
-  "id" : "9a1e1125-746e-38a7-bc53-05a752e63b57",
+  "id" : "253b15be-d3ae-31ac-a16b-bc39273796d4",
   "request" : {
-    "url" : "/services/structure/2RH1/interaction/",
+    "url" : "/services/structure/protein/oprk_human/?single",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-2RH1-interaction-qqfHC.json",
+    "bodyFileName" : "body-protein-oprk_human-7GPRr.json",
     "headers" : {
-      "Date" : "Wed, 11 Jan 2017 16:30:12 GMT",
+      "Date" : "Wed, 01 Mar 2017 12:10:34 GMT",
       "Server" : "Apache/2.4.7 (Ubuntu)",
-      "Vary" : "Accept,Cookie",
       "Allow" : "GET, HEAD, OPTIONS",
+      "Vary" : "Accept,Cookie",
       "X-Frame-Options" : "SAMEORIGIN",
-      "Keep-Alive" : "timeout=5, max=100",
+      "Keep-Alive" : "timeout=5, max=98",
       "Connection" : "Keep-Alive",
       "Transfer-Encoding" : "chunked",
       "Content-Type" : "application/json"
     }
   },
-  "uuid" : "9a1e1125-746e-38a7-bc53-05a752e63b57"
+  "uuid" : "253b15be-d3ae-31ac-a16b-bc39273796d4"
 }

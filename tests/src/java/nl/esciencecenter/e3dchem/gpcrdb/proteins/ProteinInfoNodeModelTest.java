@@ -99,7 +99,7 @@ public class ProteinInfoNodeModelTest {
 	}
 
 	private DataRow sampleRow(ProteinSerializer response) {
-		RowKey key = new RowKey(response.getEntryName());
+		RowKey key = RowKey.createRowKey(0L);
 		DataCell[] cells = new DataCell[8];
 		cells[0] = new StringCell(response.getEntryName());
 		cells[1] = new StringCell(response.getAccession());
