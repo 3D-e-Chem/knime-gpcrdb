@@ -5,6 +5,8 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.2.0] - 2017-03-01
+
 ### Added
 
 - Node to fetch all GPCRDB structures (#27)
