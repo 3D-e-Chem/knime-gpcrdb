@@ -7,3 +7,4 @@ response2array:
 - /services/residues/extended/{entry_name}/
 - /services/structure/{pdb_code}/interaction/
 - /services/structure/protein/{entry_name}/
+- /services/structure/

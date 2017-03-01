@@ -235,7 +235,7 @@ No authorization required
 
 <a name="structureListGET"></a>
 # **structureListGET**
-> Object structureListGET()
+> List&lt;Structure&gt; structureListGET()
 
 Get a list of structures
 
@@ -250,7 +250,7 @@ Get a list of structures&lt;br/&gt;/structure/
 
 ServicesstructureApi apiInstance = new ServicesstructureApi();
 try {
-    Object result = apiInstance.structureListGET();
+    List<Structure> result = apiInstance.structureListGET();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ServicesstructureApi#structureListGET");
@@ -263,7 +263,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Object**
+[**List&lt;Structure&gt;**](Structure.md)
 
 ### Authorization
 

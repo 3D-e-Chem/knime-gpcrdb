@@ -628,23 +628,23 @@ public class ServicesstructureApi {
     /**
      * Get a list of structures
      * Get a list of structures&lt;br/&gt;/structure/
-     * @return Object
+     * @return List&lt;Structure&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object structureListGET() throws ApiException {
-        ApiResponse<Object> resp = structureListGETWithHttpInfo();
+    public List<Structure> structureListGET() throws ApiException {
+        ApiResponse<List<Structure>> resp = structureListGETWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * Get a list of structures
      * Get a list of structures&lt;br/&gt;/structure/
-     * @return ApiResponse&lt;Object&gt;
+     * @return ApiResponse&lt;List&lt;Structure&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> structureListGETWithHttpInfo() throws ApiException {
+    public ApiResponse<List<Structure>> structureListGETWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = structureListGETCall(null, null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Structure>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -655,7 +655,7 @@ public class ServicesstructureApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call structureListGETAsync(final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call structureListGETAsync(final ApiCallback<List<Structure>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -677,7 +677,7 @@ public class ServicesstructureApi {
         }
 
         com.squareup.okhttp.Call call = structureListGETCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Structure>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

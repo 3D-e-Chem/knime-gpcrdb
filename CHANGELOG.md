@@ -5,6 +5,10 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Added
+
+- Node to fetch all GPCRDB structures (#27)
+
 ### Fixed
 
 - Use rowkey generator instead of custom rowkey (#28)

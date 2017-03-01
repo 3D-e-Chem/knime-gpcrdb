@@ -14,42 +14,45 @@
   </extension>
   
   <extension point="org.knime.workbench.repository.nodes">
-    <node category-path="/community/3d-e-chem/gpcrdb" factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory" id="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory"/>
-    <node
-          category-path="/community/3d-e-chem/gpcrdb"
+    <node 
+          category-path="/community/3d-e-chem/gpcrdb" 
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresOfProteinNodeFactory">
+    </node>
+    <node 
+          category-path="/community/3d-e-chem/gpcrdb" 
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.StructuresNodeFactory">
     </node>
     <node
           category-path="/community/3d-e-chem/gpcrdb"
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinInfoNodeFactory">
     </node>
     <node
           category-path="/community/3d-e-chem/gpcrdb"
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.residues.ResiduesNodeFactory">
     </node>
     <node
           category-path="/community/3d-e-chem/gpcrdb"
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.mutants.MutantsNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.mutants.MutantsNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteinfamilies.ProteinFamiliesNodeFactory">
     </node>
     <node
           category-path="/community/3d-e-chem/gpcrdb"
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.mutants.MutantsNodeFactory">
     </node>
     <node
           category-path="/community/3d-e-chem/gpcrdb"
           deprecated="false"
-          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory"
-          id="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory">
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.structures.InteractionsNodeFactory">
+    </node>
+    <node
+          category-path="/community/3d-e-chem/gpcrdb"
+          deprecated="false"
+          factory-class="nl.esciencecenter.e3dchem.gpcrdb.proteins.ProteinSimilarityNodeFactory">
     </node>
   </extension>
 </plugin>

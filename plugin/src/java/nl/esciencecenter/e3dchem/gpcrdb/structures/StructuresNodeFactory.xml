@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Source" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+    <name>GPCRDB Structures</name>
+    
+    <shortDescription>
+        Get a list of structures
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>Retrieves list of structures from GPCRDB</intro>
+        
+        
+        <tab name="Advanced Options">
+	        <option name="Base path">Url to use as base path for GPCRDB webservice</option>
+	        <option name="Timeout">Timeout in seconds to wait for GPCRDB webservice response</option>
+        </tab>
+    </fullDescription>
+    
+    <ports>
+        <!-- possibly more input ports here-->
+        <outPort index="0" name="GPCRDB protein structures">GPCRDB protein structures</outPort>
+        <!-- possibly more output ports here-->
+    </ports>    
+</knimeNode>

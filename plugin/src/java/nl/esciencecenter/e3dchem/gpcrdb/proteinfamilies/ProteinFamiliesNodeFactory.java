@@ -5,8 +5,8 @@ import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
 
 /**
- * <code>NodeFactory</code> for the "StructuresOfProtein" Node.
- * Get a list of structures of a protein
+ * <code>NodeFactory</code> for the "ProteinFamilies" Node.
+ * Get a list of protein families and their members
  */
 public class ProteinFamiliesNodeFactory 
         extends NodeFactory<ProteinFamiliesNodeModel> {
