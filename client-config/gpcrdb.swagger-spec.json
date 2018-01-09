@@ -1013,7 +1013,7 @@
       }
     },
     "MutationSerializer" : {
-      "required" : [ "exp_fold_change", "exp_func", "exp_mu_effect_ligand_prop", "exp_mu_effect_qual", "exp_mu_effect_sign", "exp_mu_effect_type", "exp_mu_effect_value", "exp_mu_ligand_ref", "exp_type", "exp_wt_unit", "exp_wt_value", "ligand_class", "ligand_id", "ligand_idtype", "ligand_name", "mutation_from", "mutation_pos", "mutation_to", "opt_agonist", "opt_mu", "opt_percentage", "opt_qual", "opt_sign", "opt_type", "opt_wt", "protein", "reference" ],
+      "required" : [ "exp_fold_change", "exp_func", "exp_mu_effect_ligand_prop", "exp_mu_effect_qual", "exp_mu_effect_sign", "exp_mu_effect_type", "exp_mu_effect_value", "exp_mu_ligand_ref", "exp_type", "exp_wt_unit", "exp_wt_value", "ligand_class", "ligand_id", "ligand_idtype", "ligand_name", "mutation_from", "mutation_pos", "mutation_to", "opt_receptor_expression", "opt_basal_activity", "opt_gain_of_activity", "opt_ligand_emax", "opt_agonist", "protein", "reference" ],
       "properties" : {
         "reference" : {
           "type" : "string"
@@ -1076,22 +1076,16 @@
         "exp_mu_ligand_ref" : {
           "type" : "string"
         },
-        "opt_type" : {
+        "opt_receptor_expression" : {
           "type" : "string"
         },
-        "opt_wt" : {
-          "type" : "number", "format" : "float"
-        },
-        "opt_mu" : {
-          "type" : "number", "format" : "float"
-        },
-        "opt_sign" : {
+        "opt_basal_activity" : {
           "type" : "string"
         },
-        "opt_percentage" : {
-          "type" : "number", "format" : "float"
+        "opt_gain_of_activity" : {
+          "type" : "string"
         },
-        "opt_qual" : {
+        "opt_ligand_emax" : {
           "type" : "string"
         },
         "opt_agonist" : {

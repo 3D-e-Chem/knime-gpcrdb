@@ -81,7 +81,7 @@ During import the Tycho Eclipse providers must be installed.
 
 1. Download swagger code generator
 ```
-wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar
+wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.0/swagger-codegen-cli-2.3.0.jar
 ```
 
 2. Download and unpack the swagger rewriter
@@ -100,7 +100,7 @@ client-config/gpcrdb.swagger-spec.json
 
 4. Generate a client for GPCRDB web service using the rewritten spec
 ```
-java -jar swagger-codegen-cli-2.2.1.jar generate \
+java -jar swagger-codegen-cli-2.3.0.jar generate \
 --input-spec client-config/gpcrdb.swagger-spec.json \
 --output client \
 --lang java \
@@ -115,7 +115,7 @@ mvn package
 6. Make client jar and it's dependencies available in plugin
 ```
 cp -r target/lib/* target/*jar ../plugin/lib/
-```
+```l
 
 7. Remove test dependencies
 

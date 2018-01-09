@@ -24,12 +24,10 @@ Name | Type | Description | Notes
 **expMuEffectQual** | **String** |  | 
 **expMuEffectLigandProp** | **String** |  | 
 **expMuLigandRef** | **String** |  | 
-**optType** | **String** |  | 
-**optWt** | **Float** |  | 
-**optMu** | **Float** |  | 
-**optSign** | **String** |  | 
-**optPercentage** | **Float** |  | 
-**optQual** | **String** |  | 
+**optReceptorExpression** | **String** |  | 
+**optBasalActivity** | **String** |  | 
+**optGainOfActivity** | **String** |  | 
+**optLigandEmax** | **String** |  | 
 **optAgonist** | **String** |  | 
 
 

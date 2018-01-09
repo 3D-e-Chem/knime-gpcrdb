@@ -1,23 +1,23 @@
 {
-  "id" : "8815b167-6323-3795-a591-61581701e0ea",
+  "id" : "fa349abf-6625-3ec5-9d6f-6b37cd621aa6",
   "request" : {
-    "url" : "/services/mutants/oprk_human/",
+    "url" : "/services/mutants/foo_bar/",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-mutants-oprk_human-MLjHJ.json",
+    "bodyFileName" : "body-mutants-foo_bar-EPKWq.json",
     "headers" : {
-      "Date" : "Wed, 01 Mar 2017 12:03:06 GMT",
+      "Date" : "Tue, 09 Jan 2018 13:03:39 GMT",
       "Server" : "Apache/2.4.7 (Ubuntu)",
+      "X-Frame-Options" : "SAMEORIGIN",
       "Allow" : "GET, HEAD, OPTIONS",
       "Vary" : "Accept,Cookie",
-      "X-Frame-Options" : "SAMEORIGIN",
       "Keep-Alive" : "timeout=5, max=100",
       "Connection" : "Keep-Alive",
       "Transfer-Encoding" : "chunked",
       "Content-Type" : "application/json"
     }
   },
-  "uuid" : "8815b167-6323-3795-a591-61581701e0ea"
+  "uuid" : "fa349abf-6625-3ec5-9d6f-6b37cd621aa6"
 }

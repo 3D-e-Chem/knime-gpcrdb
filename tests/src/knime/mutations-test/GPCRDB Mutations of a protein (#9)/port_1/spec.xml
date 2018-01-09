@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="spec.xml">
 <entry key="spec_name" type="xstring" value="default"/>
-<entry key="number_columns" type="xint" value="23"/>
+<entry key="number_columns" type="xint" value="21"/>
 <config key="column_spec_0">
 <entry key="column_name" type="xstring" value="Entry name"/>
 <config key="element_names">
@@ -216,7 +216,7 @@
 <config key="column_properties"/>
 </config>
 <config key="column_spec_15">
-<entry key="column_name" type="xstring" value="Receptor property"/>
+<entry key="column_name" type="xstring" value="Receptor expression"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
 </config>
@@ -231,18 +231,22 @@
 <config key="column_properties"/>
 </config>
 <config key="column_spec_16">
-<entry key="column_name" type="xstring" value="WT data"/>
+<entry key="column_name" type="xstring" value="Basal activity"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
 </config>
 <config key="column_type">
-<entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
+<entry key="cell_class" type="xstring" value="org.knime.core.data.def.StringCell"/>
 </config>
-<config key="column_domain"/>
+<config key="column_domain">
+<config key="possible_values">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+</config>
 <config key="column_properties"/>
 </config>
 <config key="column_spec_17">
-<entry key="column_name" type="xstring" value="Quantitative symbol"/>
+<entry key="column_name" type="xstring" value="Gain of activity"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
 </config>
@@ -257,29 +261,7 @@
 <config key="column_properties"/>
 </config>
 <config key="column_spec_18">
-<entry key="column_name" type="xstring" value="Mutant effect"/>
-<config key="element_names">
-<entry key="array-size" type="xint" value="0"/>
-</config>
-<config key="column_type">
-<entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
-</config>
-<config key="column_domain"/>
-<config key="column_properties"/>
-</config>
-<config key="column_spec_19">
-<entry key="column_name" type="xstring" value="Mutant effect (%)"/>
-<config key="element_names">
-<entry key="array-size" type="xint" value="0"/>
-</config>
-<config key="column_type">
-<entry key="cell_class" type="xstring" value="org.knime.core.data.def.DoubleCell"/>
-</config>
-<config key="column_domain"/>
-<config key="column_properties"/>
-</config>
-<config key="column_spec_20">
-<entry key="column_name" type="xstring" value="Qualitative effect"/>
+<entry key="column_name" type="xstring" value="Ligand Emax"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
 </config>
@@ -293,7 +275,7 @@
 </config>
 <config key="column_properties"/>
 </config>
-<config key="column_spec_21">
+<config key="column_spec_19">
 <entry key="column_name" type="xstring" value="Agonist name"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
@@ -308,7 +290,7 @@
 </config>
 <config key="column_properties"/>
 </config>
-<config key="column_spec_22">
+<config key="column_spec_20">
 <entry key="column_name" type="xstring" value="Reference"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>

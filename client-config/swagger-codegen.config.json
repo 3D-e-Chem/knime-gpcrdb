@@ -4,7 +4,7 @@
   "invokerPackage": "nl.esciencecenter.e3dchem.gpcrdb.client",
   "groupId": "nl.esciencecenter.e3dchem.gpcrdb",
   "artifactId": "nl.esciencecenter.e3dchem.gpcrdb.client",
-  "artifactVersion": "2.0.1",
+  "artifactVersion": "2.0.3",
   "serializableModel": true,
   "hideGenerationTimestamp": "nl.esciencecenter.e3dchem.gpcrdb.client",
   "dateLibrary": "java8",

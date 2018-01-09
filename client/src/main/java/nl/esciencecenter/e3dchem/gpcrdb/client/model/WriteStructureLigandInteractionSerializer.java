@@ -14,16 +14,13 @@
 package nl.esciencecenter.e3dchem.gpcrdb.client.model;
 
 import java.util.Objects;
-import java.util.HashMap;
-import java.util.Map;
-import nl.esciencecenter.e3dchem.gpcrdb.client.model.ProteinSimilarity;
 import java.io.Serializable;
 
 /**
- * ProteinSimilarities
+ * WriteStructureLigandInteractionSerializer
  */
 
-public class ProteinSimilarities extends HashMap<String, ProteinSimilarity> implements Serializable {
+public class WriteStructureLigandInteractionSerializer implements Serializable {
   private static final long serialVersionUID = 1L;
 
 
@@ -35,20 +32,20 @@ public class ProteinSimilarities extends HashMap<String, ProteinSimilarity> impl
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash();
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProteinSimilarities {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class WriteStructureLigandInteractionSerializer {\n");
+    
     sb.append("}");
     return sb.toString();
   }

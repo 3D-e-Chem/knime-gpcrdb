@@ -53,7 +53,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 			throws Exception {
 		// the data table spec of the single output table,
 		// the table will have three columns:
-		DataColumnSpec[] allColSpecs = new DataColumnSpec[23];
+        DataColumnSpec[] allColSpecs = new DataColumnSpec[21];
 		allColSpecs[0] = new DataColumnSpecCreator("Entry name", StringCell.TYPE).createSpec();
 		allColSpecs[1] = new DataColumnSpecCreator("Sequence number", IntCell.TYPE).createSpec();
 		allColSpecs[2] = new DataColumnSpecCreator("Mutation from", StringCell.TYPE).createSpec();
@@ -69,14 +69,12 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 		allColSpecs[12] = new DataColumnSpecCreator("Quantifier symbol", StringCell.TYPE).createSpec();
 		allColSpecs[13] = new DataColumnSpecCreator("Quantitative", DoubleCell.TYPE).createSpec();
 		allColSpecs[14] = new DataColumnSpecCreator("Qualitative", StringCell.TYPE).createSpec();
-		allColSpecs[15] = new DataColumnSpecCreator("Receptor property", StringCell.TYPE).createSpec();
-		allColSpecs[16] = new DataColumnSpecCreator("WT data", DoubleCell.TYPE).createSpec();
-		allColSpecs[17] = new DataColumnSpecCreator("Quantitative symbol", StringCell.TYPE).createSpec();
-		allColSpecs[18] = new DataColumnSpecCreator("Mutant effect", DoubleCell.TYPE).createSpec();
-		allColSpecs[19] = new DataColumnSpecCreator("Mutant effect (%)", DoubleCell.TYPE).createSpec();
-		allColSpecs[20] = new DataColumnSpecCreator("Qualitative effect", StringCell.TYPE).createSpec();
-		allColSpecs[21] = new DataColumnSpecCreator("Agonist name", StringCell.TYPE).createSpec();
-		allColSpecs[22] = new DataColumnSpecCreator("Reference", StringCell.TYPE).createSpec();
+        allColSpecs[15] = new DataColumnSpecCreator("Receptor expression", StringCell.TYPE).createSpec();
+        allColSpecs[16] = new DataColumnSpecCreator("Basal activity", StringCell.TYPE).createSpec();
+        allColSpecs[17] = new DataColumnSpecCreator("Gain of activity", StringCell.TYPE).createSpec();
+        allColSpecs[18] = new DataColumnSpecCreator("Ligand Emax", StringCell.TYPE).createSpec();
+        allColSpecs[19] = new DataColumnSpecCreator("Agonist name", StringCell.TYPE).createSpec();
+        allColSpecs[20] = new DataColumnSpecCreator("Reference", StringCell.TYPE).createSpec();
 
 		// TODO add foldchange
 		DataTableSpec outputSpec = new DataTableSpec(allColSpecs);
@@ -122,7 +120,7 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 			// the cells of the current row, the types of the cells must
 			// match
 			// the column spec (see above)
-			DataCell[] cells = new DataCell[23];
+            DataCell[] cells = new DataCell[21];
 			cells[0] = new StringCell(mutant.getProtein());
 			cells[1] = new IntCell(mutant.getMutationPos());
 			cells[2] = new StringCell(mutant.getMutationFrom());
@@ -138,14 +136,12 @@ public class MutantsNodeModel extends GpcrdbNodeModel {
 			cells[12] = new StringCell(mutant.getExpMuEffectSign());
 			cells[13] = new DoubleCell(mutant.getExpMuEffectValue());
 			cells[14] = new StringCell(mutant.getExpMuEffectQual());
-			cells[15] = new StringCell(mutant.getOptType());
-			cells[16] = new DoubleCell(mutant.getOptWt());
-			cells[17] = new StringCell(mutant.getOptSign());
-			cells[18] = new DoubleCell(mutant.getOptMu());
-			cells[19] = new DoubleCell(mutant.getOptPercentage());
-			cells[20] = new StringCell(mutant.getOptQual());
-			cells[21] = new StringCell(mutant.getOptAgonist());
-			cells[22] = new StringCell(mutant.getReference());
+            cells[15] = new StringCell(mutant.getOptReceptorExpression());
+            cells[16] = new StringCell(mutant.getOptBasalActivity());
+            cells[17] = new StringCell(mutant.getOptGainOfActivity());
+            cells[18] = new StringCell(mutant.getOptLigandEmax());
+            cells[19] = new StringCell(mutant.getOptAgonist());
+            cells[20] = new StringCell(mutant.getReference());
 			DataRow row = new DefaultRow(key, cells);
 			container.addRowToTable(row);
 		}

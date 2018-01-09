@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>nl.esciencecenter.e3dchem.gpcrdb</groupId>
     <artifactId>nl.esciencecenter.e3dchem.gpcrdb.client</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.3</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "nl.esciencecenter.e3dchem.gpcrdb:nl.esciencecenter.e3dchem.gpcrdb.client:2.0.0"
+compile "nl.esciencecenter.e3dchem.gpcrdb:nl.esciencecenter.e3dchem.gpcrdb.client:2.0.3"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/nl.esciencecenter.e3dchem.gpcrdb.client-2.0.0.jar
+* target/nl.esciencecenter.e3dchem.gpcrdb.client-2.0.3.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -86,7 +86,7 @@ public class ServicesalignmentApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://gpcrdb.org/*
+All URIs are relative to *http://gpcrdb.org*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
 *ServicesstructureApi* | [**structureLigandInteractionsGET**](docs/ServicesstructureApi.md#structureLigandInteractionsGET) | **GET** /services/structure/{pdb_code}/interaction/ | Get a list of interactions between structure and ligand
 *ServicesstructureApi* | [**structureListGET**](docs/ServicesstructureApi.md#structureListGET) | **GET** /services/structure/ | Get a list of structures
 *ServicesstructureApi* | [**structureListProteinGET**](docs/ServicesstructureApi.md#structureListProteinGET) | **GET** /services/structure/protein/{entry_name}/ | Get a list of structures of a protein
+*ServicesstructureApi* | [**structureSingleProteinGET**](docs/ServicesstructureApi.md#structureSingleProteinGET) | **GET** /services/structure/protein/{entry_name}/?single | Get the structure of a protein
 *ServicesstructureApi* | [**structureTemplateGET**](docs/ServicesstructureApi.md#structureTemplateGET) | **GET** /services/structure/template/{entry_name}/ | Get the most similar structure template for a protein using a 7TM alignment
 *ServicesstructureApi* | [**structureTemplatePartialGET**](docs/ServicesstructureApi.md#structureTemplatePartialGET) | **GET** /services/structure/template/{entry_name}/{segments}/ | Get the most similar structure template for a protein using a partial alignment
 
@@ -150,6 +151,7 @@ Class | Method | HTTP request | Description
  - [WriteResidueGenericNumberSerializer](docs/WriteResidueGenericNumberSerializer.md)
  - [WriteResidueSerializer](docs/WriteResidueSerializer.md)
  - [WriteSpeciesSerializer](docs/WriteSpeciesSerializer.md)
+ - [WriteStructureLigandInteractionSerializer](docs/WriteStructureLigandInteractionSerializer.md)
 
 
 ## Documentation for Authorization
@@ -159,7 +161,7 @@ Authentication schemes defined for the API:
 
 ## Recommendation
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
+It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
 
 ## Author
 
