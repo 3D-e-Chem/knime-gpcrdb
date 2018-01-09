@@ -5,6 +5,12 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.3.0] - 2017-09-01
+
+### Fixed
+
+- Mutant api changed (#29)
+
 ## [1.2.0] - 2017-03-01
 
 ### Added

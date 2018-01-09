@@ -67,7 +67,7 @@ During import the Tycho Eclipse providers must be installed.
 
 # New release
 
-1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>` command.
+1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>-SNAPSHOT` command.
 2. Manually update version of "source" feature in `p2/category.xml` file.
 3. Commit and push changes
 3. Create package with `mvn package`, will create update site in `p2/target/repository`
@@ -139,7 +139,7 @@ java -jar tests/lib/wiremock-standalone-2.5.0.jar --proxy-all="http://gpcrdb.org
 Then in a KNIME workflow in the GPCRDB nodes set the base path to http://localhost:8089.
 Executing the workflow will fetch data from http://gpcrdb.org/ via the WireMock server and cause new stubs to be recorded in the `tests/src/test/resources/` directory.
 
-To run the test workflows from inside KNIME desktop enviroment start the WireMock server in mock mode by:
+To run the test workflows from inside KNIME desktop environment start the WireMock server in mock mode by:
 
 ```
 java -jar tests/lib/wiremock-standalone-2.5.0.jar --port=8089 --verbose --root-dir=tests/src/test/resources/
