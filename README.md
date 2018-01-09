@@ -68,14 +68,18 @@ During import the Tycho Eclipse providers must be installed.
 # New release
 
 1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>-SNAPSHOT` command.
-2. Manually update version of "source" feature in `p2/category.xml` file.
-3. Commit and push changes
+2. Commit and push changes
 3. Create package with `mvn package`, will create update site in `p2/target/repository`
-4. Append new release to 3D-e-Chem update site
+4. Test node by installing it from local update site
+5. Append new release to 3D-e-Chem update site
   1. Make clone of https://github.com/3D-e-Chem/3D-e-Chem.github.io repo
   2. Append release to 3D-e-Chem update site with `mvn install -Dtarget.update.site=<3D-e-Chem repo/updates>`
-5. Commit and push changes in this repo and 3D-e-Chem.github.io repo
-6. Make nodes available to 3D-e-Chem KNIME feature by following steps at https://github.com/3D-e-Chem/knime-node-collection#new-release
+6. Commit and push changes in this repo and 3D-e-Chem.github.io repo
+7. Create a Github release
+8. Update Zenodo entry
+  1. Fix authors
+  2. Fix license
+9. Make nodes available to 3D-e-Chem KNIME feature by following steps at https://github.com/3D-e-Chem/knime-node-collection#new-release
 
 # Create GPCRDB client
 
