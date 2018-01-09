@@ -56,7 +56,7 @@ public class MutantsNodeModelTest {
 
 
 	private void verifyContainer(BufferedDataContainer container) {
-		DataCell[] expectedCells = new DataCell[23];
+        DataCell[] expectedCells = new DataCell[21];
         expectedCells[0] = new StringCell("hrh1_human");
         expectedCells[1] = new IntCell(107);
         expectedCells[2] = new StringCell("D");
@@ -72,14 +72,12 @@ public class MutantsNodeModelTest {
         expectedCells[12] = new StringCell("=");
         expectedCells[13] = new DoubleCell(0);
         expectedCells[14] = new StringCell("Abolished effect");
-        expectedCells[15] = new StringCell("Surface expression");
-        expectedCells[16] = new DoubleCell((float) 1.54);
-        expectedCells[17] = new StringCell("");
-        expectedCells[18] = new DoubleCell(0);
-        expectedCells[19] = new DoubleCell(0);
-        expectedCells[20] = new StringCell("Abolishment");
-        expectedCells[21] = new StringCell("");
-        expectedCells[22] = new StringCell("8093027");
+        expectedCells[15] = new StringCell("54.3");
+        expectedCells[16] = new StringCell("1.54");
+        expectedCells[17] = new StringCell("goa");
+        expectedCells[18] = new StringCell("33.41");
+        expectedCells[19] = new StringCell("aa");
+        expectedCells[20] = new StringCell("8093027");
 
         DataRow expectedRow = new DefaultRow(RowKey.createRowKey(0L), expectedCells);
         verify(container).addRowToTable(expectedRow);
@@ -133,13 +131,11 @@ public class MutantsNodeModelTest {
         mutant.setExpMuEffectSign("=");
         mutant.setExpMuEffectValue((float) 0);
         mutant.setExpMuEffectQual("Abolished effect");
-        mutant.setOptType("Surface expression");
-        mutant.setOptWt((float) 1.54);
-        mutant.setOptSign("");
-        mutant.setOptMu((float) 0);
-        mutant.setOptPercentage((float) 0);
-        mutant.setOptQual("Abolishment");
-        mutant.setOptAgonist("");
+        mutant.setOptReceptorExpression("54.3");
+        mutant.setOptBasalActivity("1.54");
+        mutant.setOptGainOfActivity("goa");
+        mutant.setOptLigandEmax("33.41");
+        mutant.setOptAgonist("aa");
         mutant.setReference("8093027");
         response.add(mutant);
         return response;
