@@ -1,8 +1,4 @@
 version: 1.0.{build}
-init:
-- cmd: 
-install:
-- cmd: choco install maven -y
 cache: C:\Users\appveyor\.m2
 build_script:
 - cmd: mvn package -B
