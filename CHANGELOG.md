@@ -5,6 +5,12 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.4.0] - 2018-04-04
+
+### Fixed
+
+- Add all fields that are returned by mutant ws endpoint to KNIME node (#29)
+
 ## [1.3.0] - 2017-09-01
 
 ### Fixed
