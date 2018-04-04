@@ -43,11 +43,11 @@
 <entry key="node-bundle-name" type="xstring" value="GPCRDB Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.gpcrdb"/>
 <entry key="node-bundle-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-bundle-version" type="xstring" value="1.2.1.201801091251"/>
+<entry key="node-bundle-version" type="xstring" value="1.3.0.201804041032"/>
 <entry key="node-feature-name" type="xstring" value="GPCRDB Nodes for Knime"/>
 <entry key="node-feature-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.gpcrdb.feature.feature.group"/>
 <entry key="node-feature-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-feature-version" type="xstring" value="1.2.1.201801091251"/>
+<entry key="node-feature-version" type="xstring" value="1.3.0.201804041032"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="GPCRDB Mutations of a protein"/>
 <entry key="hasContent" type="xboolean" value="false"/>
