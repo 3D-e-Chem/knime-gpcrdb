@@ -56,7 +56,7 @@ public class MutantsNodeModelTest {
 
 
 	private void verifyContainer(BufferedDataContainer container) {
-        DataCell[] expectedCells = new DataCell[21];
+        DataCell[] expectedCells = new DataCell[25];
         expectedCells[0] = new StringCell("hrh1_human");
         expectedCells[1] = new IntCell(107);
         expectedCells[2] = new StringCell("D");
@@ -78,6 +78,10 @@ public class MutantsNodeModelTest {
         expectedCells[18] = new StringCell("33.41");
         expectedCells[19] = new StringCell("aa");
         expectedCells[20] = new StringCell("8093027");
+        expectedCells[21] = new StringCell("exp mu effect type");
+        expectedCells[22] = new DoubleCell((float) 0.876);
+        expectedCells[23] = new StringCell("exp mu effect ligand prop");
+        expectedCells[24] = new StringCell("[3H]-mepyramine (radioligand)");
 
         DataRow expectedRow = new DefaultRow(RowKey.createRowKey(0L), expectedCells);
         verify(container).addRowToTable(expectedRow);
@@ -113,7 +117,6 @@ public class MutantsNodeModelTest {
         //		    "opt_percentage": 0,
         //		    "opt_qual": "Abolishment",
         //		    "opt_agonist": "",
-        //		    "added_date": "2016-03-23"
         //		  },
         MutationSerializer mutant = new MutationSerializer();
         mutant.setProtein("hrh1_human");
@@ -137,6 +140,10 @@ public class MutantsNodeModelTest {
         mutant.setOptLigandEmax("33.41");
         mutant.setOptAgonist("aa");
         mutant.setReference("8093027");
+        mutant.setExpMuEffectType("exp mu effect type");
+        mutant.setExpFoldChange((float) 0.876);
+        mutant.setExpMuEffectLigandProp("exp mu effect ligand prop");
+        mutant.setExpMuLigandRef("[3H]-mepyramine (radioligand)");
         response.add(mutant);
         return response;
     }
