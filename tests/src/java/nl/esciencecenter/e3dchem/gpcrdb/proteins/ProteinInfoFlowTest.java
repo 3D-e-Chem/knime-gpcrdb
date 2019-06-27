@@ -30,6 +30,7 @@ public class ProteinInfoFlowTest {
 	    TestrunConfiguration runConfiguration = new TestrunConfiguration();
 	    runConfiguration.setTestViews(false);
 	    runConfiguration.setTestDialogs(true);
+		runConfiguration.setLoadSaveLoad(false);
 	    runner = new TestFlowRunner(collector, runConfiguration);
 	}
 	
