@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature-1.4.0.qualifier.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature" version="1.4.0.qualifier">
+   <feature url="features/nl.esciencecenter.e3dchem.gpcrdb.feature-1.4.1.qualifier.jar" id="nl.esciencecenter.e3dchem.gpcrdb.feature" version="1.4.1.qualifier">
       <category name="nl.esciencecenter.3D-e-Chem"/>
    </feature>
    <category-def name="nl.esciencecenter.3D-e-Chem" label="KNIME 3D-e-Chem Contributions">

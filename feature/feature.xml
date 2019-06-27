@@ -2,7 +2,7 @@
 <feature
       id="nl.esciencecenter.e3dchem.gpcrdb.feature"
       label="GPCRDB Nodes for Knime"
-      version="1.4.0.qualifier"
+      version="1.4.1.qualifier"
       provider-name="Netherlands eScience Center">
 
    <description url="https://github.com/3D-e-Chem/knime-gpcrdb">
