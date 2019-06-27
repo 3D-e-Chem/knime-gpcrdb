@@ -5,6 +5,12 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.4.1] - 2019-06-27
+
+### Changed
+
+- Compatible with KNIME 4 (#30)[https://github.com/3D-e-Chem/knime-gpcrdb/issues/30]
+
 ## [1.4.0] - 2018-04-04
 
 ### Fixed

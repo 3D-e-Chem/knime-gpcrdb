@@ -28,6 +28,7 @@ public class ProteinFamiliesFlowTest {
 	@Before
 	public void setUp() {
 	    TestrunConfiguration runConfiguration = new TestrunConfiguration();
+		runConfiguration.setLoadSaveLoad(false);
 	    runner = new TestFlowRunner(collector, runConfiguration);
 	}
 	
