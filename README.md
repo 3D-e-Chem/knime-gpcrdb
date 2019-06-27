@@ -4,7 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/4n4bjgaq04dbem0u?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-gpcrdb)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Coverage)
-[![DOI](https://zenodo.org/badge/19641/3D-e-Chem/knime-gpcrdb.svg)](https://zenodo.org/badge/latestdoi/19641/3D-e-Chem/knime-gpcrdb)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3257985.svg)](https://doi.org/10.5281/zenodo.3257985)
 
 KNIME plugin for retrieving data from http://gpcrdb.org, GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
 
