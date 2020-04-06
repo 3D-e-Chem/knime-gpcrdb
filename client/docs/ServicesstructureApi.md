@@ -1,6 +1,6 @@
 # ServicesstructureApi
 
-All URIs are relative to *http://gpcrdb.org*
+All URIs are relative to *https://gpcrdb.org*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -108,7 +108,7 @@ No authorization required
 
 Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file
 
-Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; http://gpcrdb.org/services/structure/assign_generic_numbers
+Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; https://gpcrdb.org/services/structure/assign_generic_numbers
 
 ### Example
 ```java

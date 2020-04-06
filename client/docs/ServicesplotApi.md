@@ -1,6 +1,6 @@
 # ServicesplotApi
 
-All URIs are relative to *http://gpcrdb.org*
+All URIs are relative to *https://gpcrdb.org*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

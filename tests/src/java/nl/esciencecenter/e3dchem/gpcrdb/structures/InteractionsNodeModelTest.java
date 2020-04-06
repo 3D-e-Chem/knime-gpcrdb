@@ -31,7 +31,7 @@ public class InteractionsNodeModelTest {
         when(service.structureLigandInteractionsGET(pdbCode)).thenReturn(response);
         model.setService(service);
         BufferedDataContainer container = mock(BufferedDataContainer.class);
-        // http://gpcrdb.org/interaction/3EML
+        // https://gpcrdb.org/interaction/3EML
         // ZM 241385 L85 3.33x33 TM3 hydrophobic
 
         model.fetchInteractions(container, pdbCode);
@@ -50,7 +50,7 @@ public class InteractionsNodeModelTest {
         when(service.structureLigandInteractionsGET("3EML")).thenReturn(response);
         model.setService(service);
         BufferedDataContainer container = mock(BufferedDataContainer.class);
-        // http://gpcrdb.org/interaction/3EML
+        // https://gpcrdb.org/interaction/3EML
         // ZM 241385 L85 3.33x33 TM3 hydrophobic
 
         model.fetchInteractions(container, pdbCode);
@@ -90,7 +90,7 @@ public class InteractionsNodeModelTest {
         when(service.structureLigandInteractionsGET(pdbCode)).thenReturn(response);
         model.setService(service);
         BufferedDataContainer container = mock(BufferedDataContainer.class);
-        // http://gpcrdb.org/interaction/3EML
+        // https://gpcrdb.org/interaction/3EML
         // ZM 241385    H264            ECL3    aromatic (face-to-edge)
 
         model.fetchInteractions(container, pdbCode);

@@ -86,7 +86,7 @@ public class ServicesalignmentApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://gpcrdb.org*
+All URIs are relative to *https://gpcrdb.org*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
