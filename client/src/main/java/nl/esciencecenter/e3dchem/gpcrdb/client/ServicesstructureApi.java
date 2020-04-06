@@ -350,7 +350,7 @@ public class ServicesstructureApi {
 
     /**
      * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file
-     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; http://gpcrdb.org/services/structure/assign_generic_numbers
+     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; https://gpcrdb.org/services/structure/assign_generic_numbers
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -361,7 +361,7 @@ public class ServicesstructureApi {
 
     /**
      * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file
-     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; http://gpcrdb.org/services/structure/assign_generic_numbers
+     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; https://gpcrdb.org/services/structure/assign_generic_numbers
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -373,7 +373,7 @@ public class ServicesstructureApi {
 
     /**
      * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file (asynchronously)
-     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; http://gpcrdb.org/services/structure/assign_generic_numbers
+     * Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.&lt;br/&gt;/structure/assign_generic_numbers&lt;br/&gt;    e.g.     curl -X POST -F \&quot;pdb_file&#x3D;@myfile.pdb\&quot; https://gpcrdb.org/services/structure/assign_generic_numbers
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

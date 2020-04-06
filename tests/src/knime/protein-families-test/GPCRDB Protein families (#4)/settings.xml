@@ -10,7 +10,7 @@
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
-<entry key="Base path" type="xstring" value="http://gpcrdb.org"/>
+<entry key="Base path" type="xstring" value="https://gpcrdb.org"/>
 <config key="Timeout_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>

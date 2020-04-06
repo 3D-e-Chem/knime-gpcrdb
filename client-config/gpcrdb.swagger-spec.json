@@ -671,7 +671,7 @@
       "post" : {
         "tags" : [ "servicesstructure" ],
         "summary" : "Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file",
-        "description" : "Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.<br/>/structure/assign_generic_numbers<br/>    e.g.\n    curl -X POST -F \"pdb_file=@myfile.pdb\" http://gpcrdb.org/services/structure/assign_generic_numbers",
+        "description" : "Assign generic residue numbers (Ballesteros-Weinstein and GPCRdb schemes) to an uploaded pdb file.<br/>/structure/assign_generic_numbers<br/>    e.g.\n    curl -X POST -F \"pdb_file=@myfile.pdb\" https://gpcrdb.org/services/structure/assign_generic_numbers",
         "operationId" : "Structure_Assign_Generic_Numbers_POST",
         "parameters" : [ ],
         "responses" : {

@@ -23,7 +23,7 @@ import nl.esciencecenter.e3dchem.gpcrdb.client.ApiException;
 public abstract class GpcrdbNodeModel extends NodeModel {
 
 	public static final String CFGKEY_BASEPATH = "Base path";
-	public static final String DEFAULT_BASEPATH = "http://gpcrdb.org/";
+	public static final String DEFAULT_BASEPATH = "https://gpcrdb.org";
 	private final SettingsModelString m_basePath = basePathSettings();
 
 	public static final String CFGKEY_TIMEOUT = "Timeout";

@@ -6,7 +6,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Coverage)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3257985.svg)](https://doi.org/10.5281/zenodo.3257985)
 
-KNIME plugin for retrieving data from http://gpcrdb.org, GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
+KNIME plugin for retrieving data from https://gpcrdb.org, GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
 
 # Installation
 
@@ -79,7 +79,7 @@ wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.0/swagger-
 Install the swagger rewriter from https://github.com/3D-e-Chem/swagger-rewriter
 ```
 swagger-rewriter/bin/swagger-rewriter \
-http://gpcrdb.org/services/reference/api-docs/ \
+https://gpcrdb.org/services/reference/api-docs/ \
 client-config/swagger-rewriter.config.yml \
 client-config/gpcrdb.swagger-spec.json
 ```
@@ -115,17 +115,17 @@ rm plugin/lib/*-tests.jar plugin/lib/junit* plugin/lib/hamcrest*
 
 # Create stub recordings for integration tests
 
-The test workflow are tested against a mocked web server and not the actual http://www.gpcrdb.org site.
+The test workflow are tested against a mocked web server and not the actual https://gpcrdb.org site.
 The mock server is called [WireMock](http://WireMock.org/) and normally gives empty responses.
 To have WireMock server return filled responses, stubs stored in `tests/src/test/resources/` directory must be provided.
 The stubs can be recorded by starting a WireMock server in recording mode by:
 ```
-java -jar tests/lib/wiremock-standalone-2.5.0.jar --proxy-all="http://gpcrdb.org/" \
+java -jar tests/lib/wiremock-standalone-2.5.0.jar --proxy-all="https://gpcrdb.org/" \
 --port=8089 --record-mappings --verbose --root-dir=tests/src/test/resources/
 ```
 
 Then in a KNIME workflow in the GPCRDB nodes set the base path to http://localhost:8089.
-Executing the workflow will fetch data from http://gpcrdb.org/ via the WireMock server and cause new stubs to be recorded in the `tests/src/test/resources/` directory.
+Executing the workflow will fetch data from https://gpcrdb.org/ via the WireMock server and cause new stubs to be recorded in the `tests/src/test/resources/` directory.
 
 To run the test workflows from inside KNIME desktop environment start the WireMock server in mock mode by:
 
