@@ -5,6 +5,12 @@ Formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.4.3] - 2023-11-21
+
+### Changes
+
+- Requires KNIME 5.1
+
 ## [1.4.2] - 2020-04-06
 
 Nodes in existing workflows giving not found errors should be replaced.
