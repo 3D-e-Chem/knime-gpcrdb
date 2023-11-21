@@ -3,6 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3257985.svg)](https://doi.org/10.5281/zenodo.3257985)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-gpcrdb&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-gpcrdb)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-gpcrdb&metric=coverage)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-gpcrdb)
+[![Java CI with Maven](https://github.com/3D-e-Chem/knime-gpcrdb/actions/workflows/ci.yml/badge.svg)](https://github.com/3D-e-Chem/knime-gpcrdb/actions/workflows/ci.yml)
 
 KNIME plugin for retrieving data from [https://gpcrdb.org](https://gpcrdb.org), GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
 
