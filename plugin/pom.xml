@@ -10,5 +10,9 @@
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.gpcrdb</artifactId>
 	<packaging>eclipse-plugin</packaging>
+	<properties>
+	    <sonar.coverage.jacoco.xmlReportPaths>../tests/target/jacoco/report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.junit.reportsPath>../tests/target/surefire-reports</sonar.junit.reportsPath>
+	</properties>
 <version>1.4.2-SNAPSHOT</version>
 </project>

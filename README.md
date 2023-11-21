@@ -1,10 +1,8 @@
 # GPCRDB node for KNIME
 
-[![Build Status](https://travis-ci.org/3D-e-Chem/knime-gpcrdb.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-gpcrdb)
-[![Build status](https://ci.appveyor.com/api/projects/status/4n4bjgaq04dbem0u?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-gpcrdb)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/116701411bee4b92a9f265f1a0a9efaf)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-gpcrdb&amp;utm_campaign=Badge_Coverage)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3257985.svg)](https://doi.org/10.5281/zenodo.3257985)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-gpcrdb&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-gpcrdb)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-gpcrdb&metric=coverage)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-gpcrdb)
 
 KNIME plugin for retrieving data from [https://gpcrdb.org](https://gpcrdb.org), GPCRdb website contains data, web tools and diagrams for G protein-coupled receptors (GPCRs).
 
@@ -12,13 +10,13 @@ KNIME plugin for retrieving data from [https://gpcrdb.org](https://gpcrdb.org), 
 
 Requirements:
 
-* KNIME, https://www.knime.org, version 4.0 or higher
+* KNIME, https://www.knime.org, version 5.1 or higher
 
 Steps to get GPCRDB nodes inside KNIME:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
-3. Fill text fields with `https://3d-e-chem.github.io/updates`
+3. Fill text fields with `https://3d-e-chem.github.io/updates/5.1`
 4. Select --all sites-- in work with pulldown
 5. Open KNIME 3D-e-Chem Contributions folder
 6. Select GPCRDB
@@ -43,11 +41,11 @@ An Eclipse update site will be made in `p2/target/repository` repository.
 
 Steps to get development environment setup based on https://github.com/knime/knime-sdk-setup#sdk-setup:
 
-1. Install Java 8
-2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-rcp-and-rap-developers)
-3. Configure Java 8 inside Eclipse Window > Preferences > Java > Installed JREs
+1. Install Java 17
+2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/installer)
+3. Configure Java 17 inside Eclipse Window > Preferences > Java > Installed JREs
 4. Import this repo as an Existing Maven project
-5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (4.0) - nl.esciencecenter.e3dchem.knime.molviewer.targetplatform/KNIME-AP-4.0.target` target definition.
+5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (5.1) - nl.esciencecenter.e3dchem.knime.molviewer.targetplatform/KNIME-AP-5.1.target` target definition.
 
 During import the Tycho Eclipse providers must be installed.
 
